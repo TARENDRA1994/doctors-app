@@ -1,0 +1,1056 @@
+﻿   Γû▓ Next.js 14.0.0
+   - Local:        http://localhost:3000
+   - Environments: .env.local
+   - Experiments (use at your own risk):
+     ┬╖ instrumentationHook
+
+ Γ£ô Compiled /instrumentation in 504ms (53 modules)
+≡ƒòÉ Reminder scheduler started - checking every minute
+ Γ£ô Ready in 2.9s
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE (`main`.`MedicineSchedule`.`status` = ? AND `main`.`MedicineSchedule`.`reminderCount` < ? AND `main`.`MedicineSchedule`.`scheduledAt` <= ? AND `main`.`MedicineSchedule`.`scheduledAt` >= ?) LIMIT ? OFFSET ?
+prisma:query SELECT 1
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE (`main`.`MedicineSchedule`.`status` = ? AND `main`.`MedicineSchedule`.`reminderCount` < ? AND `main`.`MedicineSchedule`.`scheduledAt` <= ? AND `main`.`MedicineSchedule`.`scheduledAt` >= ?) LIMIT ? OFFSET ?
+prisma:query SELECT 1
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE (`main`.`MedicineSchedule`.`status` = ? AND `main`.`MedicineSchedule`.`reminderCount` < ? AND `main`.`MedicineSchedule`.`scheduledAt` <= ? AND `main`.`MedicineSchedule`.`scheduledAt` >= ?) LIMIT ? OFFSET ?
+ Γùï Compiling /login/page ...
+ Γ£ô Compiled /login/page in 3.3s (542 modules)
+ Γ£ô Compiled in 509ms (266 modules)
+ Γùï Compiling /api/auth/[...nextauth]/route ...
+ Γ£ô Compiled /api/auth/[...nextauth]/route in 1721ms (514 modules)
+node.exe : 
+(node:24148) 
+[DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: ((node:2414   
+ 8) [D...ulnerabil    
+ities.:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+(node:19936) 
+[DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+(node:20096) 
+[DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`Doctor`.`id`, `main`.`Doctor`.`name`, `main`.`Doctor`.`clinicName`, `main`.`Doctor`.`mobileNumber`, `main`.`Doctor`.`whatsappNumber`, `main`.`Doctor`.`email`, `main`.`Doctor`.`password`, `main`.`Doctor`.`createdAt`, `main`.`Doctor`.`updatedAt`, `main`.`Doctor`.`subscriptionStatus`, `main`.`Doctor`.`subscriptionExpiry`, `main`.`Doctor`.`planType`, `main`.`Doctor`.`whatsappMsgCount`, `main`.`Doctor`.`isAdmin`, `main`.`Doctor`.`qualification`, `main`.`Doctor`.`specialization`, `main`.`Doctor`.`degree`, `main`.`Doctor`.`address`, `main`.`Doctor`.`fellowships`, `main`.`Doctor`.`website`, `main`.`Doctor`.`selectedTemplate` FROM `main`.`Doctor` WHERE (`main`.`Doctor`.`email` = ? AND 1=1) LIMIT ? OFFSET ?
+(node:13420) 
+[DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+ Γùï Compiling /dashboard/page ...
+ Γ£ô Compiled /dashboard/page in 2.7s (1781 modules)
+ Γùï Compiling /api/appointments/route ...
+ Γ£ô Compiled /api/appointments/route in 2.1s (1040 modules)
+ Γ£ô Compiled (1045 modules)
+prisma:query SELECT `main`.`Feedback`.`id`, `main`.`Feedback`.`patientId`, `main`.`Feedback`.`medicineId`, `main`.`Feedback`.`doctorId`, `main`.`Feedback`.`status`, `main`.`Feedback`.`notes`, `main`.`Feedback`.`isRead`, `main`.`Feedback`.`createdAt` FROM `main`.`Feedback` WHERE `main`.`Feedback`.`doctorId` = ? ORDER BY `main`.`Feedback`.`isRead` ASC, `main`.`Feedback`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`endDate` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`id` IN (?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+GET patients - Session: {
+  user: {
+    name: 'Tarendra Garhewal',
+    email: 'tarendra.garhewal2024@gmail.com',
+    image: undefined,
+    id: '1',
+    subscriptionStatus: 'ACTIVE',
+    planType: 'HOSPITAL',
+    isAdmin: true,
+    role: 'DOCTOR',
+    mobileNumber: undefined
+  }
+}
+GET patients - Doctor ID: 1
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE `main`.`Patient`.`doctorId` = ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Appointment`.`id`, `main`.`Appointment`.`patientId`, `main`.`Appointment`.`doctorId`, `main`.`Appointment`.`proposedTime`, `main`.`Appointment`.`status`, `main`.`Appointment`.`createdAt`, `main`.`Appointment`.`updatedAt` FROM `main`.`Appointment` WHERE `main`.`Appointment`.`doctorId` = ? ORDER BY `main`.`Appointment`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE `main`.`MedicineSchedule`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Feedback`.`id`, `main`.`Feedback`.`patientId`, `main`.`Feedback`.`medicineId`, `main`.`Feedback`.`doctorId`, `main`.`Feedback`.`status`, `main`.`Feedback`.`notes`, `main`.`Feedback`.`isRead`, `main`.`Feedback`.`createdAt` FROM `main`.`Feedback` WHERE `main`.`Feedback`.`doctorId` = ? ORDER BY `main`.`Feedback`.`isRead` ASC, `main`.`Feedback`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`endDate` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`id` IN (?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Appointment`.`id`, `main`.`Appointment`.`patientId`, `main`.`Appointment`.`doctorId`, `main`.`Appointment`.`proposedTime`, `main`.`Appointment`.`status`, `main`.`Appointment`.`createdAt`, `main`.`Appointment`.`updatedAt` FROM `main`.`Appointment` WHERE `main`.`Appointment`.`doctorId` = ? ORDER BY `main`.`Appointment`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?) LIMIT ? OFFSET ?
+GET patients - Session: {
+  user: {
+    name: 'Tarendra Garhewal',
+    email: 'tarendra.garhewal2024@gmail.com',
+    image: undefined,
+    id: '1',
+    subscriptionStatus: 'ACTIVE',
+    planType: 'HOSPITAL',
+    isAdmin: true,
+    role: 'DOCTOR',
+    mobileNumber: undefined
+  }
+}
+GET patients - Doctor ID: 1
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE `main`.`Patient`.`doctorId` = ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE `main`.`MedicineSchedule`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+ Γ£ô Compiled /api/reminders/manage/route in 209ms (1047 modules)
+prisma:query BEGIN IMMEDIATE
+prisma:query UPDATE `main`.`MedicineSchedule` SET `status` = ?, `updatedAt` = ? WHERE (`main`.`MedicineSchedule`.`status` = ? AND (`main`.`MedicineSchedule`.`medicineId`) IN (SELECT `t1`.`id` FROM `main`.`Medicine` AS `t1` WHERE (`t1`.`patientId` = ? AND `t1`.`doctorId` = ? AND `t1`.`id` IS NOT NULL)))
+prisma:query COMMIT
+GET patients - Session: {
+  user: {
+    name: 'Tarendra Garhewal',
+    email: 'tarendra.garhewal2024@gmail.com',
+    image: undefined,
+    id: '1',
+    subscriptionStatus: 'ACTIVE',
+    planType: 'HOSPITAL',
+    isAdmin: true,
+    role: 'DOCTOR',
+    mobileNumber: undefined
+  }
+}
+GET patients - Doctor ID: 1
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE `main`.`Patient`.`doctorId` = ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE `main`.`MedicineSchedule`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query BEGIN IMMEDIATE
+prisma:query UPDATE `main`.`MedicineSchedule` SET `status` = ?, `updatedAt` = ? WHERE (`main`.`MedicineSchedule`.`status` = ? AND (`main`.`MedicineSchedule`.`medicineId`) IN (SELECT `t1`.`id` FROM `main`.`Medicine` AS `t1` WHERE (`t1`.`patientId` = ? AND `t1`.`doctorId` = ? AND `t1`.`id` IS NOT NULL)))
+prisma:query COMMIT
+GET patients - Session: {
+  user: {
+    name: 'Tarendra Garhewal',
+    email: 'tarendra.garhewal2024@gmail.com',
+    image: undefined,
+    id: '1',
+    subscriptionStatus: 'ACTIVE',
+    planType: 'HOSPITAL',
+    isAdmin: true,
+    role: 'DOCTOR',
+    mobileNumber: undefined
+  }
+}
+GET patients - Doctor ID: 1
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE `main`.`Patient`.`doctorId` = ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE `main`.`MedicineSchedule`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Appointment`.`id`, `main`.`Appointment`.`patientId`, `main`.`Appointment`.`doctorId`, `main`.`Appointment`.`proposedTime`, `main`.`Appointment`.`status`, `main`.`Appointment`.`createdAt`, `main`.`Appointment`.`updatedAt` FROM `main`.`Appointment` WHERE `main`.`Appointment`.`doctorId` = ? ORDER BY `main`.`Appointment`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Feedback`.`id`, `main`.`Feedback`.`patientId`, `main`.`Feedback`.`medicineId`, `main`.`Feedback`.`doctorId`, `main`.`Feedback`.`status`, `main`.`Feedback`.`notes`, `main`.`Feedback`.`isRead`, `main`.`Feedback`.`createdAt` FROM `main`.`Feedback` WHERE `main`.`Feedback`.`doctorId` = ? ORDER BY `main`.`Feedback`.`isRead` ASC, `main`.`Feedback`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`endDate` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`id` IN (?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query BEGIN IMMEDIATE
+prisma:query UPDATE `main`.`MedicineSchedule` SET `status` = ?, `updatedAt` = ? WHERE (`main`.`MedicineSchedule`.`status` = ? AND (`main`.`MedicineSchedule`.`medicineId`) IN (SELECT `t1`.`id` FROM `main`.`Medicine` AS `t1` WHERE (`t1`.`patientId` = ? AND `t1`.`doctorId` = ? AND `t1`.`id` IS NOT NULL)))
+prisma:query COMMIT
+GET patients - Session: {
+  user: {
+    name: 'Tarendra Garhewal',
+    email: 'tarendra.garhewal2024@gmail.com',
+    image: undefined,
+    id: '1',
+    subscriptionStatus: 'ACTIVE',
+    planType: 'HOSPITAL',
+    isAdmin: true,
+    role: 'DOCTOR',
+    mobileNumber: undefined
+  }
+}
+GET patients - Doctor ID: 1
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE `main`.`Patient`.`doctorId` = ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE `main`.`MedicineSchedule`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT 1
+prisma:query BEGIN IMMEDIATE
+prisma:query UPDATE `main`.`MedicineSchedule` SET `status` = ?, `updatedAt` = ? WHERE (`main`.`MedicineSchedule`.`status` = ? AND (`main`.`MedicineSchedule`.`medicineId`) IN (SELECT `t1`.`id` FROM `main`.`Medicine` AS `t1` WHERE (`t1`.`patientId` = ? AND `t1`.`doctorId` = ? AND `t1`.`id` IS NOT NULL)))
+prisma:query COMMIT
+GET patients - Session: {
+  user: {
+    name: 'Tarendra Garhewal',
+    email: 'tarendra.garhewal2024@gmail.com',
+    image: undefined,
+    id: '1',
+    subscriptionStatus: 'ACTIVE',
+    planType: 'HOSPITAL',
+    isAdmin: true,
+    role: 'DOCTOR',
+    mobileNumber: undefined
+  }
+}
+GET patients - Doctor ID: 1
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE `main`.`Patient`.`doctorId` = ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE `main`.`MedicineSchedule`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query BEGIN IMMEDIATE
+prisma:query UPDATE `main`.`MedicineSchedule` SET `status` = ?, `updatedAt` = ? WHERE (`main`.`MedicineSchedule`.`status` = ? AND (`main`.`MedicineSchedule`.`medicineId`) IN (SELECT `t1`.`id` FROM `main`.`Medicine` AS `t1` WHERE (`t1`.`patientId` = ? AND `t1`.`doctorId` = ? AND `t1`.`id` IS NOT NULL)))
+prisma:query COMMIT
+GET patients - Session: {
+  user: {
+    name: 'Tarendra Garhewal',
+    email: 'tarendra.garhewal2024@gmail.com',
+    image: undefined,
+    id: '1',
+    subscriptionStatus: 'ACTIVE',
+    planType: 'HOSPITAL',
+    isAdmin: true,
+    role: 'DOCTOR',
+    mobileNumber: undefined
+  }
+}
+GET patients - Doctor ID: 1
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE `main`.`Patient`.`doctorId` = ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE `main`.`MedicineSchedule`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query BEGIN IMMEDIATE
+prisma:query UPDATE `main`.`MedicineSchedule` SET `status` = ?, `updatedAt` = ? WHERE (`main`.`MedicineSchedule`.`status` = ? AND (`main`.`MedicineSchedule`.`medicineId`) IN (SELECT `t1`.`id` FROM `main`.`Medicine` AS `t1` WHERE (`t1`.`patientId` = ? AND `t1`.`doctorId` = ? AND `t1`.`id` IS NOT NULL)))
+prisma:query COMMIT
+GET patients - Session: {
+  user: {
+    name: 'Tarendra Garhewal',
+    email: 'tarendra.garhewal2024@gmail.com',
+    image: undefined,
+    id: '1',
+    subscriptionStatus: 'ACTIVE',
+    planType: 'HOSPITAL',
+    isAdmin: true,
+    role: 'DOCTOR',
+    mobileNumber: undefined
+  }
+}
+GET patients - Doctor ID: 1
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE `main`.`Patient`.`doctorId` = ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE `main`.`MedicineSchedule`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Appointment`.`id`, `main`.`Appointment`.`patientId`, `main`.`Appointment`.`doctorId`, `main`.`Appointment`.`proposedTime`, `main`.`Appointment`.`status`, `main`.`Appointment`.`createdAt`, `main`.`Appointment`.`updatedAt` FROM `main`.`Appointment` WHERE `main`.`Appointment`.`doctorId` = ? ORDER BY `main`.`Appointment`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Feedback`.`id`, `main`.`Feedback`.`patientId`, `main`.`Feedback`.`medicineId`, `main`.`Feedback`.`doctorId`, `main`.`Feedback`.`status`, `main`.`Feedback`.`notes`, `main`.`Feedback`.`isRead`, `main`.`Feedback`.`createdAt` FROM `main`.`Feedback` WHERE `main`.`Feedback`.`doctorId` = ? ORDER BY `main`.`Feedback`.`isRead` ASC, `main`.`Feedback`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`endDate` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`id` IN (?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE (`main`.`MedicineSchedule`.`status` = ? AND `main`.`MedicineSchedule`.`reminderCount` < ? AND `main`.`MedicineSchedule`.`scheduledAt` <= ? AND `main`.`MedicineSchedule`.`scheduledAt` >= ?) LIMIT ? OFFSET ?
+ Γùï Compiling /patient/[id]/page ...
+ Γ£ô Compiled /patient/[id]/page in 861ms (1840 modules)
+ Γ£ô Compiled /api/patients/[id]/route in 334ms (1069 modules)
+ Γ£ô Compiled (1071 modules)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`DietPlan`.`id`, `main`.`DietPlan`.`planContent`, `main`.`DietPlan`.`context`, `main`.`DietPlan`.`createdAt` FROM `main`.`DietPlan` WHERE `main`.`DietPlan`.`patientId` = ? ORDER BY `main`.`DietPlan`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`DietPlan`.`id`, `main`.`DietPlan`.`planContent`, `main`.`DietPlan`.`context`, `main`.`DietPlan`.`createdAt` FROM `main`.`DietPlan` WHERE `main`.`DietPlan`.`patientId` = ? ORDER BY `main`.`DietPlan`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE (`main`.`Patient`.`id` = ? AND `main`.`Patient`.`doctorId` = ?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?) ORDER BY `main`.`Medicine`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Feedback`.`id`, `main`.`Feedback`.`patientId`, `main`.`Feedback`.`medicineId`, `main`.`Feedback`.`doctorId`, `main`.`Feedback`.`status`, `main`.`Feedback`.`notes`, `main`.`Feedback`.`isRead`, `main`.`Feedback`.`createdAt` FROM `main`.`Feedback` WHERE `main`.`Feedback`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`LabReport`.`id`, `main`.`LabReport`.`patientId`, `main`.`LabReport`.`doctorSummary`, `main`.`LabReport`.`aiSummary`, `main`.`LabReport`.`fileName`, `main`.`LabReport`.`fileUrl`, `main`.`LabReport`.`createdAt` FROM `main`.`LabReport` WHERE `main`.`LabReport`.`patientId` IN (?) ORDER BY `main`.`LabReport`.`createdAt` DESC LIMIT ? OFFSET ?
+(node:23804) 
+[DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+prisma:query SELECT `main`.`Vital`.`id`, `main`.`Vital`.`patientId`, `main`.`Vital`.`type`, `main`.`Vital`.`value`, `main`.`Vital`.`unit`, `main`.`Vital`.`timestamp` FROM `main`.`Vital` WHERE `main`.`Vital`.`patientId` IN (?) ORDER BY `main`.`Vital`.`timestamp` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE (`main`.`Patient`.`id` = ? AND `main`.`Patient`.`doctorId` = ?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?) ORDER BY `main`.`Medicine`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Feedback`.`id`, `main`.`Feedback`.`patientId`, `main`.`Feedback`.`medicineId`, `main`.`Feedback`.`doctorId`, `main`.`Feedback`.`status`, `main`.`Feedback`.`notes`, `main`.`Feedback`.`isRead`, `main`.`Feedback`.`createdAt` FROM `main`.`Feedback` WHERE `main`.`Feedback`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`LabReport`.`id`, `main`.`LabReport`.`patientId`, `main`.`LabReport`.`doctorSummary`, `main`.`LabReport`.`aiSummary`, `main`.`LabReport`.`fileName`, `main`.`LabReport`.`fileUrl`, `main`.`LabReport`.`createdAt` FROM `main`.`LabReport` WHERE `main`.`LabReport`.`patientId` IN (?) ORDER BY `main`.`LabReport`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Vital`.`id`, `main`.`Vital`.`patientId`, `main`.`Vital`.`type`, `main`.`Vital`.`value`, `main`.`Vital`.`unit`, `main`.`Vital`.`timestamp` FROM `main`.`Vital` WHERE `main`.`Vital`.`patientId` IN (?) ORDER BY `main`.`Vital`.`timestamp` ASC LIMIT ? OFFSET ?
+(node:4836) [DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+ Γ£ô Compiled /api/patients/[id]/share-prescription/route in 259ms (1073 modules)
+(node:15832) 
+[DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE (`main`.`Patient`.`id` = ? AND `main`.`Patient`.`doctorId` = ?) LIMIT ? OFFSET ?
+prisma:query UPDATE `main`.`Patient` SET `prescriptionSharedAt` = ?, `updatedAt` = ? WHERE (`main`.`Patient`.`id` = ? AND 1=1) RETURNING `id` AS `id`, `name` AS `name`, `mobileNumber` AS `mobileNumber`, `age` AS `age`, `disease` AS `disease`, `doctorId` AS `doctorId`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`, `guardianNumber` AS `guardianNumber`, `weight` AS `weight`, `height` AS `height`, `foodPreference` AS `foodPreference`, `allergies` AS `allergies`, `gender` AS `gender`, `preferredLanguage` AS `preferredLanguage`, `isChronic` AS `isChronic`, `activityLevel` AS `activityLevel`, `isActive` AS `isActive`, `status` AS `status`, `prescriptionSharedAt` AS `prescriptionSharedAt`
+GET patients - Session: {
+  user: {
+    name: 'Tarendra Garhewal',
+    email: 'tarendra.garhewal2024@gmail.com',
+    image: undefined,
+    id: '1',
+    subscriptionStatus: 'ACTIVE',
+    planType: 'HOSPITAL',
+    isAdmin: true,
+    role: 'DOCTOR',
+    mobileNumber: undefined
+  }
+}
+GET patients - Doctor ID: 1
+prisma:query SELECT 1
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE `main`.`Patient`.`doctorId` = ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE `main`.`MedicineSchedule`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Feedback`.`id`, `main`.`Feedback`.`patientId`, `main`.`Feedback`.`medicineId`, `main`.`Feedback`.`doctorId`, `main`.`Feedback`.`status`, `main`.`Feedback`.`notes`, `main`.`Feedback`.`isRead`, `main`.`Feedback`.`createdAt` FROM `main`.`Feedback` WHERE `main`.`Feedback`.`doctorId` = ? ORDER BY `main`.`Feedback`.`isRead` ASC, `main`.`Feedback`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`endDate` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`id` IN (?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Appointment`.`id`, `main`.`Appointment`.`patientId`, `main`.`Appointment`.`doctorId`, `main`.`Appointment`.`proposedTime`, `main`.`Appointment`.`status`, `main`.`Appointment`.`createdAt`, `main`.`Appointment`.`updatedAt` FROM `main`.`Appointment` WHERE `main`.`Appointment`.`doctorId` = ? ORDER BY `main`.`Appointment`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?) LIMIT ? OFFSET ?
+GET patients - Session: {
+  user: {
+    name: 'Tarendra Garhewal',
+    email: 'tarendra.garhewal2024@gmail.com',
+    image: undefined,
+    id: '1',
+    subscriptionStatus: 'ACTIVE',
+    planType: 'HOSPITAL',
+    isAdmin: true,
+    role: 'DOCTOR',
+    mobileNumber: undefined
+  }
+}
+GET patients - Doctor ID: 1
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber`, `main`.`Patient`.`age`, `main`.`Patient`.`disease`, `main`.`Patient`.`doctorId`, `main`.`Patient`.`createdAt`, `main`.`Patient`.`updatedAt`, `main`.`Patient`.`guardianNumber`, `main`.`Patient`.`weight`, `main`.`Patient`.`height`, `main`.`Patient`.`foodPreference`, `main`.`Patient`.`allergies`, `main`.`Patient`.`gender`, `main`.`Patient`.`preferredLanguage`, `main`.`Patient`.`isChronic`, `main`.`Patient`.`activityLevel`, `main`.`Patient`.`isActive`, `main`.`Patient`.`status`, `main`.`Patient`.`prescriptionSharedAt` FROM `main`.`Patient` WHERE `main`.`Patient`.`doctorId` = ? LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`frequency`, `main`.`Medicine`.`reminderTime`, `main`.`Medicine`.`startDate`, `main`.`Medicine`.`endDate`, `main`.`Medicine`.`instructions`, `main`.`Medicine`.`doctorId`, `main`.`Medicine`.`patientId`, `main`.`Medicine`.`createdAt`, `main`.`Medicine`.`updatedAt` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`patientId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE `main`.`MedicineSchedule`.`medicineId` IN (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT 1
+prisma:query SELECT `main`.`Feedback`.`id`, `main`.`Feedback`.`patientId`, `main`.`Feedback`.`medicineId`, `main`.`Feedback`.`doctorId`, `main`.`Feedback`.`status`, `main`.`Feedback`.`notes`, `main`.`Feedback`.`isRead`, `main`.`Feedback`.`createdAt` FROM `main`.`Feedback` WHERE `main`.`Feedback`.`doctorId` = ? ORDER BY `main`.`Feedback`.`isRead` ASC, `main`.`Feedback`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Medicine`.`id`, `main`.`Medicine`.`name`, `main`.`Medicine`.`dosage`, `main`.`Medicine`.`endDate` FROM `main`.`Medicine` WHERE `main`.`Medicine`.`id` IN (?,?,?,?,?,?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Appointment`.`id`, `main`.`Appointment`.`patientId`, `main`.`Appointment`.`doctorId`, `main`.`Appointment`.`proposedTime`, `main`.`Appointment`.`status`, `main`.`Appointment`.`createdAt`, `main`.`Appointment`.`updatedAt` FROM `main`.`Appointment` WHERE `main`.`Appointment`.`doctorId` = ? ORDER BY `main`.`Appointment`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`Patient`.`id`, `main`.`Patient`.`name`, `main`.`Patient`.`mobileNumber` FROM `main`.`Patient` WHERE `main`.`Patient`.`id` IN (?,?) LIMIT ? OFFSET ?
+(node:13172) 
+[DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE (`main`.`MedicineSchedule`.`status` = ? AND `main`.`MedicineSchedule`.`reminderCount` < ? AND `main`.`MedicineSchedule`.`scheduledAt` <= ? AND `main`.`MedicineSchedule`.`scheduledAt` >= ?) LIMIT ? OFFSET ?
+(node:23820) 
+[DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+ Γùï Compiling /p/register/page ...
+ Γ£ô Compiled /p/register/page in 950ms (1886 modules)
+(node:17140) 
+[DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+ Γ£ô Compiled /api/auth/register-patient/route in 496ms (1089 modules)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`PatientUser`.`id`, `main`.`PatientUser`.`mobileNumber`, `main`.`PatientUser`.`password`, `main`.`PatientUser`.`name`, `main`.`PatientUser`.`createdAt`, `main`.`PatientUser`.`updatedAt` FROM `main`.`PatientUser` WHERE (`main`.`PatientUser`.`mobileNumber` = ? AND 1=1) LIMIT ? OFFSET ?
+prisma:query INSERT INTO `main`.`PatientUser` (`mobileNumber`, `password`, `name`, `createdAt`, `updatedAt`) VALUES (?,?,?,?,?) RETURNING `id` AS `id`, `mobileNumber` AS `mobileNumber`, `password` AS `password`, `name` AS `name`, `createdAt` AS `createdAt`, `updatedAt` AS `updatedAt`
+ Γ¿» TypeError: 
+Cannot read 
+properties of 
+undefined (reading 
+'call')
+    at 
+__webpack_require__ (D
+:\Doctors-App\.next\se
+rver\webpack-runtime.j
+s:33:43)
+    at eval (webpack-i
+nternal:///(rsc)/./nod
+e_modules/next/dist/cl
+ient/components/header
+s.js:26:38)
+    at (rsc)/./node_mo
+dules/next/dist/client
+/components/headers.js
+ (D:\Doctors-App\.next
+\server\vendor-chunks\
+next.js:1945:1)
+    at 
+__webpack_require__ (D
+:\Doctors-App\.next\se
+rver\webpack-runtime.j
+s:33:43)
+    at eval (webpack-i
+nternal:///(rsc)/./nod
+e_modules/next/headers
+.js:2:18)
+    at (rsc)/./node_mo
+dules/next/headers.js 
+(D:\Doctors-App\.next\
+server\vendor-chunks\n
+ext.js:2396:1)
+    at 
+__webpack_require__ (D
+:\Doctors-App\.next\se
+rver\webpack-runtime.j
+s:33:43)
+    at 
+NextAuthRouteHandler (
+webpack-internal:///(r
+sc)/./node_modules/nex
+t-auth/next/index.js:4
+6:34)
+    at 
+NextAuth._args$ (webpa
+ck-internal:///(rsc)/.
+/node_modules/next-aut
+h/next/index.js:85:30)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:61862
+    at D:\Doctors-App\
+node_modules\next\dist
+\server\lib\trace\trac
+er.js:121:36
+    at NoopContextMana
+ger.with (D:\Doctors-A
+pp\node_modules\next\d
+ist\compiled\@opentele
+metry\api\index.js:1:7
+057)
+    at 
+ContextAPI.with (D:\Do
+ctors-App\node_modules
+\next\dist\compiled\@o
+pentelemetry\api\index
+.js:1:516)
+    at NoopTracer.star
+tActiveSpan (D:\Doctor
+s-App\node_modules\nex
+t\dist\compiled\@opent
+elemetry\api\index.js:
+1:18086)
+    at ProxyTracer.sta
+rtActiveSpan (D:\Docto
+rs-App\node_modules\ne
+xt\dist\compiled\@open
+telemetry\api\index.js
+:1:18847)
+    at D:\Doctors-App\
+node_modules\next\dist
+\server\lib\trace\trac
+er.js:110:107
+    at NoopContextMana
+ger.with (D:\Doctors-A
+pp\node_modules\next\d
+ist\compiled\@opentele
+metry\api\index.js:1:7
+057)
+    at 
+ContextAPI.with (D:\Do
+ctors-App\node_modules
+\next\dist\compiled\@o
+pentelemetry\api\index
+.js:1:516)
+    at 
+NextTracerImpl.trace (
+D:\Doctors-App\node_mo
+dules\next\dist\server
+\lib\trace\tracer.js:1
+10:32)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:55449
+    at 
+AsyncLocalStorage.run 
+(node:internal/async_l
+ocal_storage/async_con
+text_frame:63:14)
+    at Object.wrap (D:
+\Doctors-App\node_modu
+les\next\dist\compiled
+\next-server\app-route
+.runtime.dev.js:6:3615
+3)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:53236
+    at 
+AsyncLocalStorage.run 
+(node:internal/async_l
+ocal_storage/async_con
+text_frame:63:14)
+    at Object.wrap (D:
+\Doctors-App\node_modu
+les\next\dist\compiled
+\next-server\app-route
+.runtime.dev.js:6:3570
+6)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:53198
+    at 
+AsyncLocalStorage.run 
+(node:internal/async_l
+ocal_storage/async_con
+text_frame:63:14)
+    at eH.execute (D:\
+Doctors-App\node_modul
+es\next\dist\compiled\
+next-server\app-route.
+runtime.dev.js:6:53172
+)
+    at eH.handle (D:\D
+octors-App\node_module
+s\next\dist\compiled\n
+ext-server\app-route.r
+untime.dev.js:6:63105)
+    at doRender (D:\Do
+ctors-App\node_modules
+\next\dist\server\base
+-server.js:1264:56)
+    at cacheEntry.resp
+onseCache.get.incremen
+talCache.incrementalCa
+che (D:\Doctors-App\no
+de_modules\next\dist\s
+erver\base-server.js:1
+490:46)
+    at 
+ResponseCache.get (D:\
+Doctors-App\node_modul
+es\next\dist\server\re
+sponse-cache\index.js:
+53:26)
+    at DevServer.rende
+rToResponseWithCompone
+ntsImpl (D:\Doctors-Ap
+p\node_modules\next\di
+st\server\base-server.
+js:1408:53)
+ Γ¿» TypeError: 
+Cannot read 
+properties of 
+undefined (reading 
+'call')
+    at 
+__webpack_require__ (D
+:\Doctors-App\.next\se
+rver\webpack-runtime.j
+s:33:43)
+    at eval (webpack-i
+nternal:///(rsc)/./nod
+e_modules/next/dist/cl
+ient/components/header
+s.js:26:38)
+    at (rsc)/./node_mo
+dules/next/dist/client
+/components/headers.js
+ (D:\Doctors-App\.next
+\server\vendor-chunks\
+next.js:1945:1)
+    at 
+__webpack_require__ (D
+:\Doctors-App\.next\se
+rver\webpack-runtime.j
+s:33:43)
+    at eval (webpack-i
+nternal:///(rsc)/./nod
+e_modules/next/headers
+.js:2:18)
+    at (rsc)/./node_mo
+dules/next/headers.js 
+(D:\Doctors-App\.next\
+server\vendor-chunks\n
+ext.js:2396:1)
+    at 
+__webpack_require__ (D
+:\Doctors-App\.next\se
+rver\webpack-runtime.j
+s:33:43)
+    at 
+NextAuthRouteHandler (
+webpack-internal:///(r
+sc)/./node_modules/nex
+t-auth/next/index.js:4
+6:34)
+    at 
+NextAuth._args$ (webpa
+ck-internal:///(rsc)/.
+/node_modules/next-aut
+h/next/index.js:85:30)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:61862
+    at D:\Doctors-App\
+node_modules\next\dist
+\server\lib\trace\trac
+er.js:121:36
+    at NoopContextMana
+ger.with (D:\Doctors-A
+pp\node_modules\next\d
+ist\compiled\@opentele
+metry\api\index.js:1:7
+057)
+    at 
+ContextAPI.with (D:\Do
+ctors-App\node_modules
+\next\dist\compiled\@o
+pentelemetry\api\index
+.js:1:516)
+    at NoopTracer.star
+tActiveSpan (D:\Doctor
+s-App\node_modules\nex
+t\dist\compiled\@opent
+elemetry\api\index.js:
+1:18086)
+    at ProxyTracer.sta
+rtActiveSpan (D:\Docto
+rs-App\node_modules\ne
+xt\dist\compiled\@open
+telemetry\api\index.js
+:1:18847)
+    at D:\Doctors-App\
+node_modules\next\dist
+\server\lib\trace\trac
+er.js:110:107
+    at NoopContextMana
+ger.with (D:\Doctors-A
+pp\node_modules\next\d
+ist\compiled\@opentele
+metry\api\index.js:1:7
+057)
+    at 
+ContextAPI.with (D:\Do
+ctors-App\node_modules
+\next\dist\compiled\@o
+pentelemetry\api\index
+.js:1:516)
+    at 
+NextTracerImpl.trace (
+D:\Doctors-App\node_mo
+dules\next\dist\server
+\lib\trace\tracer.js:1
+10:32)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:55449
+    at 
+AsyncLocalStorage.run 
+(node:internal/async_l
+ocal_storage/async_con
+text_frame:63:14)
+    at Object.wrap (D:
+\Doctors-App\node_modu
+les\next\dist\compiled
+\next-server\app-route
+.runtime.dev.js:6:3615
+3)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:53236
+    at 
+AsyncLocalStorage.run 
+(node:internal/async_l
+ocal_storage/async_con
+text_frame:63:14)
+    at Object.wrap (D:
+\Doctors-App\node_modu
+les\next\dist\compiled
+\next-server\app-route
+.runtime.dev.js:6:3570
+6)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:53198
+    at 
+AsyncLocalStorage.run 
+(node:internal/async_l
+ocal_storage/async_con
+text_frame:63:14)
+    at eH.execute (D:\
+Doctors-App\node_modul
+es\next\dist\compiled\
+next-server\app-route.
+runtime.dev.js:6:53172
+)
+    at eH.handle (D:\D
+octors-App\node_module
+s\next\dist\compiled\n
+ext-server\app-route.r
+untime.dev.js:6:63105)
+    at doRender (D:\Do
+ctors-App\node_modules
+\next\dist\server\base
+-server.js:1264:56)
+    at cacheEntry.resp
+onseCache.get.incremen
+talCache.incrementalCa
+che (D:\Doctors-App\no
+de_modules\next\dist\s
+erver\base-server.js:1
+490:46)
+    at 
+ResponseCache.get (D:\
+Doctors-App\node_modul
+es\next\dist\server\re
+sponse-cache\index.js:
+53:26)
+    at DevServer.rende
+rToResponseWithCompone
+ntsImpl (D:\Doctors-Ap
+p\node_modules\next\di
+st\server\base-server.
+js:1408:53)
+ Γ¿» TypeError: 
+Cannot read 
+properties of 
+undefined (reading 
+'call')
+    at 
+__webpack_require__ (D
+:\Doctors-App\.next\se
+rver\webpack-runtime.j
+s:33:43)
+    at eval (webpack-i
+nternal:///(rsc)/./nod
+e_modules/next/dist/cl
+ient/components/header
+s.js:26:38)
+    at (rsc)/./node_mo
+dules/next/dist/client
+/components/headers.js
+ (D:\Doctors-App\.next
+\server\vendor-chunks\
+next.js:1945:1)
+    at 
+__webpack_require__ (D
+:\Doctors-App\.next\se
+rver\webpack-runtime.j
+s:33:43)
+    at eval (webpack-i
+nternal:///(rsc)/./nod
+e_modules/next/headers
+.js:2:18)
+    at (rsc)/./node_mo
+dules/next/headers.js 
+(D:\Doctors-App\.next\
+server\vendor-chunks\n
+ext.js:2396:1)
+    at 
+__webpack_require__ (D
+:\Doctors-App\.next\se
+rver\webpack-runtime.j
+s:33:43)
+    at 
+NextAuthRouteHandler (
+webpack-internal:///(r
+sc)/./node_modules/nex
+t-auth/next/index.js:4
+6:34)
+    at 
+NextAuth._args$ (webpa
+ck-internal:///(rsc)/.
+/node_modules/next-aut
+h/next/index.js:85:30)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:61862
+    at D:\Doctors-App\
+node_modules\next\dist
+\server\lib\trace\trac
+er.js:121:36
+    at NoopContextMana
+ger.with (D:\Doctors-A
+pp\node_modules\next\d
+ist\compiled\@opentele
+metry\api\index.js:1:7
+057)
+    at 
+ContextAPI.with (D:\Do
+ctors-App\node_modules
+\next\dist\compiled\@o
+pentelemetry\api\index
+.js:1:516)
+    at NoopTracer.star
+tActiveSpan (D:\Doctor
+s-App\node_modules\nex
+t\dist\compiled\@opent
+elemetry\api\index.js:
+1:18086)
+    at ProxyTracer.sta
+rtActiveSpan (D:\Docto
+rs-App\node_modules\ne
+xt\dist\compiled\@open
+telemetry\api\index.js
+:1:18847)
+    at D:\Doctors-App\
+node_modules\next\dist
+\server\lib\trace\trac
+er.js:110:107
+    at NoopContextMana
+ger.with (D:\Doctors-A
+pp\node_modules\next\d
+ist\compiled\@opentele
+metry\api\index.js:1:7
+057)
+    at 
+ContextAPI.with (D:\Do
+ctors-App\node_modules
+\next\dist\compiled\@o
+pentelemetry\api\index
+.js:1:516)
+    at 
+NextTracerImpl.trace (
+D:\Doctors-App\node_mo
+dules\next\dist\server
+\lib\trace\tracer.js:1
+10:32)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:55449
+    at 
+AsyncLocalStorage.run 
+(node:internal/async_l
+ocal_storage/async_con
+text_frame:63:14)
+    at Object.wrap (D:
+\Doctors-App\node_modu
+les\next\dist\compiled
+\next-server\app-route
+.runtime.dev.js:6:3615
+3)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:53236
+    at 
+AsyncLocalStorage.run 
+(node:internal/async_l
+ocal_storage/async_con
+text_frame:63:14)
+    at Object.wrap (D:
+\Doctors-App\node_modu
+les\next\dist\compiled
+\next-server\app-route
+.runtime.dev.js:6:3570
+6)
+    at D:\Doctors-App\
+node_modules\next\dist
+\compiled\next-server\
+app-route.runtime.dev.
+js:6:53198
+    at 
+AsyncLocalStorage.run 
+(node:internal/async_l
+ocal_storage/async_con
+text_frame:63:14)
+    at eH.execute (D:\
+Doctors-App\node_modul
+es\next\dist\compiled\
+next-server\app-route.
+runtime.dev.js:6:53172
+)
+    at eH.handle (D:\D
+octors-App\node_module
+s\next\dist\compiled\n
+ext-server\app-route.r
+untime.dev.js:6:63105)
+    at doRender (D:\Do
+ctors-App\node_modules
+\next\dist\server\base
+-server.js:1264:56)
+    at cacheEntry.resp
+onseCache.get.incremen
+talCache.incrementalCa
+che (D:\Doctors-App\no
+de_modules\next\dist\s
+erver\base-server.js:1
+490:46)
+    at 
+ResponseCache.get (D:\
+Doctors-App\node_modul
+es\next\dist\server\re
+sponse-cache\index.js:
+53:26)
+    at DevServer.rende
+rToResponseWithCompone
+ntsImpl (D:\Doctors-Ap
+p\node_modules\next\di
+st\server\base-server.
+js:1408:53)
+(node:24720) 
+[DEP0169] 
+DeprecationWarning: 
+`url.parse()` 
+behavior is not 
+standardized and 
+prone to errors that 
+have security 
+implications. Use the 
+WHATWG URL API 
+instead. CVEs are not 
+issued for 
+`url.parse()` 
+vulnerabilities.
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+prisma:query SELECT 1
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE (`main`.`MedicineSchedule`.`status` = ? AND `main`.`MedicineSchedule`.`reminderCount` < ? AND `main`.`MedicineSchedule`.`scheduledAt` <= ? AND `main`.`MedicineSchedule`.`scheduledAt` >= ?) LIMIT ? OFFSET ?
+prisma:query SELECT 1
+prisma:query SELECT `main`.`MedicineSchedule`.`id`, `main`.`MedicineSchedule`.`medicineId`, `main`.`MedicineSchedule`.`scheduledAt`, `main`.`MedicineSchedule`.`status`, `main`.`MedicineSchedule`.`reminderCount`, `main`.`MedicineSchedule`.`createdAt`, `main`.`MedicineSchedule`.`updatedAt` FROM `main`.`MedicineSchedule` WHERE (`main`.`MedicineSchedule`.`status` = ? AND `main`.`MedicineSchedule`.`reminderCount` < ? AND `main`.`MedicineSchedule`.`scheduledAt` <= ? AND `main`.`MedicineSchedule`.`scheduledAt` >= ?) LIMIT ? OFFSET ?

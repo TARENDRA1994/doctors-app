@@ -1,0 +1,46 @@
+{
+  "id": 15,
+  "name": "Debu",
+  "mobileNumber": "+919479483348",
+  "age": 25,
+  "disease": "fever",
+  "doctorId": 1,
+  "createdAt": "2026-03-20T11:25:08.136Z",
+  "updatedAt": "2026-03-20T11:25:08.136Z",
+  "guardianNumber": null,
+  "weight": 60,
+  "height": 6,
+  "foodPreference": null,
+  "allergies": null,
+  "gender": null,
+  "preferredLanguage": "English",
+  "isChronic": false,
+  "activityLevel": null,
+  "medicines": [
+    {
+      "id": 67,
+      "name": "Peracitamol",
+      "dosage": "500",
+      "frequency": 1,
+      "reminderTime": "16:56",
+      "startDate": "2026-03-20T00:00:00.000Z",
+      "endDate": "2026-03-20T00:00:00.000Z",
+      "instructions": "",
+      "doctorId": 1,
+      "patientId": 15,
+      "createdAt": "2026-03-20T11:25:36.552Z",
+      "updatedAt": "2026-03-20T11:25:36.552Z",
+      "schedules": [
+        {
+          "id": 75,
+          "medicineId": 67,
+          "scheduledAt": "2026-03-20T11:26:00.000Z",
+          "status": "sent",
+          "reminderCount": 1,
+          "createdAt": "2026-03-20T11:25:36.563Z",
+          "updatedAt": "2026-03-20T11:26:01.336Z"
+        }
+      ]
+    }
+  ]
+}

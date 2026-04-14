@@ -1,0 +1,80 @@
+[2026-03-08T17:00:16.313Z] Webhook Body: {
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "12345",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "metadata": {
+              "display_phone_number": "12345",
+              "phone_number_id": "12345"
+            },
+            "contacts": [
+              {
+                "profile": {
+                  "name": "Patient"
+                },
+                "wa_id": "8878914647"
+              }
+            ],
+            "messages": [
+              {
+                "from": "8878914647",
+                "id": "message_id",
+                "timestamp": "12345",
+                "type": "interactive",
+                "interactive": {
+                  "type": "button_reply",
+                  "button_reply": {
+                    "id": "confirm_apt_5",
+                    "title": "Confirm Online"
+                  }
+                }
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}
+[2026-03-08T17:00:16.316Z] received button reply: confirm_apt_5 from 8878914647
+[2026-03-08T17:00:16.316Z] handleButtonReply: from=8878914647, buttonId=confirm_apt_5
+[2026-03-08T17:00:16.317Z] Confirming appointment: 5
+[2026-03-08T17:00:16.320Z] Appointment already confirmed: 5
+[2026-03-20T16:34:39.714Z] Webhook Body: {
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "12345",
+      "changes": [
+        {
+          "value": {
+            "messaging_product": "whatsapp",
+            "messages": [
+              {
+                "from": "918878914647",
+                "type": "interactive",
+                "interactive": {
+                  "type": "button_reply",
+                  "button_reply": {
+                    "id": "taken_83",
+                    "title": "Took Medicine"
+                  }
+                }
+              }
+            ]
+          },
+          "field": "messages"
+        }
+      ]
+    }
+  ]
+}
+[2026-03-20T16:34:39.714Z] received button reply: taken_83 from 918878914647
+[2026-03-20T16:34:39.715Z] handleButtonReply: from=918878914647, buttonId=taken_83
+[2026-03-20T16:34:39.720Z] Warning: Reply from 918878914647 doesn't seem to match patient number +918982687850
+[2026-03-20T16:34:39.741Z] ✅ Patient took medicine: Cipla

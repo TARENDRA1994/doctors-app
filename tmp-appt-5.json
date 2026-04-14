@@ -1,0 +1,31 @@
+{
+  "id": 5,
+  "patientId": 2,
+  "doctorId": 1,
+  "proposedTime": "Sun, Mar 8 at 10:25 PM",
+  "status": "PENDING",
+  "createdAt": "2026-03-08T16:53:24.675Z",
+  "updatedAt": "2026-03-08T16:53:24.675Z",
+  "patient": {
+    "id": 2,
+    "name": "tara",
+    "mobileNumber": "8878914647",
+    "guardianNumber": null,
+    "age": 30,
+    "disease": "ok",
+    "doctorId": 1,
+    "createdAt": "2026-03-06T18:35:45.441Z",
+    "updatedAt": "2026-03-06T18:35:45.441Z"
+  },
+  "doctor": {
+    "id": 1,
+    "name": "TARENDRA GADHEWAL",
+    "clinicName": "Samrat Hspt",
+    "mobileNumber": "08878914647",
+    "whatsappNumber": "+918878914647",
+    "email": "tarendra.garhewal2024@gmail.com",
+    "password": "$2b$10$Hi3VePG89B9uarIWvAhjR.NMH4GRHNvAlUjFC55JbxpzU9UhASS32",
+    "createdAt": "2026-03-06T15:12:30.464Z",
+    "updatedAt": "2026-03-07T05:48:44.789Z"
+  }
+}

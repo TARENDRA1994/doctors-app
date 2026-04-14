@@ -1,0 +1,196 @@
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Doctor {
+  id                 Int           @id @default(autoincrement())
+  name               String
+  clinicName         String
+  mobileNumber       String
+  whatsappNumber     String
+  email              String        @unique
+  password           String
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  subscriptionStatus String        @default("TRIAL")
+  subscriptionExpiry DateTime?
+  planType           String        @default("TRIAL")
+  whatsappMsgCount   Int           @default(0)
+  isAdmin            Boolean       @default(false)
+
+  // Professional Details
+  qualification      String?
+  specialization     String?
+  degree             String?
+  address            String?
+  fellowships        String?
+  website            String?
+  selectedTemplate   String        @default("TEMPLATE_1")
+  appointments       Appointment[]
+  dietPlans          DietPlan[]
+  feedbacks          Feedback[]
+  medicines          Medicine[]
+  patients           Patient[]
+  reminderLogs       ReminderLog[]
+}
+
+model Patient {
+  id             Int           @id @default(autoincrement())
+  name           String
+  mobileNumber   String
+  age            Int?
+  disease        String?
+  doctorId       Int
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  guardianNumber String?
+  weight         Float?
+  height         Float?
+  foodPreference String?
+  allergies      String?
+  gender         String?
+  preferredLanguage String        @default("English")
+  isChronic      Boolean          @default(false)
+  activityLevel  String?
+  isActive       Boolean          @default(true)
+  status         String           @default("ACTIVE")
+  prescriptionSharedAt DateTime?
+  appointments      Appointment[]
+  dietPlans         DietPlan[]
+  feedbacks         Feedback[]
+  medicines         Medicine[]
+  labReports        LabReport[]
+  vitals            Vital[]
+  doctor            Doctor           @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+}
+
+model Vital {
+  id        Int      @id @default(autoincrement())
+  patientId Int
+  type      String   // e.g., "Blood Sugar", "BP", "Weight"
+  value     String
+  unit      String
+  timestamp DateTime @default(now())
+  patient   Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model LabReport {
+  id          Int      @id @default(autoincrement())
+  patientId   Int
+  doctorSummary String?
+  aiSummary   String?
+  fileName    String
+  fileUrl     String?
+  createdAt   DateTime @default(now())
+  patient     Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model Medicine {
+  id           Int                @id @default(autoincrement())
+  name         String
+  dosage       String
+  frequency    Int
+  reminderTime String
+  startDate    DateTime
+  endDate      DateTime
+  instructions String?
+  doctorId     Int
+  patientId    Int
+  createdAt    DateTime           @default(now())
+  updatedAt    DateTime           @updatedAt
+  feedback     Feedback?
+  patient      Patient            @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  doctor       Doctor             @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  schedules    MedicineSchedule[]
+  reminderLogs ReminderLog[]
+}
+
+model MedicineSchedule {
+  id            Int           @id @default(autoincrement())
+  medicineId    Int
+  scheduledAt   DateTime
+  status        String        @default("pending")
+  reminderCount Int           @default(0)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  medicine      Medicine      @relation(fields: [medicineId], references: [id], onDelete: Cascade)
+  reminderLogs  ReminderLog[]
+}
+
+model ReminderLog {
+  id         Int              @id @default(autoincrement())
+  medicineId Int
+  scheduleId Int
+  doctorId   Int
+  action     String
+  timestamp  DateTime         @default(now())
+  doctor     Doctor           @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  schedule   MedicineSchedule @relation(fields: [scheduleId], references: [id], onDelete: Cascade)
+  medicine   Medicine         @relation(fields: [medicineId], references: [id], onDelete: Cascade)
+}
+
+model Feedback {
+  id         Int      @id @default(autoincrement())
+  patientId  Int
+  medicineId Int      @unique
+  doctorId   Int
+  status     String
+  notes      String?
+  isRead     Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  doctor     Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  medicine   Medicine @relation(fields: [medicineId], references: [id], onDelete: Cascade)
+  patient    Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model Appointment {
+  id           Int      @id @default(autoincrement())
+  patientId    Int
+  doctorId     Int
+  proposedTime String
+  status       String   @default("PENDING")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  doctor       Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient      Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model DietPlan {
+  id          Int      @id @default(autoincrement())
+  patientId   Int
+  doctorId    Int
+  planContent String
+  context     String?
+  createdAt   DateTime @default(now())
+  doctor      Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  patient     Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+}
+
+model Lead {
+  id          Int      @id @default(autoincrement())
+  clinicName  String
+  doctorName  String?
+  address     String?
+  phone       String?
+  rating      Float?
+  photos      String?  // JSON stringified array of photo URLs
+  slug        String   @unique
+  status      String   @default("NEW") // NEW, CONTACTED, CONVERTED
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PatientUser {
+  id           Int       @id @default(autoincrement())
+  mobileNumber String    @unique
+  password     String
+  name         String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+}
