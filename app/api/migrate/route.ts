@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server'
 import { execSync } from 'child_process'
 import path from 'path'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
     try {
         // process.execPath gets the exact location of node.exe currently running the server
