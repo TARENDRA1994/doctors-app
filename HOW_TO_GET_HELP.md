@@ -4,7 +4,7 @@ You can always come back and ask for help using this same chat interface. To mak
 
 ---
 
-## 📝 Information to Share
+## 📝 Information to Share with devs
 
 When asking for help, always provide:
 
