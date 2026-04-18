@@ -121,7 +121,7 @@ export default function Dashboard() {
       if (response.ok) {
         const data = await response.json()
         setMessage({ type: 'success', text: data.message })
-        fetchPatients()
+        fetchDashboardData()
       } else {
         setMessage({ type: 'error', text: 'Action failed' })
       }
@@ -148,40 +148,21 @@ export default function Dashboard() {
   const [selectedPatientId, setSelectedPatientId] = useState('')
   const [medicines, setMedicines] = useState<MedicineFormItem[]>([emptyMedicine()])
 
-  const fetchPatients = async () => {
+  const fetchDashboardData = async () => {
     try {
-      const response = await fetch('/api/patients')
+      setLoading(true)
+      const response = await fetch('/api/dashboard')
       if (response.ok) {
         const data = await response.json()
-        setPatients(data)
+        setPatients(data.patients)
+        setFeedbacks(data.feedbacks)
+        setAppointments(data.appointments)
       }
     } catch (error) {
-      console.error('Error fetching patients:', error)
-      setMessage({ type: 'error', text: 'Failed to fetch patients' })
-    }
-  }
-
-  const fetchFeedbacks = async () => {
-    try {
-      if (!session?.user?.id) return
-      const response = await fetch(`/api/feedback?doctorId=${session.user.id}`)
-      if (response.ok) {
-        const data = await response.json()
-        setFeedbacks(data)
-      }
-    } catch (error) {
-      console.error('Error fetching feedbacks:', error)
-    }
-  }
-
-  const fetchAppointments = async () => {
-    try {
-      const response = await fetch('/api/appointments')
-      if (response.ok) {
-        setAppointments(await response.json())
-      }
-    } catch (error) {
-      console.error('Error fetching appointments:', error)
+      console.error('Error fetching dashboard data:', error)
+      setMessage({ type: 'error', text: 'Failed to fetch dashboard data' })
+    } finally {
+      setLoading(false)
     }
   }
 
@@ -240,15 +221,12 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (session) {
-      fetchPatients()
-      fetchFeedbacks()
-      fetchAppointments()
+      fetchDashboardData()
 
-      // Auto-refresh appointments and feedback every 10 seconds for "live" updates
+      // Auto-refresh every 30 seconds for "live" updates (increased from 10s to reduce DB load)
       const interval = setInterval(() => {
-        fetchAppointments()
-        fetchFeedbacks()
-      }, 10000)
+        fetchDashboardData()
+      }, 30000)
 
       return () => clearInterval(interval)
     }
@@ -289,7 +267,7 @@ export default function Dashboard() {
       const response = await fetch(`/api/patients/${id}`, { method: 'DELETE' })
       if (response.ok) {
         setMessage({ type: 'success', text: 'Patient marked as inactive' })
-        fetchPatients()
+        fetchDashboardData()
       } else {
         const error = await response.json()
         setMessage({ type: 'error', text: error.error || 'Failed to delete patient' })
@@ -329,7 +307,7 @@ export default function Dashboard() {
       if (response.ok) {
         setMessage({ type: 'success', text: 'Appointment invitation sent to patient!' })
         setShowAddAppointment(false)
-        fetchAppointments()
+        fetchDashboardData()
       } else {
         const error = await response.json()
         setMessage({ type: 'error', text: error.error || 'Failed to send invitation' })
@@ -344,7 +322,7 @@ export default function Dashboard() {
   const archiveAppointment = async (id: number) => {
     try {
       const response = await fetch(`/api/appointments/${id}/archive`, { method: 'POST' })
-      if (response.ok) fetchAppointments()
+      if (response.ok) fetchDashboardData()
     } catch (e) {
       console.error(e)
     }
@@ -382,7 +360,7 @@ export default function Dashboard() {
           setMessage({ type: 'success', text: 'Patient added successfully!' })
           setShowAddPatient(false)
           setPatientForm({ name: '', mobileNumber: '', guardianNumber: '', age: '', disease: '', weight: '', height: '', foodPreference: '', allergies: '', activityLevel: '' })
-          fetchPatients()
+          fetchDashboardData()
         }
       } else {
         const error = await response.json()
@@ -476,7 +454,7 @@ export default function Dashboard() {
         setShowAddMedicine(false)
         setMedicines([emptyMedicine()])
         setSelectedPatientId('')
-        fetchPatients()
+        fetchDashboardData()
       }
     } catch (error) {
       console.error('Error adding medicine:', error)

@@ -68,6 +68,8 @@ model Patient {
   labReports        LabReport[]
   vitals            Vital[]
   doctor            Doctor           @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  @@index([doctorId])
 }
 
 model Vital {
@@ -109,6 +111,9 @@ model Medicine {
   doctor       Doctor             @relation(fields: [doctorId], references: [id], onDelete: Cascade)
   schedules    MedicineSchedule[]
   reminderLogs ReminderLog[]
+
+  @@index([doctorId])
+  @@index([patientId])
 }
 
 model MedicineSchedule {
@@ -121,6 +126,8 @@ model MedicineSchedule {
   updatedAt     DateTime      @updatedAt
   medicine      Medicine      @relation(fields: [medicineId], references: [id], onDelete: Cascade)
   reminderLogs  ReminderLog[]
+
+  @@index([medicineId])
 }
 
 model ReminderLog {
@@ -147,6 +154,9 @@ model Feedback {
   doctor     Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
   medicine   Medicine @relation(fields: [medicineId], references: [id], onDelete: Cascade)
   patient    Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  @@index([doctorId])
+  @@index([patientId])
 }
 
 model Appointment {
@@ -159,6 +169,9 @@ model Appointment {
   updatedAt    DateTime @updatedAt
   doctor       Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
   patient      Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  @@index([doctorId])
+  @@index([patientId])
 }
 
 model DietPlan {
@@ -170,6 +183,9 @@ model DietPlan {
   createdAt   DateTime @default(now())
   doctor      Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
   patient     Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+
+  @@index([doctorId])
+  @@index([patientId])
 }
 
 model Lead {

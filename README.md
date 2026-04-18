@@ -1,4 +1,4 @@
-# MediReminder - Doctor Medicine Reminder App
+# MediReminder - Doctor Medicine Reminder App 
 
 A comprehensive web application for doctors to manage patients and send automated medicine reminders via WhatsApp.
 
@@ -6,7 +6,7 @@ A comprehensive web application for doctors to manage patients and send automate
 
 ---
 
-## ✨ Features
+## ✨ Features Loaded
 
 ### 👨‍⚕️ Doctor Features
 - ✅ Secure registration & login (NextAuth)
