@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '../../../lib/prisma'
 import { sendWhatsAppMessage } from '../../../lib/whatsapp'
 
+export const dynamic = 'force-dynamic'
+
 
 // Using centralized prisma
 
