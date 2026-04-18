@@ -6,7 +6,7 @@ import { prisma } from '../../../lib/prisma'
 export const dynamic = 'force-dynamic'
 
 
-// Using centralized prisma
+// Using centralized prisma Example
 
 // Verify if the user is a super admin
 async function isAdmin() {
