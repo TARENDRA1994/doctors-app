@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
-import { prisma } from '../../../lib/prisma'
+import { prisma } from '../../lib/prisma'
 import { getServerSession } from 'next-auth/next'
-import { authOptions } from '../../../lib/auth'
+import { authOptions } from '../../lib/auth'
 
 export const dynamic = 'force-dynamic'
 
@@ -12,7 +12,11 @@ export async function GET() {
             return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
         }
 
-        const doctorId = (session.user as any).id
+        const doctorId = parseInt((session.user as any).id)
+
+        if (isNaN(doctorId)) {
+            return NextResponse.json({ error: 'Invalid doctor ID' }, { status: 400 })
+        }
 
         // Fetch everything in parallel using Promise.all
         const [patients, feedbacks, appointments] = await Promise.all([
