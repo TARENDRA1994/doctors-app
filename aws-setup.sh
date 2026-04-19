@@ -17,15 +17,18 @@ mkdir -p /home/ubuntu/app
 cd /home/ubuntu/app
 git clone -b Sand-box https://YOUR_TOKEN@github.com/TARENDRA1994/doctors-app.git .
 
-# 4. Detect Public IP for NextAuth
-EC2_PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+# 4. Detect Public IP and Region for NextAuth and SSM
+TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
+EC2_PUBLIC_IP=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/public-ipv4)
+EC2_REGION=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/placement/region)
 
 # 5. Fetch Secrets from AWS SSM (The Intelligent Way)
+echo "🔍 Detected Region: ${EC2_REGION}"
 echo "🔍 Fetching secrets from AWS Parameter Store..."
-WHATSAPP_ID=$(aws ssm get-parameter --name "DR_APP_WHATSAPP_ID" --query "Parameter.Value" --output text --region ap-south-1 || echo "")
-WHATSAPP_TOKEN=$(aws ssm get-parameter --name "DR_APP_WHATSAPP_TOKEN" --with-decryption --query "Parameter.Value" --output text --region ap-south-1 || echo "")
-DB_URL=$(aws ssm get-parameter --name "DR_APP_DB_URL" --with-decryption --query "Parameter.Value" --output text --region ap-south-1 || echo "")
-GEMINI_KEY=$(aws ssm get-parameter --name "DR_APP_GEMINI_KEY" --with-decryption --query "Parameter.Value" --output text --region ap-south-1 || echo "")
+WHATSAPP_ID=$(aws ssm get-parameter --name "DR_APP_WHATSAPP_ID" --query "Parameter.Value" --output text --region ${EC2_REGION} || echo "")
+WHATSAPP_TOKEN=$(aws ssm get-parameter --name "DR_APP_WHATSAPP_TOKEN" --with-decryption --query "Parameter.Value" --output text --region ${EC2_REGION} || echo "")
+DB_URL=$(aws ssm get-parameter --name "DR_APP_DB_URL" --with-decryption --query "Parameter.Value" --output text --region ${EC2_REGION} || echo "")
+GEMINI_KEY=$(aws ssm get-parameter --name "DR_APP_GEMINI_KEY" --with-decryption --query "Parameter.Value" --output text --region ${EC2_REGION} || echo "")
 
 # 6. Create the Environment File
 cat <<EOF > .env.local
