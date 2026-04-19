@@ -1,47 +1,46 @@
-FROM node:18-alpine AS base
-
-# Step 1: Install dependencies
-FROM base AS deps
+# Stage 1: Dependencies
+FROM node:24-alpine AS deps
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
-COPY package*.json ./
+
+# Copy package files
+COPY package.json package-lock.json* ./
 COPY prisma ./prisma/
+
+# Install dependencies and build native binaries
 RUN npm ci
 
-# Step 2: Build the application
-FROM base AS builder
+# Stage 2: Builder
+FROM node:24-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-# Generate prisma client inside the builder
+
+# Generate Prisma client and build Next.js
 RUN npx prisma generate
+ENV NEXT_TELEMETRY_DISABLED 1
 RUN npm run build
 
-# Step 3: Production runner
-FROM base AS runner
+# Stage 3: Runner
+FROM node:24-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV=production
-# Next.js telemetry disable
-ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
 
-# Copy necessary files from builder
+# Create a non-root user for security
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Copy essential files from builder
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
-COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Expose the port the app runs on
+USER nextjs
+
 EXPOSE 3001
+ENV PORT 3001
 
-ENV PORT=3001
-
-# Create a script to run migrations and start the app
-RUN echo '#!/bin/sh' > /app/start.sh && \
-    echo 'npx prisma migrate deploy' >> /app/start.sh && \
-    echo 'node server.js' >> /app/start.sh && \
-    chmod +x /app/start.sh
-
-# Instead of starting immediately, we run our start script which pushes migrations first
-CMD ["/app/start.sh"]
+# The standalone build uses a server.js file
+CMD ["node", "server.js"]
