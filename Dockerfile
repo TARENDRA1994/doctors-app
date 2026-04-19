@@ -1,6 +1,7 @@
 # Stage 1: Dependencies
 FROM node:24-slim AS deps
-RUN apt-get update && apt-get install -y openssl
+RUN apt-get update && apt-get install -y openssl tzdata
+ENV TZ=Asia/Kolkata
 WORKDIR /app
 
 # Copy package files
