@@ -1,17 +1,18 @@
 # Stage 1: Dependencies
-FROM node:24-alpine AS deps
-RUN apk add --no-cache libc6-compat
+FROM node:24-slim AS deps
+RUN apt-get update && apt-get install -y openssl
 WORKDIR /app
 
 # Copy package files
 COPY package.json package-lock.json* ./
 COPY prisma ./prisma/
 
-# Install dependencies and build native binaries
+# Install dependencies
 RUN npm ci
 
 # Stage 2: Builder
-FROM node:24-alpine AS builder
+FROM node:24-slim AS builder
+RUN apt-get update && apt-get install -y openssl
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -22,15 +23,16 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN npm run build
 
 # Stage 3: Runner
-FROM node:24-alpine AS runner
+FROM node:24-slim AS runner
+RUN apt-get update && apt-get install -y openssl
 WORKDIR /app
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
 
 # Create a non-root user for security
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN groupadd --system --gid 1001 nodejs
+RUN useradd --system --uid 1001 nextjs
 
 # Copy essential files from builder
 COPY --from=builder /app/public ./public
@@ -42,5 +44,4 @@ USER nextjs
 EXPOSE 3001
 ENV PORT 3001
 
-# The standalone build uses a server.js file
 CMD ["node", "server.js"]
