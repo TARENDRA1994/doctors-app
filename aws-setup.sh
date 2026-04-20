@@ -2,9 +2,16 @@
 # --- AWS EC2 Auto-Healing Startup Script ---
 # This script installs Docker and starts your app automatically on boot.
 
-# 1. Update system and set Timezone to IST (India)
+# 1. Update system and Install Modern Docker + Compose
 sudo apt-get update -y
-sudo apt-get install -y docker.io docker-compose git curl awscli
+sudo apt-get install -y ca-certificates curl gnupg git awscli
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gnupg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update -y
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
 sudo timedatectl set-timezone Asia/Kolkata
 
 # 2. Start and enable Docker service
@@ -54,7 +61,7 @@ echo "🧹 Cleaning old build cache to free up space..."
 sudo docker system prune -a -f --volumes
 
 echo "🏗️ Building and Launching the application..."
-sudo docker-compose up --build -d
+sudo docker compose up --build -d
 
 # 7. Cleanup cron to prevent "No Space Left" errors
 echo "0 0 * * * root docker image prune -a -f" | sudo tee -a /etc/crontab
