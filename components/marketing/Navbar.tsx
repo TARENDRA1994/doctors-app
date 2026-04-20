@@ -19,41 +19,38 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      initial={{ y: -50, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl transition-all duration-500 rounded-full border ${
         isScrolled 
-          ? 'py-3 bg-white/70 backdrop-blur-lg border-b border-white/20 shadow-sm' 
-          : 'py-5 bg-transparent'
+          ? 'py-3 bg-white/40 backdrop-blur-2xl border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.05)]' 
+          : 'py-4 bg-white/20 backdrop-blur-md border-white/20 shadow-none'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="px-6 sm:px-10">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform duration-300">
-              <Shield className="w-6 h-6 text-white" />
+            <div className="w-9 h-9 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
+              <Shield className="w-5 h-5 text-white" />
             </div>
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600">
+            <span className="text-xl font-bold tracking-tight text-slate-900">
               MediReminder
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="#features" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
+          <div className="hidden md:flex items-center space-x-10">
+            <Link href="#features" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">
               Features
             </Link>
-            <Link href="#how-it-works" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
-              How it Works
-            </Link>
-            <Link href="/login" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
+            <Link href="/login" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">
               Login
             </Link>
             <Link 
               href="/register" 
-              className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2.5 rounded-full font-semibold shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5"
+              className="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all transform hover:-translate-y-0.5 active:scale-95"
             >
               Get Started
             </Link>
@@ -65,7 +62,7 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-slate-900 p-2"
             >
-              {isMobileMenuOpen ? <X /> : <Menu />}
+              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
         </div>
@@ -75,19 +72,18 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="absolute top-full mt-4 left-0 right-0 md:hidden bg-white/90 backdrop-blur-2xl rounded-3xl border border-white/40 shadow-2xl overflow-hidden p-4"
           >
-            <div className="px-4 pt-2 pb-6 space-y-4">
-              <Link href="#features" className="block text-lg font-medium text-slate-900 px-2 py-1">Features</Link>
-              <Link href="#how-it-works" className="block text-lg font-medium text-slate-900 px-2 py-1">How it Works</Link>
-              <hr className="border-slate-100" />
-              <Link href="/login" className="block text-lg font-medium text-slate-900 px-2 py-1">Login</Link>
+            <div className="space-y-2">
+              <Link onClick={() => setIsMobileMenuOpen(false)} href="#features" className="block text-lg font-bold text-slate-900 p-4 rounded-2xl hover:bg-slate-50">Features</Link>
+              <Link onClick={() => setIsMobileMenuOpen(false)} href="/login" className="block text-lg font-bold text-slate-900 p-4 rounded-2xl hover:bg-slate-50">Login</Link>
               <Link 
+                onClick={() => setIsMobileMenuOpen(false)}
                 href="/register" 
-                className="flex items-center justify-between bg-teal-600 text-white px-4 py-3 rounded-xl font-bold"
+                className="flex items-center justify-between bg-blue-600 text-white p-4 rounded-2xl font-bold mt-2"
               >
                 <span>Get Started</span>
                 <ArrowRight className="w-5 h-5" />
