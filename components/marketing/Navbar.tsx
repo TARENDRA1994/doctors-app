@@ -19,38 +19,47 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -50, opacity: 0 }}
+      initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl transition-all duration-500 rounded-full border ${
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${
         isScrolled 
-          ? 'py-3 bg-white/40 backdrop-blur-2xl border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.05)]' 
-          : 'py-4 bg-white/20 backdrop-blur-md border-white/20 shadow-none'
+          ? 'py-4 bg-black/40 backdrop-blur-3xl border-b border-white/5' 
+          : 'py-8 bg-transparent'
       }`}
     >
-      <div className="px-6 sm:px-10">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-9 h-9 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-500">
-              <Shield className="w-5 h-5 text-white" />
+          <Link href="/" className="flex items-center space-x-3 group">
+            <div className="w-11 h-11 bg-gradient-to-tr from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(34,211,238,0.3)] group-hover:rotate-[360deg] transition-transform duration-1000">
+              <Shield className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold tracking-tight text-slate-900">
-              MediReminder
+            <span className="text-2xl font-black tracking-tighter text-white">
+              MediReminder <span className="text-cyan-400">OS</span>
             </span>
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center space-x-10">
-            <Link href="#features" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">
-              Features
-            </Link>
-            <Link href="/login" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">
+          <div className="hidden md:flex items-center space-x-12">
+            {['Features', 'Intelligence', 'Security'].map((item) => (
+              <Link 
+                key={item}
+                href={`#${item.toLowerCase()}`} 
+                className="text-sm font-bold text-slate-400 hover:text-white uppercase tracking-[0.2em] transition-colors"
+              >
+                {item}
+              </Link>
+            ))}
+            <Link 
+              href="/login" 
+              className="text-sm font-bold text-white uppercase tracking-[0.2em] border-b-2 border-transparent hover:border-cyan-400 transition-all"
+            >
               Login
             </Link>
             <Link 
               href="/register" 
-              className="bg-blue-600 text-white px-5 py-2 rounded-full text-sm font-bold shadow-lg shadow-blue-500/20 hover:shadow-blue-500/40 transition-all transform hover:-translate-y-0.5 active:scale-95"
+              className="bg-white text-black px-8 py-3 rounded-full text-xs font-black uppercase tracking-[0.2em] hover:bg-cyan-400 hover:text-black transition-all hover:scale-105 active:scale-95"
             >
               Get Started
             </Link>
@@ -60,9 +69,9 @@ const Navbar = () => {
           <div className="md:hidden">
             <button 
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-slate-900 p-2"
+              className="text-white p-2"
             >
-              {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
@@ -72,21 +81,29 @@ const Navbar = () => {
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            className="absolute top-full mt-4 left-0 right-0 md:hidden bg-white/90 backdrop-blur-2xl rounded-3xl border border-white/40 shadow-2xl overflow-hidden p-4"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-0 right-0 md:hidden bg-black/95 backdrop-blur-2xl border-b border-white/5 p-8"
           >
-            <div className="space-y-2">
-              <Link onClick={() => setIsMobileMenuOpen(false)} href="#features" className="block text-lg font-bold text-slate-900 p-4 rounded-2xl hover:bg-slate-50">Features</Link>
-              <Link onClick={() => setIsMobileMenuOpen(false)} href="/login" className="block text-lg font-bold text-slate-900 p-4 rounded-2xl hover:bg-slate-50">Login</Link>
+            <div className="space-y-6">
+              {['Features', 'Intelligence', 'Security', 'Login'].map((item) => (
+                <Link 
+                  key={item}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  href={`/${item.toLowerCase()}`} 
+                  className="block text-2xl font-black text-white uppercase tracking-[0.1em]"
+                >
+                  {item}
+                </Link>
+              ))}
               <Link 
                 onClick={() => setIsMobileMenuOpen(false)}
                 href="/register" 
-                className="flex items-center justify-between bg-blue-600 text-white p-4 rounded-2xl font-bold mt-2"
+                className="flex items-center justify-between bg-cyan-500 text-black p-5 rounded-2xl font-black uppercase tracking-[0.1em]"
               >
-                <span>Get Started</span>
-                <ArrowRight className="w-5 h-5" />
+                <span>Setup OS</span>
+                <ArrowRight className="w-6 h-6" />
               </Link>
             </div>
           </motion.div>

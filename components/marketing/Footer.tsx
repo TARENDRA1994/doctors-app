@@ -2,48 +2,60 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { Shield, Mail, MessageCircle } from 'lucide-react'
+import { Shield, MessageCircle } from 'lucide-react'
 
 const Footer = () => {
   return (
-    <footer className="bg-white border-t border-slate-50 pt-24 pb-12">
-      <div className="max-w-7xl mx-auto px-6">
+    <footer className="bg-[#020617] border-t border-white/5 pt-32 pb-16 relative overflow-hidden">
+      {/* Background Decorative Mesh */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1000px] h-[300px] bg-blue-900/10 rounded-full blur-[120px]"></div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center text-center">
           
-          <div className="flex items-center space-x-3 mb-10">
-            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg">
-                <Shield className="w-6 h-6 text-white" />
+          <div className="flex items-center space-x-4 mb-20">
+            <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.1)]">
+                <Shield className="w-7 h-7 text-black" />
             </div>
-            <span className="text-2xl font-black text-slate-900 tracking-tight">
+            <span className="text-3xl font-black text-white tracking-widest uppercase">
               MediReminder
             </span>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-24 mb-20 text-blue-900/60 font-bold uppercase tracking-widest text-[10px]">
-             <Link href="#features" className="hover:text-blue-600 transition-colors">Features</Link>
-             <Link href="/login" className="hover:text-blue-600 transition-colors">Login</Link>
-             <Link href="/register" className="hover:text-blue-600 transition-colors">Register</Link>
-             <Link href="https://wa.me/918878914647" className="hover:text-blue-600 transition-colors">Support</Link>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-32 mb-32">
+             {['Core', 'Intelligence', 'Protocol', 'Terminal'].map((title) => (
+                <div key={title} className="space-y-6">
+                   <h4 className="text-[10px] font-black text-slate-600 uppercase tracking-[0.5em] mb-8">{title}</h4>
+                   <ul className="space-y-4">
+                      {['Module A', 'Module B', 'Module C'].map((link) => (
+                        <li key={link}>
+                          <Link href="#" className="text-sm font-bold text-slate-400 hover:text-white transition-colors">{link}</Link>
+                        </li>
+                      ))}
+                   </ul>
+                </div>
+             ))}
           </div>
 
-          <div className="w-full max-w-lg p-10 rounded-[3rem] bg-blue-50/50 border border-blue-100 mb-20">
-             <h4 className="text-xl font-bold text-slate-900 mb-4">Questions? We are here.</h4>
-             <p className="text-slate-500 mb-8">Get in touch with our team directly on WhatsApp for clinical integration support.</p>
+          <div className="w-full max-w-2xl p-12 rounded-[3rem] bg-white/[0.02] border border-white/5 backdrop-blur-3xl mb-32 relative group overflow-hidden">
+             <div className="absolute inset-0 bg-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+             <h4 className="text-3xl font-black text-white mb-6">Initialize Communication.</h4>
+             <p className="text-slate-500 mb-10 text-lg font-medium">Direct secure channel to surgical integration and medical support.</p>
              <Link 
               href="https://wa.me/918878914647" 
-              className="inline-flex items-center space-x-3 bg-white text-blue-600 px-8 py-4 rounded-full font-bold shadow-sm hover:shadow-md transition-all"
+              className="inline-flex items-center space-x-4 bg-cyan-500 text-black px-10 py-5 rounded-2xl font-black text-xl hover:scale-105 active:scale-95 transition-all shadow-[0_0_30px_rgba(34,211,238,0.2)]"
              >
-                <MessageCircle size={20} className="text-green-500 fill-current" />
-                <span>Connect on WhatsApp</span>
+                <MessageCircle size={24} fill="currentColor" />
+                <span>WHATSAPP CHANNEL</span>
              </Link>
           </div>
 
-          <div className="flex flex-col md:flex-row justify-between items-center w-full pt-12 border-t border-slate-50 text-slate-400 text-xs font-medium">
-             <p>© 2026 MediReminder Cloud. Built for Professional Care.</p>
-             <div className="flex space-x-8 mt-6 md:mt-0">
-                <Link href="#" className="hover:text-slate-600">Privacy Policy</Link>
-                <Link href="#" className="hover:text-slate-600">Terms of Service</Link>
-                <Link href="#" className="hover:text-slate-600">Security</Link>
+          <div className="flex flex-col md:flex-row justify-between items-center w-full pt-16 border-t border-white/5 text-slate-600 text-[10px] font-black uppercase tracking-[0.2em]">
+             <p>© 2026 MediReminder OS. Global Security Standards Apply.</p>
+             <div className="flex space-x-10 mt-8 md:mt-0">
+                <Link href="#" className="hover:text-white transition-colors">Privacy</Link>
+                <Link href="#" className="hover:text-white transition-colors">Legal</Link>
+                <Link href="#" className="hover:text-white transition-colors">Nodes</Link>
              </div>
           </div>
 
