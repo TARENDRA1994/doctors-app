@@ -1,65 +1,58 @@
 #!/bin/bash
-# --- AWS EC2 Auto-Healing Startup Script ---
+# --- MediReminder AWS EC2 Auto-Healing Startup Script (v2.1) ---
 # This script installs Docker and starts your app automatically on boot.
 
 # 1. Install Docker using the Official Convenience Script
+echo "🐳 Checking Docker status..."
 if ! command -v docker &> /dev/null; then
-    echo "🐳 Docker not found. Installing..."
+    echo "📦 Installing Docker..."
     curl -fsSL https://get.docker.com -o get-docker.sh
     sudo sh get-docker.sh
 fi
 
-sudo apt-get install -y git awscli
+# Ensure services are healthy
+sudo systemctl enable docker
+sudo systemctl start docker &>/dev/null || sudo systemctl restart docker
+
+# Install basic dependencies
+sudo apt-get update && sudo apt-get install -y git awscli
 sudo timedatectl set-timezone Asia/Kolkata
 
-# 2. Start and enable Docker service
-sudo systemctl start docker
-sudo systemctl enable docker
-
-# 3. Create app directory and clone code
-mkdir -p /home/ubuntu/app
-cd /home/ubuntu/app
-
-if [ -d ".git" ]; then
-    echo "🔄 Repository already exists, pulling latest changes..."
-    git pull origin Sand-box
-else
-    echo "🚀 Cloning fresh repository..."
-    git clone -b Sand-box https://YOUR_TOKEN@github.com/TARENDRA1994/doctors-app.git .
+# 2. Get the latest code from GitHub
+echo "📥 Updating codebase..."
+if [ ! -d "/home/ubuntu/app" ]; then
+    sudo mkdir -p /home/ubuntu/app
+    sudo chown ubuntu:ubuntu /home/ubuntu/app
 fi
 
-# 4. Detect Public IP and Region for NextAuth and SSM
-TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
-EC2_PUBLIC_IP=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/public-ipv4)
-EC2_REGION=$(curl -H "X-aws-ec2-metadata-token: $TOKEN" -s http://169.254.169.254/latest/meta-data/placement/region)
+if [ ! -d "/home/ubuntu/app/.git" ]; then
+    git clone -b Sand-box https://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@github.com/TARENDRA1994/doctors-app.git /home/ubuntu/app
+fi
 
-# 5. Fetch Secrets from AWS SSM (The Intelligent Way)
-echo "🔍 Detected Region: ${EC2_REGION}"
-echo "🔍 Fetching secrets from AWS Parameter Store..."
-WHATSAPP_ID=$(aws ssm get-parameter --name "DR_APP_WHATSAPP_ID" --query "Parameter.Value" --output text --region ${EC2_REGION} || echo "")
-WHATSAPP_TOKEN=$(aws ssm get-parameter --name "DR_APP_WHATSAPP_TOKEN" --with-decryption --query "Parameter.Value" --output text --region ${EC2_REGION} || echo "")
-DB_URL=$(aws ssm get-parameter --name "DR_APP_DB_URL" --with-decryption --query "Parameter.Value" --output text --region ${EC2_REGION} || echo "")
-GEMINI_KEY=$(aws ssm get-parameter --name "DR_APP_GEMINI_KEY" --with-decryption --query "Parameter.Value" --output text --region ${EC2_REGION} || echo "")
+cd /home/ubuntu/app
+git fetch origin Sand-box
+git reset --hard origin/Sand-box
 
-# 6. Create the Environment File
-cat <<EOF > .env.local
-DATABASE_URL="${DB_URL}"
-NEXTAUTH_SECRET="9cead864b9fd45ca6ccef55f698d868618f350cbeaf01b84d98beb3ebea84503"
-NEXTAUTH_URL="http://${EC2_PUBLIC_IP}:3001"
-WHATSAPP_PHONE_NUMBER_ID="${WHATSAPP_ID}"
-WHATSAPP_ACCESS_TOKEN="${WHATSAPP_TOKEN}"
-WHATSAPP_BUSINESS_ACCOUNT_ID="1855039925153041"
-GEMINI_API_KEY="${GEMINI_KEY}"
-EOF
+# 3. Detect Server Environment
+IP_ADDRESS=$(curl -s http://checkip.amazonaws.com)
+REGION=$(curl -s http://169.254.169.254/latest/meta-data/placement/region)
+export AWS_DEFAULT_REGION=$REGION
 
-if [ -z "$WHATSAPP_ID" ]; then echo "⚠️ WARNING: WHATSAPP_ID not found in SSM!"; fi
+# 4. Fetch Secrets from AWS Parameter Store (SSM)
+echo "🔐 Fetching clinical secrets..."
+export DATABASE_URL=$(aws ssm get-parameter --name "/dr_app/production/DATABASE_URL" --with-decryption --query "Parameter.Value" --output text)
+export WHATSAPP_TOKEN=$(aws ssm get-parameter --name "/dr_app/production/WHATSAPP_TOKEN" --with-decryption --query "Parameter.Value" --output text)
+export WHATSAPP_ID=$(aws ssm get-parameter --name "/dr_app/production/WHATSAPP_ID" --with-decryption --query "Parameter.Value" --output text)
+export NEXTAUTH_SECRET=$(aws ssm get-parameter --name "/dr_app/production/NEXTAUTH_SECRET" --with-decryption --query "Parameter.Value" --output text)
+export NEXTAUTH_URL="http://${IP_ADDRESS}:3001"
 
-# 6. Deep Clean and Build
-echo "🧹 Cleaning old build cache to free up space..."
-sudo docker system prune -a -f --volumes
+# 5. Build and Launch using Docker Compose V2
+echo "🧹 Cleaning old build cache..."
+sudo docker system prune -f --volumes
 
-echo "🏗️ Building and Launching the application..."
+echo "🏗️ Launching MediReminder v2 (Premium Landing Page LIVE)..."
 sudo docker compose up --build -d
 
-# 7. Cleanup cron to prevent "No Space Left" errors
-echo "0 0 * * * root docker image prune -a -f" | sudo tee -a /etc/crontab
+# 6. Setup Daily Cleanup Cron
+(crontab -l 2>/dev/null; echo "0 0 * * * docker system prune -a -f") | crontab -
+echo "✅ Setup Complete. Application is live at http://${IP_ADDRESS}:3001"
