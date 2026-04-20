@@ -79,38 +79,18 @@ const Hero = () => {
             <div className="relative group">
               {/* Glass dashboard mockup placeholder */}
               <div className="bg-gradient-to-br from-white to-teal-50/30 border border-white p-4 rounded-[2rem] shadow-[0_20px_50px_rgba(13,148,136,0.1)] backdrop-blur-sm overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-500">
-                <div className="bg-slate-50 w-full h-[400px] rounded-[1.5rem] relative overflow-hidden">
-                  {/* Decorative Dashboard Elements */}
-                  <div className="absolute top-6 left-6 right-6 h-12 bg-white rounded-xl shadow-sm border border-slate-100 flex items-center px-4 justify-between">
-                     <div className="flex space-x-2">
-                        <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                        <div className="w-3 h-3 rounded-full bg-amber-400"></div>
-                        <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
-                     </div>
-                     <div className="w-32 h-3 bg-slate-100 rounded-full"></div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-6 p-6 mt-16">
-                     <div className="h-32 bg-white rounded-2xl shadow-sm border border-slate-100 p-4">
-                        <div className="w-8 h-8 bg-teal-100 rounded-lg mb-4"></div>
-                        <div className="w-20 h-3 bg-slate-100 rounded-full"></div>
-                     </div>
-                     <div className="h-32 bg-teal-600 rounded-2xl p-4 flex flex-col justify-between">
-                        <div className="w-8 h-8 bg-white/20 rounded-lg"></div>
-                        <div className="w-16 h-3 bg-white/30 rounded-full"></div>
-                     </div>
-                  </div>
-                  <div className="p-6">
-                    <div className="h-40 bg-white rounded-2xl shadow-sm border border-slate-100 p-4">
-                        <div className="flex justify-between items-center mb-6">
-                           <div className="w-32 h-4 bg-slate-100 rounded-full"></div>
-                           <div className="w-12 h-6 bg-teal-50 rounded-full"></div>
-                        </div>
-                        <div className="space-y-4">
-                           <div className="w-full h-3 bg-slate-50 rounded-full"></div>
-                           <div className="w-[80%] h-3 bg-slate-50 rounded-full"></div>
-                        </div>
-                    </div>
-                  </div>
+                <div className="bg-slate-50 w-full rounded-[1.5rem] relative overflow-hidden shadow-inner border border-slate-200">
+                  <img 
+                    src={`/_next/image?url=${encodeURIComponent('https://raw.githubusercontent.com/TARENDRA1994/doctors-app/Sand-box/public/clinical-report-preview.png')}&w=1080&q=75`} 
+                    alt="MediReminder Clinical Report"
+                    className="w-full h-auto object-cover opacity-90"
+                    onError={(e) => {
+                      // Fallback if image isn't available in public/ yet
+                      e.currentTarget.src = "https://placehold.co/1000x800/f8fafc/0d9488?text=Clinical+Analytics+Report"
+                    }}
+                  />
+                  {/* Glass overlay effect */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
                 </div>
               </div>
               
