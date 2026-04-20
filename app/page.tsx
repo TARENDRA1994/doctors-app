@@ -1,134 +1,87 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
-import { motion, useScroll, useSpring, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Navbar from '@/components/marketing/Navbar'
 import Hero from '@/components/marketing/Hero'
 import Features from '@/components/marketing/Features'
 import Footer from '@/components/marketing/Footer'
 import WhatsAppButton from '@/components/marketing/WhatsAppButton'
 import Link from 'next/link'
-import { ArrowRight, Sparkles, Binary, Terminal } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 
 export default function Home() {
-  const { data: session } = useSession()
-  const { scrollYProgress } = useScroll()
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  })
-
-  // Advanced perspective scroll effect
-  const yRange = useTransform(scrollYProgress, [0.8, 1], [0, -100])
-  const rotateRange = useTransform(scrollYProgress, [0.8, 1], [0, 5])
+  const { data: session, status } = useSession()
 
   return (
-    <main className="min-h-screen bg-[#020617] selection:bg-cyan-500 selection:text-black scroll-smooth">
-      {/* 3D Global Progress Bar */}
-      <motion.div 
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 to-blue-600 origin-left z-[100] shadow-[0_0_20px_rgba(34,211,238,0.5)]" 
-        style={{ scaleX }} 
-      />
-      
+    <main className="min-h-screen bg-white selection:bg-teal-100 selection:text-teal-900">
       <Navbar />
       
       <Hero />
 
-      {/* 3D Social Proof / Clinical Nodes */}
-      <section className="py-32 bg-[#020617] relative overflow-hidden border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-6">
-           <div className="flex flex-col md:flex-row items-center justify-between py-20 gap-16">
-              <motion.div 
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                className="max-w-sm"
-              >
-                 <h4 className="text-sm font-black text-white mb-6 flex items-center gap-4 tracking-[0.4em]">
-                    <Terminal className="w-5 h-5 text-cyan-400" />
-                    SYSTEM NODES
-                 </h4>
-                 <p className="text-slate-500 font-bold text-lg leading-relaxed">Active surgical clusters and clinical environments integrated into the MediReminder neural network.</p>
-              </motion.div>
-              
-              <div className="flex flex-wrap justify-center items-center gap-16 md:gap-24 opacity-40">
-                 {[
-                   { name: "CLINIC.X", icon: Sparkles },
-                   { name: "NEURO.LAB", icon: Binary },
-                   { name: "SURGI.CO", icon: Sparkles },
-                   { name: "VITA.PULSE", icon: Binary }
-                 ].map((node) => (
-                    <motion.div 
-                      key={node.name}
-                      whileHover={{ scale: 1.1, opacity: 1 }}
-                      className="flex items-center space-x-3 cursor-pointer group"
-                    >
-                       <node.icon className="w-5 h-5 text-cyan-500 group-hover:animate-spin" />
-                       <span className="text-2xl font-black text-white tracking-widest italic">{node.name}</span>
-                    </motion.div>
-                 ))}
-              </div>
-           </div>
+      {/* Trust Section */}
+      <section className="py-12 border-y border-slate-100 bg-slate-50/30 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4">
+          <p className="text-center text-slate-400 font-bold uppercase tracking-[0.2em] text-xs mb-8">
+            Empowering modern clinics across India
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+            {/* Logos represent trust, even if placeholder-style */}
+            <div className="text-2xl font-black text-slate-900">CLINIC+</div>
+            <div className="text-2xl font-black text-slate-900">DOC.SYNC</div>
+            <div className="text-2xl font-black text-slate-900">MEDTRACK</div>
+            <div className="text-2xl font-black text-slate-900">HEALTH.OS</div>
+          </div>
         </div>
       </section>
 
       <Features />
 
-      {/* 3D Immersive CTA */}
-      <motion.section 
-        style={{ y: yRange, rotateX: rotateRange }}
-        className="py-40 relative bg-[#020617] overflow-hidden"
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-[600px] bg-blue-900/10 rounded-full blur-[150px]"></div>
+      {/* CTA Section */}
+      <section className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-teal-600"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-teal-500 via-transparent to-transparent opacity-50"></div>
         
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="p-16 md:p-32 rounded-[4rem] bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 text-white text-center shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative overflow-hidden group border border-white/10">
-             {/* Animating Light Rays */}
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-20%,rgba(255,255,255,0.1),transparent_70%)] animate-pulse"></div>
-             
-             <motion.div
-               initial={{ opacity: 0, y: 30 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-             >
-                <h2 className="text-5xl md:text-8xl font-black mb-10 leading-none tracking-tighter">
-                  JOIN THE <br />
-                  <span className="text-cyan-400">REVOLUTION.</span>
-                </h2>
-                
-                <p className="text-xl md:text-2xl text-blue-100/70 mb-16 max-w-2xl mx-auto font-bold uppercase tracking-widest">
-                  Secure your practice nodes in the <br /> global medical operating system.
-                </p>
-                
-                <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-12">
-                  <Link 
-                    href="/register" 
-                    className="w-full sm:w-auto bg-white text-black px-14 py-7 rounded-2xl font-black text-2xl shadow-2xl hover:scale-110 active:scale-95 transition-all uppercase tracking-widest"
-                  >
-                    DEPLOY NOW
-                  </Link>
-                  {session ? (
-                    <Link 
-                      href="/dashboard" 
-                      className="w-full sm:w-auto flex items-center justify-center space-x-4 text-white font-black text-xl uppercase tracking-[0.2em] group"
-                    >
-                      <span>TERMINAL</span>
-                      <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform" />
-                    </Link>
-                  ) : (
-                    <Link 
-                      href="/login" 
-                      className="w-full sm:w-auto flex items-center justify-center space-x-4 text-white font-black text-xl uppercase tracking-[0.2em] group"
-                    >
-                      <span>ACCESS</span>
-                      <ArrowRight className="w-6 h-6 group-hover:translate-x-3 transition-transform" />
-                    </Link>
-                  )}
-                </div>
-             </motion.div>
+        <div className="max-w-4xl mx-auto px-4 relative z-10 text-center text-white">
+          <motion.h2 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="text-4xl lg:text-6xl font-extrabold mb-8 leading-tight"
+          >
+            Ready to give your patients <br />
+            <span className="text-teal-200">the care they deserve?</span>
+          </motion.h2>
+          <p className="text-xl text-teal-100 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Join hundreds of doctors who are already saving hours every week with automated workflows and AI diet planning.
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
+            <Link 
+              href="/register" 
+              className="w-full sm:w-auto bg-white text-teal-600 px-10 py-5 rounded-[2rem] font-black text-xl shadow-2xl hover:scale-105 transition-transform"
+            >
+              Start Your Free Trial
+            </Link>
+            {session ? (
+              <Link 
+                href="/dashboard" 
+                className="w-full sm:w-auto flex items-center justify-center space-x-2 text-white font-bold text-xl group"
+              >
+                <span>Go to Dashboard</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+              </Link>
+            ) : (
+              <Link 
+                href="/login" 
+                className="w-full sm:w-auto flex items-center justify-center space-x-2 text-white font-bold text-xl group"
+              >
+                <span>Member Login</span>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
+              </Link>
+            )}
           </div>
         </div>
-      </motion.section>
+      </section>
 
       <Footer />
       
