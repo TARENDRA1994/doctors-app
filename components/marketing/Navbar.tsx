@@ -42,10 +42,10 @@ const Navbar = () => {
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8">
-            <Link href="#features" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
+            <Link href="/#features" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
               Features
             </Link>
-            <Link href="#how-it-works" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
+            <Link href="/#how-it-works" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
               How it Works
             </Link>
             <Link href="/login" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
@@ -81,8 +81,8 @@ const Navbar = () => {
             className="md:hidden bg-white border-b border-slate-100 overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-4">
-              <Link href="#features" className="block text-lg font-medium text-slate-900 px-2 py-1">Features</Link>
-              <Link href="#how-it-works" className="block text-lg font-medium text-slate-900 px-2 py-1">How it Works</Link>
+              <Link href="/#features" className="block text-lg font-medium text-slate-900 px-2 py-1">Features</Link>
+              <Link href="/#how-it-works" className="block text-lg font-medium text-slate-900 px-2 py-1">How it Works</Link>
               <hr className="border-slate-100" />
               <Link href="/login" className="block text-lg font-medium text-slate-900 px-2 py-1">Login</Link>
               <Link 

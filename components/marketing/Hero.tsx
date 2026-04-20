@@ -71,39 +71,35 @@ const Hero = () => {
 
           {/* Right Column: Visual Mockup */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotateY: 20 }}
-            animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+            initial={{ opacity: 0, scale: 0.9, rotateY: 10 }}
+            animate={{ opacity: 1, scale: 1.1, rotateY: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="hidden lg:block relative mt-12 lg:mt-0"
+            className="hidden lg:block relative mt-20 lg:mt-0 lg:ml-12"
           >
             <div className="relative group">
-              {/* Glass dashboard mockup placeholder */}
-              <div className="bg-gradient-to-br from-white to-teal-50/30 border border-white p-4 rounded-[2rem] shadow-[0_20px_50px_rgba(13,148,136,0.1)] backdrop-blur-sm overflow-hidden transform group-hover:scale-[1.02] transition-transform duration-500">
-                <div className="bg-slate-50 w-full rounded-[1.5rem] relative overflow-hidden shadow-inner border border-slate-200">
+              {/* Glass dashboard mockup with enhanced sizing */}
+              <div className="bg-gradient-to-br from-white to-teal-50/30 border border-white p-2 rounded-[2.5rem] shadow-[0_40px_80px_rgba(13,148,136,0.15)] backdrop-blur-sm overflow-hidden transform group-hover:scale-[1.03] transition-transform duration-700">
+                <div className="bg-slate-50 w-full rounded-[2rem] relative overflow-hidden shadow-inner border border-slate-200">
                   <img 
-                    src={`/_next/image?url=${encodeURIComponent('https://raw.githubusercontent.com/TARENDRA1994/doctors-app/Sand-box/public/clinical-report-preview.png')}&w=1080&q=75`} 
+                    src="/clinical-report.png" 
                     alt="MediReminder Clinical Report"
-                    className="w-full h-auto object-cover opacity-90"
-                    onError={(e) => {
-                      // Fallback if image isn't available in public/ yet
-                      e.currentTarget.src = "https://placehold.co/1000x800/f8fafc/0d9488?text=Clinical+Analytics+Report"
-                    }}
+                    className="w-full h-auto object-cover opacity-95"
                   />
                   {/* Glass overlay effect */}
-                  <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none"></div>
+                  <div className="absolute inset-0 bg-gradient-to-tr from-white/15 via-transparent to-transparent pointer-events-none"></div>
                 </div>
               </div>
               
               {/* Floating Stat Widget */}
               <motion.div 
-                animate={{ y: [0, -10, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -top-10 -right-10 bg-white p-6 rounded-3xl shadow-2xl border border-teal-50 z-20 hidden xl:block"
+                animate={{ y: [0, -15, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -top-12 -right-6 bg-white p-6 rounded-3xl shadow-[0_20px_40px_rgba(0,0,0,0.1)] border border-teal-50 z-20 hidden xl:block"
               >
-                 <p className="text-sm font-semibold text-slate-400 mb-1">Weekly Growth</p>
+                 <p className="text-sm font-bold text-slate-400 mb-1 uppercase tracking-wider">Weekly Growth</p>
                  <div className="flex items-center space-x-3">
-                    <span className="text-3xl font-bold text-slate-900">+42%</span>
-                    <span className="text-emerald-500 font-bold">↑</span>
+                    <span className="text-4xl font-black text-slate-900">+42%</span>
+                    <span className="text-teal-500 font-black text-2xl">↑</span>
                  </div>
               </motion.div>
             </div>
