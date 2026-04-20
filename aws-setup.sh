@@ -4,7 +4,7 @@
 
 # 1. Update system and set Timezone to IST (India)
 sudo apt-get update -y
-sudo apt-get install -y docker.io docker-compose-plugin git curl
+sudo apt-get install -y docker.io docker-compose git curl awscli
 sudo timedatectl set-timezone Asia/Kolkata
 
 # 2. Start and enable Docker service
@@ -12,10 +12,16 @@ sudo systemctl start docker
 sudo systemctl enable docker
 
 # 3. Create app directory and clone code
-# NOTE: Replace the YOUR_TOKEN section with your actual GitHub Personal Access Token
 mkdir -p /home/ubuntu/app
 cd /home/ubuntu/app
-git clone -b Sand-box https://YOUR_TOKEN@github.com/TARENDRA1994/doctors-app.git .
+
+if [ -d ".git" ]; then
+    echo "🔄 Repository already exists, pulling latest changes..."
+    git pull origin Sand-box
+else
+    echo "🚀 Cloning fresh repository..."
+    git clone -b Sand-box https://YOUR_TOKEN@github.com/TARENDRA1994/doctors-app.git .
+fi
 
 # 4. Detect Public IP and Region for NextAuth and SSM
 TOKEN=$(curl -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600")
@@ -44,7 +50,7 @@ EOF
 if [ -z "$WHATSAPP_ID" ]; then echo "⚠️ WARNING: WHATSAPP_ID not found in SSM!"; fi
 
 # 6. Build and Launch
-sudo docker compose up --build -d
+sudo docker-compose up --build -d
 
 # 7. Cleanup cron to prevent "No Space Left" errors
 echo "0 0 * * * root docker image prune -a -f" | sudo tee -a /etc/crontab
