@@ -49,7 +49,11 @@ EOF
 
 if [ -z "$WHATSAPP_ID" ]; then echo "⚠️ WARNING: WHATSAPP_ID not found in SSM!"; fi
 
-# 6. Build and Launch
+# 6. Deep Clean and Build
+echo "🧹 Cleaning old build cache to free up space..."
+sudo docker system prune -a -f --volumes
+
+echo "🏗️ Building and Launching the application..."
 sudo docker-compose up --build -d
 
 # 7. Cleanup cron to prevent "No Space Left" errors
