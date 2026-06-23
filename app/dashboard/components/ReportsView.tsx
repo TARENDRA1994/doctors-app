@@ -55,7 +55,18 @@ export default function ReportsView() {
     useEffect(() => {
         fetch('/api/reports')
             .then(res => res.json())
-            .then(setData)
+            .then(resData => {
+                if (resData && resData.error) {
+                    console.error('API Error:', resData.error);
+                    setData(null);
+                } else {
+                    setData(resData);
+                }
+            })
+            .catch(err => {
+                console.error('Fetch Error:', err);
+                setData(null);
+            })
             .finally(() => setLoading(false))
     }, [])
 

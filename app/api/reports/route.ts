@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { getServerSession } from 'next-auth'
+import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../../lib/auth'
 import { prisma } from '../../lib/prisma'
 
@@ -138,8 +138,8 @@ export async function GET() {
             }
         })
 
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error fetching reports:', error)
-        return NextResponse.json({ error: 'Failed to fetch reports' }, { status: 500 })
+        return NextResponse.json({ error: 'Failed to fetch reports', details: error.message }, { status: 500 })
     }
 }

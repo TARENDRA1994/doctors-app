@@ -4,6 +4,11 @@ import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../../lib/auth'
 import { sendWhatsAppTemplateMessage } from '../../lib/whatsapp'
 
+function stripTime(date: Date | string) {
+  const d = new Date(date);
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+}
+
 
 // Using centralized prisma
 
@@ -129,6 +134,38 @@ export async function POST(request: NextRequest) {
       } catch (waError) {
         console.error('Failed to send welcome WhatsApp message:', waError)
       }
+    }
+
+    // --- Automatically generate a QueueToken for today ---
+    const today = stripTime(new Date())
+    
+    // Check if they already have a token for today to avoid duplicates
+    const existingToken = await prisma.queueToken.findFirst({
+      where: {
+        doctorId,
+        patientPhone: formattedNumber,
+        date: today
+      }
+    })
+
+    if (!existingToken) {
+      const lastToken = await prisma.queueToken.findFirst({
+        where: { doctorId, date: today },
+        orderBy: { tokenNumber: 'desc' }
+      })
+      const tokenNumber = lastToken ? lastToken.tokenNumber + 1 : 1
+
+      await prisma.queueToken.create({
+        data: {
+          doctorId,
+          patientName: name,
+          patientPhone: formattedNumber,
+          date: today,
+          tokenNumber,
+          status: 'CONFIRMED'
+        }
+      })
+      console.log(`Created Queue Token #${tokenNumber} for patient ${name}`)
     }
 
     const responseData = {

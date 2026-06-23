@@ -24,6 +24,7 @@ model Doctor {
   planType           String        @default("TRIAL")
   whatsappMsgCount   Int           @default(0)
   isAdmin            Boolean       @default(false)
+  maxTokensPerDay    Int           @default(50)
 
   // Professional Details
   qualification      String?
@@ -39,6 +40,7 @@ model Doctor {
   medicines          Medicine[]
   patients           Patient[]
   reminderLogs       ReminderLog[]
+  queueTokens        QueueToken[]
 }
 
 model Patient {
@@ -210,4 +212,21 @@ model PatientUser {
   name         String?
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
+}
+
+model QueueToken {
+  id           Int      @id @default(autoincrement())
+  doctorId     Int
+  patientName  String
+  patientPhone String
+  tokenNumber  Int
+  status       String   @default("PENDING") // PENDING, CONFIRMED, IN_PROGRESS, COMPLETED, CANCELLED
+  date         DateTime // Date for the token without time
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  doctor       Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+
+  @@index([doctorId])
+  @@index([date])
 }

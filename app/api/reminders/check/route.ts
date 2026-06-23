@@ -17,7 +17,7 @@ async function checkAndSendReminders() {
     const dueSchedules = await prisma.medicineSchedule.findMany({
       where: {
         status: 'pending',
-        reminderCount: { lt: 4 }, // Limit to 4 attempts (Initial + 3 Snoozes)
+        reminderCount: { lt: 2 }, // Limit to 2 attempts (Initial + 1 Snooze)
         scheduledAt: {
           lte: now,
           gte: new Date(now.getTime() - 15 * 60 * 1000), // Widen window to 15 mins
@@ -72,8 +72,8 @@ async function checkAndSendReminders() {
         { id: `taken_${schedule.id}`, title: 'Took Medicine' }
       ]
 
-      // Only show snooze button if we haven't reached the limit (4 total attempts means 3 snoozes max)
-      if (currentCount < 4) {
+      // Only show snooze button if we haven't reached the limit (2 total attempts means 1 snooze max)
+      if (currentCount < 2) {
         buttons.push({ id: `snooze_${schedule.id}`, title: 'Snooze 10m' })
       }
 

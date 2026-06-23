@@ -76,7 +76,7 @@ export async function POST(req: NextRequest) {
         }
 
         const buttons = [{ id: `taken_${schedule.id}`, title: 'Took Medicine' }]
-        if (currentCount < 4) buttons.push({ id: `snooze_${schedule.id}`, title: 'Snooze 10m' })
+        if (currentCount < 2) buttons.push({ id: `snooze_${schedule.id}`, title: 'Snooze 10m' })
 
         // 1. Try Interactive
         const result = await sendWhatsAppInteractiveMessage(medicine.patient.mobileNumber, message, buttons, doctorId)

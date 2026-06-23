@@ -203,7 +203,7 @@ async function handleButtonReply(from: string, buttonId: string) {
             })
 
             logToFile(`⏳ Patient snoozed medicine (Snooze Attempt ${schedule.reminderCount}): ${schedule.medicine.name} to ${newScheduledTime.toLocaleTimeString()}`)
-            await sendWhatsAppMessage(from, `Got it. We will remind you again about your ${schedule.medicine.name} in 10 minutes. (Snoozes used: ${schedule.reminderCount}/3)`)
+            await sendWhatsAppMessage(from, `Got it. We will remind you again about your ${schedule.medicine.name} in 10 minutes. (Snoozes used: ${schedule.reminderCount}/1)`)
         }
     } catch (error) {
         logToFile(`Error handling button reply: ${error}`)

@@ -45,8 +45,11 @@ const Navbar = () => {
             <Link href="/#features" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
               Features
             </Link>
-            <Link href="/#how-it-works" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
-              How it Works
+            <Link href="/book" className="text-slate-600 hover:text-teal-600 font-bold transition-colors bg-teal-50 px-3 py-1.5 rounded-full">
+              Book Appointment
+            </Link>
+            <Link href="/status" className="text-slate-600 hover:text-teal-600 font-bold transition-colors">
+              Check Status
             </Link>
             <Link href="/login" className="text-slate-600 hover:text-teal-600 font-medium transition-colors">
               Login
@@ -82,7 +85,8 @@ const Navbar = () => {
           >
             <div className="px-4 pt-2 pb-6 space-y-4">
               <Link href="/#features" className="block text-lg font-medium text-slate-900 px-2 py-1">Features</Link>
-              <Link href="/#how-it-works" className="block text-lg font-medium text-slate-900 px-2 py-1">How it Works</Link>
+              <Link href="/book" className="block text-lg font-bold text-teal-600 bg-teal-50 px-2 py-1 rounded-md">Book Appointment</Link>
+              <Link href="/status" className="block text-lg font-bold text-slate-900 px-2 py-1">Check Status</Link>
               <hr className="border-slate-100" />
               <Link href="/login" className="block text-lg font-medium text-slate-900 px-2 py-1">Login</Link>
               <Link 
