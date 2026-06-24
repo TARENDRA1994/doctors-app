@@ -63,7 +63,13 @@ export function startReminderScheduler() {
         let message = `${prefix}Time to take your medicine ${medicine.name} (${medicine.dosage}).`
 
         if (isLastDose) {
-          const appUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
+          let appUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000'
+          
+          // WhatsApp doesn't make raw IP addresses clickable. We append .nip.io to convert it to a domain.
+          if (appUrl.match(/https?:\/\/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/)) {
+            appUrl = appUrl.replace(/(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})/, '$1.nip.io')
+          }
+          
           const feedbackLink = `${appUrl}/feedback/${medicine.id}`
           message += `\n\n🎉 This is your FINAL dose for this prescription!\nPlease tap the link below to let your doctor know how you are feeling:\n${feedbackLink}`
         }
