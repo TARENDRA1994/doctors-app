@@ -197,7 +197,7 @@ export async function generatePrescriptionPDF(
     doc.setFontSize(9)
     doc.setTextColor(150)
     doc.setFont('helvetica', 'normal')
-    doc.text(`Generated via MediReminder AI - ${doctor.clinicName}`, pageWidth / 2, doc.internal.pageSize.getHeight() - 10, { align: 'center' })
+    doc.text(`Generated via DoctorsNode AI - ${doctor.clinicName}`, pageWidth / 2, doc.internal.pageSize.getHeight() - 10, { align: 'center' })
 
     // Output as Buffer
     const pdfOutput = doc.output('arraybuffer')

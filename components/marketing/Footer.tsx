@@ -15,7 +15,7 @@ const Footer = () => {
                 <Shield className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-slate-900">
-                MediReminder
+                DoctorsNode
               </span>
             </Link>
             <p className="text-slate-500 mb-6 max-w-xs">
@@ -67,7 +67,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center text-slate-400 text-sm">
-          <p>© 2026 MediReminder. All rights reserved.</p>
+          <p>© 2026 DoctorsNode. All rights reserved.</p>
           <div className="flex space-x-6 mt-4 md:mt-0 font-medium">
             <Link href="#" className="hover:text-slate-600">Privacy</Link>
             <Link href="#" className="hover:text-slate-600">Cookies</Link>

@@ -52,7 +52,7 @@ export default function RestrictionOverlay() {
                     </div>
 
                     <p className="text-xs text-center text-gray-400">
-                        Need help? Contact support@medireminder.in
+                        Need help? Contact support@doctorsnode.in
                     </p>
                 </div>
             </div>

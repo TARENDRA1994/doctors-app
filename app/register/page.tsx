@@ -118,7 +118,7 @@ export default function Register() {
             </svg>
           </div>
 
-          <h1 className="text-4xl font-bold mb-4 text-center">Join MediReminder</h1>
+          <h1 className="text-4xl font-bold mb-4 text-center">Join DoctorsNode</h1>
           <p className="text-xl text-white/80 mb-8 text-center">Start managing your patients&apos; health today</p>
 
           {/* Benefits */}
@@ -155,7 +155,7 @@ export default function Register() {
                 <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z" />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-gradient-medical">MediReminder</h1>
+            <h1 className="text-2xl font-bold text-gradient-medical">DoctorsNode</h1>
           </div>
 
           {/* Welcome Text */}

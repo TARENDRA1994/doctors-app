@@ -36,7 +36,7 @@ export async function POST(request: NextRequest) {
 
     console.log('📤 Sending test message to:', doctor.whatsappNumber)
 
-    const message = '✅ Test notification from MediReminder app! Your WhatsApp integration is working correctly.'
+    const message = '✅ Test notification from DoctorsNode app! Your WhatsApp integration is working correctly.'
 
     const result = await sendWhatsAppMessage(doctor.whatsappNumber, message)
 

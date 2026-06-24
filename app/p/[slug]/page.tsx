@@ -30,7 +30,7 @@ export default async function ShowcasePage({ params }: { params: { slug: string 
                     <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-100">
                         <Zap size={24} />
                     </div>
-                    <span className="text-xl font-black tracking-tight text-slate-800 uppercase">MediReminder Showcase</span>
+                    <span className="text-xl font-black tracking-tight text-slate-800 uppercase">DoctorsNode Showcase</span>
                 </div>
                 <Link 
                     href="/register" 
@@ -162,7 +162,7 @@ export default async function ShowcasePage({ params }: { params: { slug: string 
                 
                 <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
                     <h2 className="text-5xl md:text-6xl font-black text-white mb-10 leading-tight">
-                        Power your clinic with <br /> <span className="text-indigo-200 uppercase tracking-tighter">MediReminder</span>
+                        Power your clinic with <br /> <span className="text-indigo-200 uppercase tracking-tighter">DoctorsNode</span>
                     </h2>
                     <p className="text-2xl text-indigo-100 mb-12 font-medium opacity-90">
                         Join hundreds of doctors who have modernised their practice. Claim this page and start managing your patients today.
@@ -194,9 +194,9 @@ export default async function ShowcasePage({ params }: { params: { slug: string 
                         <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white">
                             <Zap size={16} />
                         </div>
-                        <span className="text-white font-black tracking-tighter">MediReminder</span>
+                        <span className="text-white font-black tracking-tighter">DoctorsNode</span>
                     </div>
-                    <p className="text-slate-500 font-medium">© 2026 MediReminder Platform. All rights reserved.</p>
+                    <p className="text-slate-500 font-medium">© 2026 DoctorsNode Platform. All rights reserved.</p>
                 </div>
             </footer>
         </div>

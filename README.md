@@ -1,4 +1,4 @@
-# MediReminder - Doctor Medicine Reminder App 
+# DoctorsNode - Doctor Medicine Reminder App 
 
 A comprehensive web application for doctors to manage patients and send automated medicine reminders via WhatsApp.
 
