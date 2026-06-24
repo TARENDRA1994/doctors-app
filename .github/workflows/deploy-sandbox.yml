@@ -18,13 +18,16 @@ jobs:
           script: |
             # Navigate to the project directory
             cd /home/ubuntu/Doctors-App
-            sudo su
+            
+            # Fix git "dubious ownership" error
+            sudo git config --global --add safe.directory /home/ubuntu/Doctors-App
             
             # Fetch latest changes and pull from Sand-box branch
-            git fetch origin
-            git checkout Sand-box
-            git pull origin Sand-box
+            sudo git fetch origin
+            sudo git checkout Sand-box
+            sudo git pull origin Sand-box
             
             # Stop current containers, rebuild, and start in detached mode
-            docker-compose down
-            docker-compose up -d --build
+            # We try both "docker compose" (V2) and "docker-compose" (V1)
+            sudo docker compose down || sudo docker-compose down
+            sudo docker compose up -d --build || sudo docker-compose up -d --build
