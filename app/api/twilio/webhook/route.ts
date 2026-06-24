@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
 
     const action = body.toLowerCase().trim()
 
-    if (action === 'taken') {
+    if (action === 'taken' || action === 'took medicine') {
       // Mark as taken
       await prisma.medicineSchedule.update({
         where: { id: lastSchedule.id },
@@ -55,15 +55,17 @@ export async function POST(request: NextRequest) {
           action: 'taken'
         }
       })
-    } else if (action === 'snooze' || action === 'snooze 15 minutes') {
-      // Create new schedule 15 minutes later
-      const snoozeTime = new Date(lastSchedule.scheduledAt.getTime() + 15 * 60 * 1000)
+    } else if (action.startsWith('snooze')) {
+      // Snooze for 10 minutes from NOW
+      const snoozeTime = new Date(Date.now() + 10 * 60 * 1000)
 
-      const newSchedule = await prisma.medicineSchedule.create({
-        data: {
-          medicineId: lastSchedule.medicineId,
-          scheduledAt: snoozeTime,
-          status: 'pending'
+      // Update existing schedule to pending and push scheduledAt forward
+      // This preserves reminderCount (which is 1) so they only get 1 snooze
+      await prisma.medicineSchedule.update({
+        where: { id: lastSchedule.id },
+        data: { 
+          status: 'pending',
+          scheduledAt: snoozeTime
         }
       })
 
@@ -75,12 +77,6 @@ export async function POST(request: NextRequest) {
           doctorId: lastSchedule.medicine.doctorId,
           action: 'snoozed'
         }
-      })
-
-      // Update last schedule status to snoozed
-      await prisma.medicineSchedule.update({
-        where: { id: lastSchedule.id },
-        data: { status: 'snoozed' }
       })
     }
 
