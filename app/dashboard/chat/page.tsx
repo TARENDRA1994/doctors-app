@@ -1,7 +1,8 @@
 'use client'
 
 import { useChat } from 'ai/react'
-import { Send, User, Bot, Loader2 } from 'lucide-react'
+import Link from 'next/link'
+import { Send, User, Bot, Loader2, X } from 'lucide-react'
 import { useRef, useEffect } from 'react'
 
 export default function ChatPage() {
@@ -22,12 +23,21 @@ export default function ChatPage() {
   return (
     <div className="flex flex-col h-[calc(100vh-100px)] max-w-4xl mx-auto bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
       {/* Header */}
-      <div className="bg-indigo-600 p-4 text-white">
-        <h1 className="text-xl font-bold flex items-center gap-2">
-          <Bot size={24} />
-          Clinic AI Assistant
-        </h1>
-        <p className="text-indigo-100 text-sm opacity-90">Powered by Llama 3 - Ask about your patients, stats, and feedback.</p>
+      <div className="bg-indigo-600 p-4 text-white flex items-center justify-between">
+        <div>
+          <h1 className="text-xl font-bold flex items-center gap-2">
+            <Bot size={24} />
+            Clinic AI Assistant
+          </h1>
+          <p className="text-indigo-100 text-sm opacity-90">Powered by Llama 3 - Ask about your patients, stats, and feedback.</p>
+        </div>
+        <Link 
+          href="/dashboard"
+          className="p-2 hover:bg-white/20 rounded-full transition-colors flex items-center gap-1 text-sm font-medium"
+        >
+          <X size={20} />
+          <span className="hidden sm:inline">Close</span>
+        </Link>
       </div>
 
       {/* Chat Area */}

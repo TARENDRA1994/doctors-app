@@ -29,7 +29,7 @@ export async function POST(req: Request) {
       model: ollama('llama3.1'),
       maxSteps: 5,
       messages,
-      system: `You are a helpful, professional AI medical assistant for a doctor. You help them analyze their patients, schedules, and clinic performance. You can use tools to fetch real data from their database. Be concise and accurate.`,
+      system: `You are a helpful, professional AI medical assistant for a doctor. You help them analyze their patients, schedules, clinical data, and clinic performance. You have tools to fetch real data from their database. Be concise and accurate.`,
       tools: {
         getPatientStatistics: tool({
           description: 'Get total patient count, optionally filtered by month and disease.',
@@ -54,13 +54,15 @@ export async function POST(req: Request) {
               const filtered = patients.filter(p => p.createdAt.getMonth() === targetMonth);
               return { 
                 count: filtered.length, 
-                details: `Found ${filtered.length} patients with ${disease || 'any disease'} in ${monthName}.` 
+                details: `Found ${filtered.length} patients with ${disease || 'any disease'} in ${monthName}.`,
+                patientNames: filtered.map(p => p.name)
               };
             }
 
             return { 
               count: patients.length, 
-              details: `Found ${patients.length} total patients with ${disease || 'any disease'}.` 
+              details: `Found ${patients.length} total patients with ${disease || 'any disease'}.`,
+              patientNames: patients.map(p => p.name)
             };
           },
         }),
@@ -86,6 +88,94 @@ export async function POST(req: Request) {
             };
           }
         }),
+        getAppointments: tool({
+          description: 'Get appointments based on status (PENDING, CONFIRMED, etc) or by date range.',
+          parameters: z.object({
+            status: z.string().optional().describe('Filter by status like PENDING or CONFIRMED')
+          }),
+          execute: async ({ status }) => {
+            const where: any = { doctorId };
+            if (status) where.status = status.toUpperCase();
+            
+            const appts = await prisma.appointment.findMany({
+              where,
+              include: { patient: { select: { name: true, mobileNumber: true } } },
+              orderBy: { createdAt: 'desc' },
+              take: 20
+            });
+            return {
+              count: appts.length,
+              appointments: appts.map(a => ({
+                patient: a.patient.name,
+                phone: a.patient.mobileNumber,
+                time: a.proposedTime,
+                status: a.status
+              }))
+            };
+          }
+        }),
+        getQueueTokens: tool({
+          description: 'Get today\'s live queue tokens for the clinic.',
+          parameters: z.object({}),
+          execute: async () => {
+            const startOfDay = new Date();
+            startOfDay.setHours(0, 0, 0, 0);
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            
+            const tokens = await prisma.queueToken.findMany({
+              where: { 
+                doctorId,
+                date: { gte: startOfDay, lte: endOfDay }
+              },
+              orderBy: { tokenNumber: 'asc' }
+            });
+            return {
+              count: tokens.length,
+              tokens: tokens.map(t => ({
+                number: t.tokenNumber,
+                patient: t.patientName,
+                status: t.status
+              }))
+            };
+          }
+        }),
+        getClinicalData: tool({
+          description: 'Get recent clinical data for patients (vitals, lab reports, or diet plans).',
+          parameters: z.object({
+            type: z.enum(['vitals', 'labReports', 'dietPlans']).describe('The type of clinical data to fetch')
+          }),
+          execute: async ({ type }) => {
+            if (type === 'vitals') {
+              const vitals = await prisma.vital.findMany({
+                where: { patient: { doctorId } },
+                include: { patient: { select: { name: true } } },
+                orderBy: { timestamp: 'desc' },
+                take: 10
+              });
+              return vitals.map(v => ({ patient: v.patient.name, type: v.type, value: v.value, unit: v.unit }));
+            }
+            if (type === 'labReports') {
+              const reports = await prisma.labReport.findMany({
+                where: { patient: { doctorId } },
+                include: { patient: { select: { name: true } } },
+                orderBy: { createdAt: 'desc' },
+                take: 10
+              });
+              return reports.map(r => ({ patient: r.patient.name, aiSummary: r.aiSummary || 'No summary', doctorSummary: r.doctorSummary || 'No summary' }));
+            }
+            if (type === 'dietPlans') {
+              const plans = await prisma.dietPlan.findMany({
+                where: { doctorId },
+                include: { patient: { select: { name: true } } },
+                orderBy: { createdAt: 'desc' },
+                take: 10
+              });
+              return plans.map(p => ({ patient: p.patient.name, plan: p.planContent }));
+            }
+            return { error: 'Unknown data type' };
+          }
+        })
       },
     });
 
