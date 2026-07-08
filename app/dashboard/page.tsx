@@ -642,6 +642,22 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
+              
+              <div
+                onClick={() => router.push('/dashboard/chat')}
+                className="bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl p-6 text-white cursor-pointer shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500"></div>
+                <div className="flex justify-between items-start relative z-10">
+                  <div>
+                    <h3 className="text-xl font-bold mb-1">AI Assistant</h3>
+                    <p className="text-purple-100 text-sm">Chat with Llama 3</p>
+                  </div>
+                  <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" /></svg>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
