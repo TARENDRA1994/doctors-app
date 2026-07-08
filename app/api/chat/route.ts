@@ -7,7 +7,7 @@ import { prisma } from '../../lib/prisma';
 import { NextResponse } from 'next/server';
 
 const ollama = createOllama({
-  baseURL: 'http://localhost:11434/api',
+  baseURL: 'http://host.docker.internal:11434/api',
 });
 
 // Allow streaming responses up to 30 seconds
