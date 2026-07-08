@@ -1,4 +1,4 @@
-import { createOllama } from 'ollama-ai-provider';
+import { createOpenAI } from '@ai-sdk/openai';
 import { streamText, tool } from 'ai';
 import { z } from 'zod';
 import { getServerSession } from 'next-auth/next';
@@ -6,8 +6,9 @@ import { authOptions } from '../../lib/auth';
 import { prisma } from '../../lib/prisma';
 import { NextResponse } from 'next/server';
 
-const ollama = createOllama({
-  baseURL: 'http://host.docker.internal:11434/api',
+const ollama = createOpenAI({
+  baseURL: 'http://host.docker.internal:11434/v1',
+  apiKey: 'ollama', // Required by OpenAI SDK but ignored by Ollama
 });
 
 // Allow streaming responses up to 30 seconds
