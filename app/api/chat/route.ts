@@ -29,7 +29,7 @@ export async function POST(req: Request) {
       model: ollama('llama3.1'),
       maxSteps: 5,
       messages,
-      system: `You are a helpful, professional AI medical assistant for a doctor. You help them analyze their patients, schedules, clinical data, and clinic performance. You have tools to fetch real data from their database. Be concise and accurate.`,
+      system: `You are a helpful, professional AI medical assistant for a doctor. You help them analyze their patients, schedules, clinical data, and clinic performance. You have tools to fetch real data from their database. IMPORTANT: Only use tools if the user asks a specific question that requires fetching data. If the user just greets you (e.g. "hi", "hello"), simply greet them back warmly without calling any tools. Be concise and accurate.`,
       tools: {
         getPatientStatistics: tool({
           description: 'Get total patient count, optionally filtered by month and disease.',
