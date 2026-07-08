@@ -25,6 +25,7 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     const result = await streamText({
+      // @ts-expect-error - Type mismatch between ai SDK and provider versions
       model: ollama('llama3.1'),
       messages,
       system: `You are a helpful, professional AI medical assistant for a doctor. You help them analyze their patients, schedules, and clinic performance. You can use tools to fetch real data from their database. Be concise and accurate.`,
