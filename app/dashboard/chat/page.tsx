@@ -5,8 +5,12 @@ import { Send, User, Bot, Loader2 } from 'lucide-react'
 import { useRef, useEffect } from 'react'
 
 export default function ChatPage() {
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
+  const { messages, input, handleInputChange, handleSubmit, isLoading, error } = useChat({
     api: '/api/chat',
+    onError: (err) => {
+      console.error('Chat error:', err);
+      alert('Chat Error: ' + err.message);
+    }
   })
 
   const messagesEndRef = useRef<HTMLDivElement>(null)

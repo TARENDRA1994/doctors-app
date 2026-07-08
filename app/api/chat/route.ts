@@ -88,8 +88,8 @@ export async function POST(req: Request) {
     });
 
     return result.toDataStreamResponse();
-  } catch (error) {
+  } catch (error: any) {
     console.error('AI Chat Error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
   }
 }
