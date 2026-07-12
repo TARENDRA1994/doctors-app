@@ -7,7 +7,7 @@ import { prisma } from '../../lib/prisma'
 // POST /api/feedback - Submit new feedback
 export async function POST(request: NextRequest) {
     try {
-        const { medicineId, status, notes } = await request.json()
+        const { medicineId, status, notes, isSubmittedByDoctor } = await request.json()
 
         if (!medicineId || !status) {
             return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
@@ -41,7 +41,8 @@ export async function POST(request: NextRequest) {
                 doctorId: medicine.doctorId,
                 status,
                 notes,
-                isRead: false
+                isRead: false,
+                isSubmittedByDoctor: isSubmittedByDoctor || false
             }
         })
 

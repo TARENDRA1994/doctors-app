@@ -146,17 +146,18 @@ model ReminderLog {
 }
 
 model Feedback {
-  id         Int      @id @default(autoincrement())
-  patientId  Int
-  medicineId Int      @unique
-  doctorId   Int
-  status     String
-  notes      String?
-  isRead     Boolean  @default(false)
-  createdAt  DateTime @default(now())
-  doctor     Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-  medicine   Medicine @relation(fields: [medicineId], references: [id], onDelete: Cascade)
-  patient    Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
+  id                  Int      @id @default(autoincrement())
+  patientId           Int
+  medicineId          Int      @unique
+  doctorId            Int
+  status              String
+  notes               String?
+  isRead              Boolean  @default(false)
+  isSubmittedByDoctor Boolean  @default(false)
+  createdAt           DateTime @default(now())
+  doctor              Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  medicine            Medicine @relation(fields: [medicineId], references: [id], onDelete: Cascade)
+  patient             Patient  @relation(fields: [patientId], references: [id], onDelete: Cascade)
 
   @@index([doctorId])
   @@index([patientId])

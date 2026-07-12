@@ -34,6 +34,7 @@ interface Medicine {
         status: 'feeling_ok' | 'no_improvement'
         notes: string | null
         createdAt: string
+        isSubmittedByDoctor: boolean
     } | null
 }
 
@@ -545,6 +546,32 @@ export default function PatientHistoryPage({ params }: { params: { id: string } 
         }
     }
 
+    const handleDoctorSubmitFeedback = async (medicineId: number, status: 'feeling_ok' | 'no_improvement') => {
+        try {
+            const response = await fetch('/api/feedback', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    medicineId,
+                    status,
+                    notes: '',
+                    isSubmittedByDoctor: true
+                })
+            })
+
+            if (response.ok) {
+                alert('Feedback submitted successfully on behalf of patient!')
+                fetchPatientHistory()
+            } else {
+                const data = await response.json()
+                alert(`Failed to submit feedback: ${data.error || 'Unknown error'}`)
+            }
+        } catch (error) {
+            console.error('Error submitting feedback:', error)
+            alert('An error occurred while submitting feedback.')
+        }
+    }
+
     if (loading || status === 'loading') {
         return (
             <div className="min-h-screen bg-gradient-to-br from-medical-50 via-white to-accent-50 flex items-center justify-center">
@@ -849,6 +876,11 @@ export default function PatientHistoryPage({ params }: { params: { id: string } 
                                                             <div className="flex items-center justify-between mt-3">
                                                                 <p className="text-xs opacity-60">
                                                                     Submitted {new Date(med.feedback.createdAt).toLocaleDateString()}
+                                                                    {med.feedback.isSubmittedByDoctor && (
+                                                                        <span className="ml-2 italic text-medical-600 font-medium">
+                                                                            (Filled by Doctor on behalf of patient)
+                                                                        </span>
+                                                                    )}
                                                                 </p>
                                                                 {med.feedback.status === 'no_improvement' && (
                                                                     <button
@@ -866,7 +898,26 @@ export default function PatientHistoryPage({ params }: { params: { id: string } 
                                                         </div>
                                                     </div>
                                                 ) : (
-                                                    <p className="text-sm text-gray-400 italic">No feedback submitted for this prescription course yet.</p>
+                                                    <div className="space-y-3">
+                                                        <p className="text-sm text-gray-500 italic">No feedback received from patient.</p>
+                                                        <div className="bg-medical-50/50 p-4 rounded-xl border border-medical-100 flex flex-col gap-2">
+                                                            <p className="text-xs font-semibold text-medical-700">Manual Feedback Submission</p>
+                                                            <div className="flex gap-2">
+                                                                <button
+                                                                    onClick={() => handleDoctorSubmitFeedback(med.id, 'feeling_ok')}
+                                                                    className="flex-1 py-2 text-sm bg-white border border-medical-200 text-green-700 font-medium rounded-lg hover:bg-green-50 transition-colors flex items-center justify-center gap-1"
+                                                                >
+                                                                    😊 Feeling Ok
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => handleDoctorSubmitFeedback(med.id, 'no_improvement')}
+                                                                    className="flex-1 py-2 text-sm bg-white border border-medical-200 text-amber-700 font-medium rounded-lg hover:bg-amber-50 transition-colors flex items-center justify-center gap-1"
+                                                                >
+                                                                    😕 No Improvement
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 )}
                                             </div>
                                         </div>
