@@ -160,6 +160,18 @@ async function handleButtonReply(from: string, buttonId: string) {
             logToFile(`Warning: Reply from ${from} doesn't seem to match patient number ${schedule.medicine.patient.mobileNumber}`)
         }
 
+        if (schedule.status === 'taken') {
+            logToFile(`User tried to action a schedule that is already taken: ${scheduleId}`)
+            await sendWhatsAppMessage(from, `You have already marked your ${schedule.medicine.name} as taken!`)
+            return
+        }
+
+        if (action === 'snooze' && schedule.medicine.feedback.length > 0) {
+            logToFile(`User tried to snooze but course is completed (feedback submitted).`)
+            await sendWhatsAppMessage(from, `Your course for ${schedule.medicine.name} is already complete!`)
+            return
+        }
+
         if (action === 'taken') {
             // Update schedule to taken
             await prisma.medicineSchedule.update({
@@ -181,6 +193,11 @@ async function handleButtonReply(from: string, buttonId: string) {
             await sendWhatsAppMessage(from, `Great! We've logged that you took your ${schedule.medicine.name}. Stay healthy!`)
 
         } else if (action === 'snooze') {
+            if (schedule.reminderCount >= 2) {
+                await sendWhatsAppMessage(from, `You have reached the maximum number of snoozes for ${schedule.medicine.name}. Please take it as soon as possible!`)
+                return
+            }
+
             // Snooze for 10 minutes
             const newScheduledTime = new Date(Date.now() + 10 * 60 * 1000)
 
@@ -203,7 +220,7 @@ async function handleButtonReply(from: string, buttonId: string) {
             })
 
             logToFile(`⏳ Patient snoozed medicine (Snooze Attempt ${schedule.reminderCount}): ${schedule.medicine.name} to ${newScheduledTime.toLocaleTimeString()}`)
-            await sendWhatsAppMessage(from, `Got it. We will remind you again about your ${schedule.medicine.name} in 10 minutes. (Snoozes used: ${schedule.reminderCount}/1)`)
+            await sendWhatsAppMessage(from, `Got it. We will remind you again about your ${schedule.medicine.name} in 10 minutes.`)
         }
     } catch (error) {
         logToFile(`Error handling button reply: ${error}`)
