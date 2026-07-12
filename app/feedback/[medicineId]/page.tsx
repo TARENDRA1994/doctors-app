@@ -29,6 +29,7 @@ export default function FeedbackPage() {
                     if (data.hasSubmitted) {
                         setStep('already_submitted')
                     }
+                }
             } catch (error) {
                 console.error('Failed to fetch details', error)
             } finally {
