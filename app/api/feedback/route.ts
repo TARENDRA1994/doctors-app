@@ -22,18 +22,20 @@ export async function POST(request: NextRequest) {
             return NextResponse.json({ error: 'Medicine not found' }, { status: 404 })
         }
 
-        // Save the feedback to database. We use upsert so patients can update their feedback
-        const feedback = await prisma.feedback.upsert({
+        // Check if feedback already exists for this medicine
+        const existingFeedback = await prisma.feedback.findUnique({
             where: {
                 medicineId: parseInt(medicineId)
-            },
-            update: {
-                status,
-                notes,
-                isRead: false,
-                createdAt: new Date() // Reset date to bring it back to top of dashboard
-            },
-            create: {
+            }
+        })
+
+        if (existingFeedback) {
+            return NextResponse.json({ error: 'Feedback already submitted for this prescription' }, { status: 400 })
+        }
+
+        // Save the feedback to database
+        const feedback = await prisma.feedback.create({
+            data: {
                 medicineId: parseInt(medicineId),
                 patientId: medicine.patientId,
                 doctorId: medicine.doctorId,

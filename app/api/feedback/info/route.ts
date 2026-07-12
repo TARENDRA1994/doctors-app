@@ -19,7 +19,8 @@ export async function GET(request: NextRequest) {
         const medicine = await prisma.medicine.findUnique({
             where: { id: parseInt(medicineId) },
             include: {
-                patient: true
+                patient: true,
+                feedback: true
             }
         })
 
@@ -30,6 +31,7 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({
             medicineName: medicine.name,
             patientName: medicine.patient.name,
+            hasSubmitted: !!medicine.feedback
         })
     } catch (error) {
         console.error('API /feedback/info GET error:', error)
