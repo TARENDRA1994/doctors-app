@@ -167,7 +167,7 @@ async function handleButtonReply(from: string, buttonId: string) {
             return
         }
 
-        if (action === 'snooze' && schedule.medicine.feedback.length > 0) {
+        if (action === 'snooze' && schedule.medicine.feedback !== null) {
             logToFile(`User tried to snooze but course is completed (feedback submitted).`)
             await sendWhatsAppMessage(from, `Your course for ${schedule.medicine.name} is already complete!`)
             return
