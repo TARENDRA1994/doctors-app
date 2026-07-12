@@ -2,54 +2,80 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth/next'
 import { authOptions } from '../../lib/auth'
 import { prisma } from '../../lib/prisma'
-import { sendWhatsAppMessage } from '../../lib/whatsapp'
-
-
-// Using centralized prisma
+import { uploadWhatsAppMedia, sendWhatsAppDocument } from '../../lib/whatsapp'
+import { generatePrescriptionPDF } from '../../lib/pdf-generator'
 
 export async function POST(request: NextRequest) {
   try {
-    console.log('📩 Test notification endpoint called')
-
     const session = await getServerSession(authOptions)
-    console.log('🔐 Session check:', session ? `Authenticated as ${(session.user as any)?.id}` : 'NOT AUTHENTICATED')
-
     if (!session?.user) {
-      console.error('❌ Unauthorized - no session found.')
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Get doctor details
+    const doctorId = parseInt((session.user as any).id)
+
     const doctor = await prisma.doctor.findUnique({
-      where: { id: parseInt((session.user as any).id) }
+      where: { id: doctorId }
     })
 
     if (!doctor) {
-      console.error('❌ Doctor not found for id:', (session.user as any).id)
       return NextResponse.json({ error: 'Doctor not found' }, { status: 404 })
     }
 
     if (!doctor.whatsappNumber) {
-      console.error('❌ Doctor has no WhatsApp number configured')
-      return NextResponse.json({ error: 'Doctor WhatsApp number not configured' }, { status: 400 })
+      return NextResponse.json({ error: 'WhatsApp number not configured' }, { status: 400 })
     }
 
-    console.log('📤 Sending test message to:', doctor.whatsappNumber)
+    if (doctor.testPdfCount >= 3) {
+      return NextResponse.json({ 
+        error: 'Test limit reached', 
+        details: 'You have already reached the maximum limit of 3 test notifications.' 
+      }, { status: 403 })
+    }
 
-    const message = '✅ Test notification from DoctorsNode app! Your WhatsApp integration is working correctly.'
+    // Get the first active patient to generate a preview
+    const firstPatient = await prisma.patient.findFirst({
+      where: { doctorId, isActive: true },
+      orderBy: { createdAt: 'desc' }
+    })
 
-    const result = await sendWhatsAppMessage(doctor.whatsappNumber, message)
+    if (!firstPatient) {
+      return NextResponse.json({ 
+        error: 'No patients found', 
+        details: 'Please add at least one patient to generate a prescription preview.' 
+      }, { status: 400 })
+    }
 
-    if (result.success) {
+    // Generate PDF
+    const { buffer, fileName } = await generatePrescriptionPDF(firstPatient.id, doctorId)
+
+    // Upload to Meta
+    const uploadResult = await uploadWhatsAppMedia(buffer, fileName, 'application/pdf')
+    
+    if (!uploadResult.success || !uploadResult.mediaId) {
+      return NextResponse.json({ error: 'Failed to upload PDF', details: uploadResult.error }, { status: 500 })
+    }
+
+    // Send the document
+    const message = '📄 Test Notification: Here is a preview of your Prescription Header Style!'
+    const sendResult = await sendWhatsAppDocument(doctor.whatsappNumber, uploadResult.mediaId, fileName, doctorId, message)
+
+    if (sendResult.success) {
+      // Increment limit
+      await prisma.doctor.update({
+        where: { id: doctorId },
+        data: { testPdfCount: { increment: 1 } }
+      })
+
       return NextResponse.json({
         success: true,
         message: 'Test notification sent successfully!',
-        messageId: result.messageId,
+        remaining: 2 - doctor.testPdfCount, // 3 minus (current count + 1) -> 2 - current
         recipientNumber: doctor.whatsappNumber
       })
     } else {
       return NextResponse.json(
-        { error: 'Failed to send test notification', details: result.error },
+        { error: 'Failed to send test notification', details: sendResult.error },
         { status: 500 }
       )
     }
@@ -60,4 +86,4 @@ export async function POST(request: NextRequest) {
       { status: 500 }
     )
   }
-}
+}
