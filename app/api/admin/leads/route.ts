@@ -100,7 +100,7 @@ export async function GET(request: NextRequest) {
     }
 }
 
-// POST /api/admin/leads - Create a new lead
+// POST /api/admin/leads - Create a new lead here
 export async function POST(request: NextRequest) {
     try {
         const session = await getServerSession(authOptions)
@@ -119,7 +119,7 @@ export async function POST(request: NextRequest) {
         const baseSlug = slugify(clinicName, { lower: true, strict: true })
         let slug = baseSlug
         let count = 1
-        
+
         while (await prisma.lead.findUnique({ where: { slug } })) {
             slug = `${baseSlug}-${count++}`
         }
