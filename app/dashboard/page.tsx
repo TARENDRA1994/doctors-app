@@ -795,25 +795,29 @@ export default function Dashboard() {
                   </h4>
                   <div className="space-y-4 max-h-[300px] overflow-y-auto pr-2">
                     {(() => {
-                      const today = new Date().toDateString();
-                      const todaysAppts = appointments.filter(a => new Date(a.date).toDateString() === today);
+                      const todayStr = new Date().toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
+                      const todaysAppts = appointments.filter(a => a.proposedTime.startsWith(todayStr));
                       if (todaysAppts.length === 0) {
                         return <p className="text-gray-400 text-sm font-medium text-center py-6 border border-dashed border-gray-200 rounded-2xl">No appointments scheduled for today.</p>;
                       }
-                      return todaysAppts.map(appt => (
-                        <div key={appt.id} className="flex gap-4 p-4 rounded-2xl border border-gray-100 hover:border-medical-200 bg-gray-50 hover:bg-white transition-all">
-                          <div className="flex flex-col items-center justify-center min-w-[60px] border-r border-gray-200 pr-4">
-                            <span className="text-sm font-black text-medical-600">{appt.proposedTime}</span>
-                          </div>
-                          <div>
-                            <p className="font-bold text-gray-800">{appt.patient.name}</p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <span className={`w-2 h-2 rounded-full ${appt.status === 'CONFIRMED' ? 'bg-green-500' : 'bg-amber-400'}`}></span>
-                              <span className="text-xs font-bold text-gray-500">{appt.status}</span>
+                      
+                      return todaysAppts.map(appt => {
+                        const timeOnly = appt.proposedTime.split(' at ')[1] || appt.proposedTime;
+                        return (
+                          <div key={appt.id} className="flex gap-4 p-4 rounded-2xl border border-gray-100 hover:border-medical-200 bg-gray-50 hover:bg-white transition-all">
+                            <div className="flex flex-col items-center justify-center min-w-[60px] border-r border-gray-200 pr-4">
+                              <span className="text-sm font-black text-medical-600 text-center">{timeOnly}</span>
+                            </div>
+                            <div>
+                              <p className="font-bold text-gray-800">{appt.patient.name}</p>
+                              <div className="flex items-center gap-2 mt-1">
+                                <span className={`w-2 h-2 rounded-full ${appt.status === 'CONFIRMED' ? 'bg-green-500' : 'bg-amber-400'}`}></span>
+                                <span className="text-xs font-bold text-gray-500">{appt.status}</span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ));
+                        );
+                      });
                     })()}
                   </div>
                 </div>
