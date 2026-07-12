@@ -143,7 +143,8 @@ async function handleButtonReply(from: string, buttonId: string) {
                 medicine: {
                     include: {
                         patient: true,
-                        doctor: true
+                        doctor: true,
+                        feedback: true
                     }
                 }
             }
