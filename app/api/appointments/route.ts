@@ -43,7 +43,7 @@ export async function POST(request: Request) {
         }
 
         const body = await request.json()
-        const { patientId, proposedTime, bookedBy } = body
+        const { patientId, proposedTime, appointmentDate, bookedBy } = body
 
         let doctorId: number;
 
@@ -79,6 +79,7 @@ export async function POST(request: Request) {
                 patientId,
                 doctorId,
                 proposedTime,
+                appointmentDate: appointmentDate ? new Date(appointmentDate) : null,
                 status: 'PENDING'
             }
         })

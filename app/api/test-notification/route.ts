@@ -26,10 +26,26 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'WhatsApp number not configured' }, { status: 400 })
     }
 
-    if (doctor.testPdfCount >= 3) {
+    // Handle daily limit reset
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    
+    let currentCount = doctor.testPdfCount
+    
+    if (doctor.lastTestPdfDate) {
+      const lastTestDate = new Date(doctor.lastTestPdfDate)
+      lastTestDate.setHours(0, 0, 0, 0)
+      
+      if (lastTestDate.getTime() !== today.getTime()) {
+        // It's a new day, reset count
+        currentCount = 0
+      }
+    }
+
+    if (currentCount >= 3) {
       return NextResponse.json({ 
         error: 'Test limit reached', 
-        details: 'You have already reached the maximum limit of 3 test notifications.' 
+        details: 'You have already reached the maximum limit of 3 test notifications for today. Please try again tomorrow.' 
       }, { status: 403 })
     }
 
@@ -61,16 +77,19 @@ export async function POST(request: NextRequest) {
     const sendResult = await sendWhatsAppDocument(doctor.whatsappNumber, uploadResult.mediaId, fileName, doctorId, message)
 
     if (sendResult.success) {
-      // Increment limit
+      // Increment limit and update date
       await prisma.doctor.update({
         where: { id: doctorId },
-        data: { testPdfCount: { increment: 1 } }
+        data: { 
+          testPdfCount: currentCount + 1,
+          lastTestPdfDate: new Date()
+        }
       })
 
       return NextResponse.json({
         success: true,
         message: 'Test notification sent successfully!',
-        remaining: 2 - doctor.testPdfCount, // 3 minus (current count + 1) -> 2 - current
+        remaining: 2 - currentCount, // 3 minus (current count + 1)
         recipientNumber: doctor.whatsappNumber
       })
     } else {

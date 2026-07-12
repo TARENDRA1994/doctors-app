@@ -26,6 +26,7 @@ model Doctor {
   isAdmin            Boolean       @default(false)
   maxTokensPerDay    Int           @default(50)
   testPdfCount       Int           @default(0)
+  lastTestPdfDate    DateTime?
 
   // Professional Details
   qualification      String?
@@ -168,8 +169,9 @@ model Appointment {
   id           Int      @id @default(autoincrement())
   patientId    Int
   doctorId     Int
-  proposedTime String
-  status       String   @default("PENDING")
+  proposedTime    String
+  appointmentDate DateTime?
+  status          String   @default("PENDING")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   doctor       Doctor   @relation(fields: [doctorId], references: [id], onDelete: Cascade)
