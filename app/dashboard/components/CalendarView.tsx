@@ -46,11 +46,20 @@ export default function CalendarView({ appointments }: CalendarViewProps) {
   // Filter appointments for a specific day
   const getAppointmentsForDay = (day: number) => {
     return appointments.filter(appt => {
-      // If we don't have appointmentDate, we can't reliably place it. 
-      // (Older appointments without this field won't show in the calendar view reliably, but new ones will)
-      if (!appt.appointmentDate) return false;
+      let apptDate: Date;
       
-      const apptDate = new Date(appt.appointmentDate);
+      if (appt.appointmentDate) {
+        apptDate = new Date(appt.appointmentDate);
+      } else if (appt.proposedTime) {
+        // Fallback for older appointments: "Wed, Jul 15 at 5:00 PM"
+        const datePart = appt.proposedTime.split(' at ')[0];
+        // We assume current year for old appointments
+        apptDate = new Date(`${datePart}, ${new Date().getFullYear()}`);
+        if (isNaN(apptDate.getTime())) return false; // Invalid date parse
+      } else {
+        return false;
+      }
+      
       return apptDate.getDate() === day && 
              apptDate.getMonth() === month && 
              apptDate.getFullYear() === year;
