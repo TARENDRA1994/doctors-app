@@ -25,6 +25,7 @@ const PIE_COLORS = ['#10b981', '#3b82f6'] // Green for New, Blue for Returning
 
 export default function RevenueDashboard() {
     const [data, setData] = useState<AnalyticsData | null>(null)
+    const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
