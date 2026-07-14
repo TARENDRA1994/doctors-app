@@ -36,6 +36,7 @@ model Doctor {
   fellowships        String?
   website            String?
   selectedTemplate   String        @default("TEMPLATE_1")
+  consultationFee    Int           @default(500)
   appointments       Appointment[]
   dietPlans          DietPlan[]
   feedbacks          Feedback[]

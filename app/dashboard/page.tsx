@@ -7,6 +7,7 @@ import RestrictionOverlay from './components/RestrictionOverlay'
 import StatCards from './components/StatCards'
 import Link from 'next/link'
 import ReportsView from './components/ReportsView'
+import RevenueDashboard from './components/RevenueDashboard'
 import CalendarView from './components/CalendarView'
 import ProfileView from './components/ProfileView'
 import QueueView from './components/QueueView'
@@ -18,7 +19,8 @@ import {
   Plus, 
   Calendar, 
   Search,
-  User as UserIcon 
+  User as UserIcon,
+  TrendingUp
 } from 'lucide-react'
 
 interface Patient {
@@ -108,7 +110,7 @@ export default function Dashboard() {
   const [appointmentForm, setAppointmentForm] = useState({ patientId: 0, proposedDate: '', proposedTime: '' })
   const [loading, setLoading] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [activeView, setActiveView] = useState<'overview' | 'patients' | 'notifications' | 'reports' | 'profile' | 'queue' | 'calendar'>('overview')
+  const [activeView, setActiveView] = useState<'overview' | 'patients' | 'notifications' | 'reports' | 'profile' | 'queue' | 'calendar' | 'revenue'>('overview')
   const [showMetricModal, setShowMetricModal] = useState<'patients' | 'medicines' | 'reminders' | null>(null)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
   const [queueActionLoading, setQueueActionLoading] = useState<number | null>(null)
@@ -678,6 +680,22 @@ export default function Dashboard() {
                   </div>
                 </div>
               </div>
+
+              <div
+                onClick={() => setActiveView('revenue')}
+                className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl p-6 text-white cursor-pointer shadow-md hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 relative overflow-hidden group"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16 group-hover:scale-150 transition-transform duration-500"></div>
+                <div className="flex justify-between items-start relative z-10">
+                  <div>
+                    <h3 className="text-xl font-bold mb-1">Command Center</h3>
+                    <p className="text-green-100 text-sm">Revenue & Analytics</p>
+                  </div>
+                  <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
+                    <TrendingUp className="w-5 h-5 text-white" />
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -848,6 +866,20 @@ export default function Dashboard() {
 
         {/* VIEW: REPORTS */}
         {activeView === 'reports' && <ReportsView />}
+
+        {/* VIEW: REVENUE */}
+        {activeView === 'revenue' && (
+          <div className="animate-fade-in">
+            <button
+              onClick={() => setActiveView('overview')}
+              className="mb-8 flex items-center gap-2 text-gray-500 hover:text-gray-800 transition-colors font-medium border border-gray-200 px-4 py-2 rounded-xl bg-white hover:bg-gray-50 shadow-sm"
+            >
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+              Back to Dashboard
+            </button>
+            <RevenueDashboard />
+          </div>
+        )}
 
         {/* VIEW: CALENDAR */}
         {activeView === 'calendar' && (
