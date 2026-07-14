@@ -25,17 +25,21 @@ const PIE_COLORS = ['#10b981', '#3b82f6'] // Green for New, Blue for Returning
 
 export default function RevenueDashboard() {
     const [data, setData] = useState<AnalyticsData | null>(null)
-    const [loading, setLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
 
     useEffect(() => {
         fetch('/api/analytics')
-            .then(res => res.json())
-            .then(resData => {
-                if (resData && !resData.error) {
-                    setData(resData)
+            .then(async res => {
+                const resData = await res.json()
+                if (!res.ok || resData.error) {
+                    throw new Error(resData.error || 'Failed to fetch analytics')
                 }
+                setData(resData)
             })
-            .catch(err => console.error('Error fetching analytics:', err))
+            .catch(err => {
+                console.error('Error fetching analytics:', err)
+                setError(err.message)
+            })
             .finally(() => setLoading(false))
     }, [])
 
@@ -44,6 +48,21 @@ export default function RevenueDashboard() {
             <div className="flex flex-col items-center justify-center p-20 gap-4">
                 <div className="animate-spin rounded-full h-14 w-14 border-t-4 border-b-4 border-medical-500"></div>
                 <p className="text-gray-400 font-medium animate-pulse">Calculating clinic financials...</p>
+            </div>
+        )
+    }
+
+    if (error) {
+        return (
+            <div className="flex flex-col items-center justify-center p-20 gap-4 text-center">
+                <div className="w-16 h-16 bg-red-50 text-red-500 rounded-full flex items-center justify-center mb-2">
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Failed to load analytics</h3>
+                <p className="text-gray-500 max-w-md text-sm">{error}</p>
+                <p className="text-xs text-gray-400 mt-4 border border-dashed p-3 rounded-lg bg-gray-50">
+                    <strong>Developer Note:</strong> If this is in production, make sure you ran <code>npx prisma db push</code> to update the database schema with the new consultationFee column!
+                </p>
             </div>
         )
     }
