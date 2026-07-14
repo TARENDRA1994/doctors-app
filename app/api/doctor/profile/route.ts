@@ -24,7 +24,8 @@ export async function GET() {
                 address: true,
                 fellowships: true,
                 website: true,
-                selectedTemplate: true
+                selectedTemplate: true,
+                consultationFee: true
             }
         })
 
@@ -61,7 +62,8 @@ export async function POST(req: NextRequest) {
                 address: data.address,
                 fellowships: data.fellowships,
                 website: data.website,
-                selectedTemplate: data.selectedTemplate
+                selectedTemplate: data.selectedTemplate,
+                consultationFee: data.consultationFee
             }
         })
 

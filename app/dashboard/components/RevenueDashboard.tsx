@@ -120,7 +120,7 @@ export default function RevenueDashboard() {
                                 <Tooltip 
                                     cursor={{ fill: '#f3f4f6' }}
                                     contentStyle={{ borderRadius: '1rem', border: 'none', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
-                                    formatter={(value: number) => [`₹${value}`, 'Revenue']}
+                                    formatter={(value: any) => [`₹${value}`, 'Revenue']}
                                 />
                                 <Bar dataKey="revenue" fill="#3b82f6" radius={[6, 6, 6, 6]} animationDuration={1500} />
                             </BarChart>

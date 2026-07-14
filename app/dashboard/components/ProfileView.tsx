@@ -15,6 +15,7 @@ interface DoctorProfile {
     fellowships: string | null
     website: string | null
     selectedTemplate: string
+    consultationFee: number
 }
 
 export default function ProfileView() {
@@ -38,7 +39,8 @@ export default function ProfileView() {
                     address: data.address || '',
                     fellowships: data.fellowships || '',
                     website: data.website || '',
-                    selectedTemplate: data.selectedTemplate || 'TEMPLATE_1'
+                    selectedTemplate: data.selectedTemplate || 'TEMPLATE_1',
+                    consultationFee: data.consultationFee || 500
                 })
             })
             .catch(err => console.error('Error fetching profile:', err))
@@ -226,6 +228,19 @@ export default function ProfileView() {
                                     onChange={e => setProfile({...profile, whatsappNumber: e.target.value})}
                                     className="w-full pl-14 pr-6 py-4 bg-gray-50 border border-gray-100 rounded-[1.5rem] focus:ring-2 focus:ring-medical-500 transition-all outline-none"
                                     placeholder="+91 XXXXX XXXXX"
+                                />
+                            </div>
+                        </div>
+                        <div className="space-y-2">
+                            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Consultation Fee (₹)</label>
+                            <div className="relative">
+                                <div className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 font-bold">₹</div>
+                                <input 
+                                    type="number"
+                                    value={profile.consultationFee || ''}
+                                    onChange={e => setProfile({...profile, consultationFee: parseInt(e.target.value) || 0})}
+                                    className="w-full pl-12 pr-6 py-4 bg-gray-50 border border-gray-100 rounded-[1.5rem] focus:ring-2 focus:ring-medical-500 transition-all outline-none"
+                                    placeholder="500"
                                 />
                             </div>
                         </div>
