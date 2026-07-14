@@ -1,6 +1,6 @@
-# Docker Deployment Guide for DoctorsNode
+# Docker Deployment Guide for HealthNuero
 
-This guide explains how to build and run the DoctorsNode application in a separate VM or container using Docker.
+This guide explains how to build and run the HealthNuero application in a separate VM or container using Docker.
 
 ## Prerequisites on your VM
 1. **Docker**: Ensure Docker is installed. (`sudo apt install docker.io` on Ubuntu)
@@ -30,7 +30,7 @@ WHATSAPP_VERIFY_TOKEN="your_webhook_verify_token"
 Run the following command in the directory containing the `Dockerfile`:
 
 ```bash
-docker build -t doctorsnode-app .
+docker build -t healthnuero-app .
 ```
 *This command uses the multi-stage Dockerfile to install dependencies, generate the Prisma client, and create an optimized Next.js standalone build.*
 
@@ -45,11 +45,11 @@ mkdir -p ./data
 
 # Run the container
 docker run -d \
-  --name doctorsnode \
+  --name healthnuero \
   -p 3001:3001 \
   --env-file .env \
   -v $(pwd)/data:/app/prisma/data \
-  doctorsnode-app
+  healthnuero-app
 ```
 
 > **Note on SQLite:** If you use the command above, you should update your `.env` `DATABASE_URL` to point to the mounted volume: `DATABASE_URL="file:/app/prisma/data/dev.db"`
@@ -58,7 +58,7 @@ docker run -d \
 Check the logs to ensure the database migrations ran and the server started successfully:
 
 ```bash
-docker logs -f doctorsnode
+docker logs -f healthnuero
 ```
 
 You should see:

@@ -153,7 +153,7 @@ export default function BillingPage() {
                             {/* QR Code Placeholder */}
                             <div className="w-56 h-56 bg-white mx-auto mb-6 p-4 rounded-3xl shadow-medical border border-medical-50 flex items-center justify-center relative group">
                                 <img
-                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8839224094@ybl%26pn=DoctorsNode%26am=${selectedPlan?.price.replace('₹', '') || ''}%26cu=INR`}
+                                    src={`https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8839224094@ybl%26pn=HealthNuero%26am=${selectedPlan?.price.replace('₹', '') || ''}%26cu=INR`}
                                     alt="Payment QR Code"
                                     className="w-full h-full rounded-xl"
                                 />
@@ -209,7 +209,7 @@ export default function BillingPage() {
             </div>
 
             <footer className="mt-20 text-center text-gray-400 text-sm">
-                <p>© 2026 DoctorsNode Inc. Powered by WhatsApp Business API.</p>
+                <p>© 2026 HealthNuero Inc. Powered by WhatsApp Business API.</p>
             </footer>
         </div>
     )

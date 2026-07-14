@@ -44,7 +44,7 @@ export default function Login() {
                  <path d="M15 50 L35 50 L40 35 L50 65 L60 40 L65 50 L85 50" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
                </svg>
             </div>
-            <h1 className="text-4xl font-bold mb-4 tracking-tight">DoctorsNode</h1>
+            <h1 className="text-4xl font-bold mb-4 tracking-tight">HealthNuero</h1>
             <p className="text-xl text-white/80 font-medium leading-relaxed">
               Smart Medicine Reminders for Healthcare
             </p>

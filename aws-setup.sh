@@ -1,5 +1,5 @@
 #!/bin/bash
-# --- DoctorsNode AWS EC2 Auto-Healing Startup Script (v2.1) ---
+# --- HealthNuero AWS EC2 Auto-Healing Startup Script (v2.1) ---
 # This script installs Docker and starts your app automatically on boot.
 
 # 1. Install Docker using the Official Convenience Script
@@ -50,7 +50,7 @@ export NEXTAUTH_URL="http://${IP_ADDRESS}:3001"
 echo "🧹 Cleaning old build cache..."
 sudo docker system prune -f --volumes
 
-echo "🏗️ Launching DoctorsNode v2 (Premium Landing Page LIVE)..."
+echo "🏗️ Launching HealthNuero v2 (Premium Landing Page LIVE)..."
 sudo docker compose up --build -d
 
 # 6. Setup Daily Cleanup Cron

@@ -138,7 +138,7 @@ export default function AdminDashboard() {
     const shareOnWhatsApp = (lead: Lead) => {
         const appUrl = window.location.origin
         const showcaseUrl = `${appUrl}/p/${lead.slug}`
-        const message = `Hello Dr. ${lead.doctorName || lead.clinicName},\n\nI've created a premium showcase landing page for your clinic to show how DoctorsNode can help you manage patients and automate reminders.\n\nCheck it out here: ${showcaseUrl}\n\nLet me know if you would like to claim your full dashboard!`
+        const message = `Hello Dr. ${lead.doctorName || lead.clinicName},\n\nI've created a premium showcase landing page for your clinic to show how HealthNuero can help you manage patients and automate reminders.\n\nCheck it out here: ${showcaseUrl}\n\nLet me know if you would like to claim your full dashboard!`
         window.open(`https://wa.me/${lead.phone?.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(message)}`, '_blank')
     }
 
