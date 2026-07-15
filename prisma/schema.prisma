@@ -35,6 +35,7 @@ model Doctor {
   address            String?
   fellowships        String?
   website            String?
+  googleReviewLink   String?
   selectedTemplate   String        @default("TEMPLATE_1")
   consultationFee    Int           @default(500)
   appointments       Appointment[]

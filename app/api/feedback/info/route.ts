@@ -20,7 +20,8 @@ export async function GET(request: NextRequest) {
             where: { id: parseInt(medicineId) },
             include: {
                 patient: true,
-                feedback: true
+                feedback: true,
+                doctor: true
             }
         })
 
@@ -31,7 +32,8 @@ export async function GET(request: NextRequest) {
         return NextResponse.json({
             medicineName: medicine.name,
             patientName: medicine.patient.name,
-            hasSubmitted: !!medicine.feedback
+            hasSubmitted: !!medicine.feedback,
+            googleReviewLink: medicine.doctor.googleReviewLink
         })
     } catch (error) {
         console.error('API /feedback/info GET error:', error)

@@ -14,6 +14,7 @@ interface DoctorProfile {
     address: string | null
     fellowships: string | null
     website: string | null
+    googleReviewLink: string | null
     selectedTemplate: string
     consultationFee: number
 }
@@ -39,6 +40,7 @@ export default function ProfileView() {
                     address: data.address || '',
                     fellowships: data.fellowships || '',
                     website: data.website || '',
+                    googleReviewLink: data.googleReviewLink || '',
                     selectedTemplate: data.selectedTemplate || 'TEMPLATE_1',
                     consultationFee: data.consultationFee || 500
                 })
@@ -205,6 +207,35 @@ export default function ProfileView() {
                                     placeholder="www.yourclinic.com"
                                 />
                             </div>
+                        </div>
+                        <div className="space-y-2 md:col-span-2">
+                            <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Google Maps Review Link</label>
+                            <div className="relative">
+                                <Globe className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
+                                <input 
+                                    type="text"
+                                    value={profile.googleReviewLink || ''}
+                                    onChange={e => setProfile({...profile, googleReviewLink: e.target.value})}
+                                    className="w-full pl-14 pr-6 py-4 bg-gray-50 border border-gray-100 rounded-[1.5rem] focus:ring-2 focus:ring-medical-500 transition-all outline-none"
+                                    placeholder="https://g.page/r/..."
+                                />
+                            </div>
+                            {!profile.googleReviewLink && (
+                                <div className="mt-3 p-4 bg-amber-50 border border-amber-200 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-4">
+                                    <div className="flex-1">
+                                        <h4 className="text-sm font-bold text-amber-800">⚠️ You are missing out on new patients!</h4>
+                                        <p className="text-xs text-amber-700 mt-1">You haven't set up a Google Profile Review Link yet. You cannot use the Automated Review Bot to gather 5-star ratings from your patients.</p>
+                                    </div>
+                                    <a 
+                                        href="https://wa.me/919872954744?text=Hi,%20I%20need%20a%20Premium%20Clinic%20Website%20and%20Google%20Profile%20setup!" 
+                                        target="_blank" 
+                                        rel="noopener noreferrer"
+                                        className="whitespace-nowrap px-4 py-2 bg-amber-600 text-white text-xs font-bold rounded-xl shadow-sm hover:bg-amber-700 transition-colors"
+                                    >
+                                        Get Setup (Contact Us)
+                                    </a>
+                                </div>
+                            )}
                         </div>
                         <div className="space-y-2 md:col-span-2">
                             <label className="text-xs font-black text-gray-400 uppercase tracking-widest ml-1">Clinic Address</label>
