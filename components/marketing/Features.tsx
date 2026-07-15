@@ -8,7 +8,13 @@ import {
   Users, 
   Calendar, 
   History, 
-  FileCheck2 
+  FileCheck2,
+  ListOrdered,
+  Star,
+  MessageSquareText,
+  Receipt,
+  TrendingUp,
+  ShieldCheck
 } from 'lucide-react'
 
 const features = [
@@ -22,6 +28,24 @@ const features = [
     title: 'AI Nutrition Assistant',
     description: 'Using Google Gemini 1.5 Pro to generate clinical diet plans tailored to your patients vitals.',
     icon: BrainCircuit,
+    color: 'teal'
+  },
+  {
+    title: 'Live OPD Queue',
+    description: 'Manage clinic crowd seamlessly with real-time token tracking and wait time estimates on TV screens.',
+    icon: ListOrdered,
+    color: 'teal'
+  },
+  {
+    title: 'Automated Google Reviews',
+    description: 'Skyrocket your clinic ratings by automatically asking happy, cured patients to leave a 5-star review.',
+    icon: Star,
+    color: 'teal'
+  },
+  {
+    title: 'AI Clinical Chatbot',
+    description: 'Chat securely with your own clinical data. Get instant patient summaries and medical history analysis.',
+    icon: MessageSquareText,
     color: 'teal'
   },
   {
@@ -44,8 +68,26 @@ const features = [
   },
   {
     title: 'Professional PDFs',
-    description: 'Generate and send beautiful, professional prescriptions directly to patient phones.',
+    description: 'Generate and send beautiful, professional prescriptions directly to patient phones via WhatsApp.',
     icon: FileCheck2,
+    color: 'teal'
+  },
+  {
+    title: 'Instant Billing',
+    description: 'Create and send digital invoices and receipts to patients in seconds to simplify clinic accounting.',
+    icon: Receipt,
+    color: 'teal'
+  },
+  {
+    title: 'Revenue Analytics',
+    description: 'Track your clinic growth, daily footfall, and financial health with beautiful, easy-to-read charts.',
+    icon: TrendingUp,
+    color: 'teal'
+  },
+  {
+    title: 'Role-Based Security',
+    description: 'Give your receptionist access to manage appointments without exposing your clinic revenue and data.',
+    icon: ShieldCheck,
     color: 'teal'
   }
 ]
