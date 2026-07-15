@@ -53,7 +53,7 @@ const doc = new Document({
                 new Paragraph({
                     children: [
                         new TextRun({
-                            text: "HealthNuero",
+                            text: "SanjeevniBharat",
                             bold: true,
                             size: 72,
                         }),
@@ -105,7 +105,7 @@ const doc = new Document({
                 // TABLE OF CONTENTS (Placeholder text for 15 pages)
                 createHeading("Table of Contents"),
                 createParagraph("1. Executive Summary ......................................................................................... Page 3"),
-                createParagraph("2. Introduction to HealthNuero ............................................................................. Page 4"),
+                createParagraph("2. Introduction to SanjeevniBharat ............................................................................. Page 4"),
                 createParagraph("3. Core Vision and Mission ..................................................................................... Page 5"),
                 createParagraph("4. Feature Spotlight: Doctor Experience ................................................................ Page 6"),
                 createParagraph("   4.1 The Intelligence Dashboard ............................................................................ Page 6"),
@@ -127,27 +127,27 @@ const doc = new Document({
                 // PAGE 3: EXECUTIVE SUMMARY
                 createHeading("1. Executive Summary"),
                 createParagraph("The global healthcare landscape is rapidly evolving, with a growing emphasis on preventative care and chronic disease management. One of the most significant challenges in modern medicine is patient adherence—specifically, the consistency with which patients take their prescribed medications. Research indicates that nearly 50% of patients with chronic illnesses fail to follow their medication regimen as prescribed, leading to avoidable complications, increased hospitalizations, and billions of dollars in excess healthcare costs."),
-                createParagraph("HealthNuero was born out of the necessity to bridge this gap. Designed as a high-fidelity, doctor-centric application, HealthNuero provides a seamless interface for medical professionals to manage their patient database while automating the critical task of medication monitoring. By leveraging the ubiquity of WhatsApp, the platform ensures that reminders are delivered through a channel that patients already use and trust daily."),
-                createParagraph("This document provides an exhaustive overview of the HealthNuero ecosystem, detailing its features, technical architecture, and the strategic value it brings to both clinical practices and patient outcomes. From its intuitive dashboard to its sophisticated backend automation, HealthNuero represents the next step in digital health assistants."),
+                createParagraph("SanjeevniBharat was born out of the necessity to bridge this gap. Designed as a high-fidelity, doctor-centric application, SanjeevniBharat provides a seamless interface for medical professionals to manage their patient database while automating the critical task of medication monitoring. By leveraging the ubiquity of WhatsApp, the platform ensures that reminders are delivered through a channel that patients already use and trust daily."),
+                createParagraph("This document provides an exhaustive overview of the SanjeevniBharat ecosystem, detailing its features, technical architecture, and the strategic value it brings to both clinical practices and patient outcomes. From its intuitive dashboard to its sophisticated backend automation, SanjeevniBharat represents the next step in digital health assistants."),
                 new Paragraph({ children: [new PageBreak()] }),
 
                 // PAGE 4: INTRODUCTION
-                createHeading("2. Introduction to HealthNuero"),
-                createParagraph("HealthNuero is more than just a scheduling tool; it is a full-featured clinical management assistant tailored for the modern practitioner. In a busy clinic, a doctor spends hours diagnosing and prescribing. However, once the patient leaves the clinic, the doctor's influence often wanes. HealthNuero extends the doctor's care into the patient's home, acting as a digital proxy that monitors health schedules in real-time."),
-                createSubHeading("2.1 Why HealthNuero?"),
-                createParagraph("Traditional methods of medication reminders—such as paper checklists or dedicated health apps—frequently fail because they require too much effort from the patient. Most dedicated apps are deleted within weeks, and paper lists are easily forgotten. HealthNuero solves this by placing the reminder exactly where the patient is: in their WhatsApp inbox."),
+                createHeading("2. Introduction to SanjeevniBharat"),
+                createParagraph("SanjeevniBharat is more than just a scheduling tool; it is a full-featured clinical management assistant tailored for the modern practitioner. In a busy clinic, a doctor spends hours diagnosing and prescribing. However, once the patient leaves the clinic, the doctor's influence often wanes. SanjeevniBharat extends the doctor's care into the patient's home, acting as a digital proxy that monitors health schedules in real-time."),
+                createSubHeading("2.1 Why SanjeevniBharat?"),
+                createParagraph("Traditional methods of medication reminders—such as paper checklists or dedicated health apps—frequently fail because they require too much effort from the patient. Most dedicated apps are deleted within weeks, and paper lists are easily forgotten. SanjeevniBharat solves this by placing the reminder exactly where the patient is: in their WhatsApp inbox."),
                 createSubHeading("2.2 Targeted Users"),
                 createListItem("Individual Practitioners: Doctors running private clinics who want to improve patient retention and health outcomes."),
                 createListItem("Multi-Specialty Clinics: Facilities managing hundreds of patients across different departments."),
                 createListItem("Chronic Care Teams: Nurses and assistants who support doctors in managing long-term patient health."),
-                createParagraph("By centralizing patient data and medicine schedules, HealthNuero reduces administrative overhead, allowing healthcare providers to focus on what matters most: saving lives and improving quality of life."),
+                createParagraph("By centralizing patient data and medicine schedules, SanjeevniBharat reduces administrative overhead, allowing healthcare providers to focus on what matters most: saving lives and improving quality of life."),
                 new Paragraph({ children: [new PageBreak()] }),
 
                 // PAGE 5: VISION AND MISSION
                 createHeading("3. Core Vision and Mission"),
-                createParagraph("Our vision is a world where medical non-adherence is a problem of the past. We believe that technology should serve humanity by removing the friction from essential daily tasks. For a diabetic patient or a cardiac patient, a missed pill is not just an inconvenience; it is a risk factor. HealthNuero's mission is to eliminate that risk through persistent, intelligent automation."),
+                createParagraph("Our vision is a world where medical non-adherence is a problem of the past. We believe that technology should serve humanity by removing the friction from essential daily tasks. For a diabetic patient or a cardiac patient, a missed pill is not just an inconvenience; it is a risk factor. SanjeevniBharat's mission is to eliminate that risk through persistent, intelligent automation."),
                 createSubHeading("3.1 Empowering Doctors"),
-                createParagraph("We aim to empower doctors with data. When a patient returns for a follow-up, the first question is usually 'Did you take your medicines regularly?'. Typically, the patient says 'Yes', but the data might say otherwise. HealthNuero provides doctors with a 'Response History' that shows exactly when a patient confirmed taking a pill or requested a snooze. This enables 'Data-Driven Consultations'."),
+                createParagraph("We aim to empower doctors with data. When a patient returns for a follow-up, the first question is usually 'Did you take your medicines regularly?'. Typically, the patient says 'Yes', but the data might say otherwise. SanjeevniBharat provides doctors with a 'Response History' that shows exactly when a patient confirmed taking a pill or requested a snooze. This enables 'Data-Driven Consultations'."),
                 createSubHeading("3.2 Simplifying Patient Lives"),
                 createParagraph("At the patient end, simplicity is key. There is no password to remember, no app to update. Every interaction happens via a simple WhatsApp message. This accessibility is particularly important for elderly patients who may not be tech-savvy but are comfortable with basic messaging apps."),
                 new Paragraph({ children: [new PageBreak()] }),
@@ -155,7 +155,7 @@ const doc = new Document({
                 // PAGE 6: FEATURE SPOTLIGHT - THE DOCTOR DASHBOARD
                 createHeading("4. Feature Spotlight: Doctor Experience"),
                 createSubHeading("4.1 The Intelligence Dashboard"),
-                createParagraph("The heartbeat of HealthNuero is the Doctor Dashboard. Upon logging in via a secure JWT-based authentication system, the practitioner is greeted with a birds-eye view of their entire practice. The dashboard is designed with 'Information Density' in mind—showing everything necessary at a glance without overwhelming the user."),
+                createParagraph("The heartbeat of SanjeevniBharat is the Doctor Dashboard. Upon logging in via a secure JWT-based authentication system, the practitioner is greeted with a birds-eye view of their entire practice. The dashboard is designed with 'Information Density' in mind—showing everything necessary at a glance without overwhelming the user."),
                 createListItem("Active Patients Count: Instantly see how many patients are currently under your care."),
                 createListItem("Daily Reminders Sent: A counter showing the volume of activity the system has handled for you today."),
                 createListItem("Adherence Rate: A calculated percentage showing how many patients are marking their medicines as 'Taken' vs 'Snoozed'."),
@@ -165,7 +165,7 @@ const doc = new Document({
 
                 // PAGE 7: STATISTICS AND ANALYTICS
                 createSubHeading("4.2 Advanced Statistics and Analytics"),
-                createParagraph("HealthNuero goes beyond simple counts. It provides visual analytics that help doctors spot trends. For instance, a doctor might notice that a particular medication has a high 'Snooze' rate across multiple patients. This might indicate that the medication has side effects or is being prescribed at an inconvenient time of day."),
+                createParagraph("SanjeevniBharat goes beyond simple counts. It provides visual analytics that help doctors spot trends. For instance, a doctor might notice that a particular medication has a high 'Snooze' rate across multiple patients. This might indicate that the medication has side effects or is being prescribed at an inconvenient time of day."),
                 createListItem("Temporal Trends: Analysis of medication adherence by time of day (Morning vs. Evening)."),
                 createListItem("Disease-wise Analytics: Adherence rates categorized by disease types (e.g., Hypertension vs Diabetes)."),
                 createListItem("Patient Engagement Logs: A minute-by-minute activity feed showing system checks and patient interactions."),
@@ -175,7 +175,7 @@ const doc = new Document({
                 // PAGE 8: FEATURE SPOTLIGHT - PATIENT MANAGEMENT
                 createHeading("5. Feature Spotlight: Patient Management"),
                 createSubHeading("5.1 Creating and Managing Digital Profiles"),
-                createParagraph("Managing a diverse patient base requires a robust organization system. HealthNuero's Patient Management module is built to be both powerful and user-friendly. Each patient is treated as a unique entity with a comprehensive digital file."),
+                createParagraph("Managing a diverse patient base requires a robust organization system. SanjeevniBharat's Patient Management module is built to be both powerful and user-friendly. Each patient is treated as a unique entity with a comprehensive digital file."),
                 createListItem("Demographic Details: Name, Age, Gender, and WhatsApp-enabled mobile number."),
                 createListItem("Clinical Metadata: Primary disease diagnosis and secondary health notes."),
                 createListItem("Historical View: A log of all previous medicines prescribed and the patient's historical adherence levels."),
@@ -194,7 +194,7 @@ const doc = new Document({
                 // PAGE 10: MEDICINE SCHEDULING
                 createHeading("6. Medicine Scheduling and Adherence"),
                 createSubHeading("6.1 Frequency Logic and Dosage Control"),
-                createParagraph("The core engine of HealthNuero is its sophisticated scheduling algorithm. Prescribing a medicine is not just about naming the drug; it's about defining a precise rhythm. HealthNuero supports complex scheduling patterns to match any prescription."),
+                createParagraph("The core engine of SanjeevniBharat is its sophisticated scheduling algorithm. Prescribing a medicine is not just about naming the drug; it's about defining a precise rhythm. SanjeevniBharat supports complex scheduling patterns to match any prescription."),
                 createListItem("Daily Frequencies: Support for multiple doses per day (e.g., TDS - Three times a day, BD - Twice a day)."),
                 createListItem("Custom Intervals: Specific hours between doses (e.g., every 8 hours)."),
                 createListItem("SOS / PRN Support: Medicines that are only taken 'as needed' but still require a tracking mechanism."),
@@ -204,7 +204,7 @@ const doc = new Document({
 
                 // PAGE 11: AUTOMATED REMINDER WINDOWS
                 createSubHeading("6.2 Automated Reminder Windows"),
-                createParagraph("HealthNuero doesn't just send a message and walk away. It operates on a 'Check-and-Verify' logic. Every minute, a background system (Node-Cron) scans the database for scheduled medicines that are due for a reminder."),
+                createParagraph("SanjeevniBharat doesn't just send a message and walk away. It operates on a 'Check-and-Verify' logic. Every minute, a background system (Node-Cron) scans the database for scheduled medicines that are due for a reminder."),
                 createListItem("The Zero-Wait Trigger: As soon as the clock hits the scheduled minute, the Twilio API is invoked."),
                 createListItem("The Reminder Window: If a patient doesn't respond, the system can be configured to send a secondary 'Nudge' after a certain interval."),
                 createListItem("Automated Status Transitions: Medicines move from 'Pending' to 'Sent' to 'Taken/Late' automatically based on real-time feedback."),
@@ -214,7 +214,7 @@ const doc = new Document({
                 // PAGE 12: COMMUNICATION ENGINE
                 createHeading("7. Communication Engine: WhatsApp & Twilio"),
                 createSubHeading("7.1 Real-time Notifications"),
-                createParagraph("The integration with Twilio's WhatsApp API is the backbone of HealthNuero's communication strategy. WhatsApp has over 2 billion active users and an open rate of over 90%, making it the most effective channel for healthcare reminders. Our implementation uses secure Webhooks to handle the flow of data back and forth."),
+                createParagraph("The integration with Twilio's WhatsApp API is the backbone of SanjeevniBharat's communication strategy. WhatsApp has over 2 billion active users and an open rate of over 90%, making it the most effective channel for healthcare reminders. Our implementation uses secure Webhooks to handle the flow of data back and forth."),
                 createListItem("Rich Text Messages: Reminders include the medicine name, dosage, and specific instructions in a clear, easy-to-read format."),
                 createListItem("Status Tracking: Doctors can see 'Read Receipts' for the reminders, knowing exactly when a patient saw the message."),
                 createListItem("Global Reach: Support for international phone formats, allowing doctors to serve patients regardless of their location."),
@@ -222,7 +222,7 @@ const doc = new Document({
 
                 // PAGE 13: INTERACTIVE TWO-WAY RESPONSES
                 createSubHeading("7.2 Interactive Two-Way Responses"),
-                createParagraph("HealthNuero is not a one-way broadcasting system; it is a conversation-based tool. Patients can reply to reminders to update the system. This 'Closed-Loop' communication is what sets HealthNuero apart from simple alarm apps."),
+                createParagraph("SanjeevniBharat is not a one-way broadcasting system; it is a conversation-based tool. Patients can reply to reminders to update the system. This 'Closed-Loop' communication is what sets SanjeevniBharat apart from simple alarm apps."),
                 createListItem("'Taken' Confirmation: When a patient replies 'taken', the schedule status is immediately updated in the doctor's database."),
                 createListItem("'Snooze' Functionality: Patients can reply 'snooze 10' to be reminded again in 10 minutes. The system intelligently reschedules the specific dose without affecting future doses."),
                 createListItem("'Help' Command: Patients can request information about their current medication list by sending a simple keyword."),
@@ -232,25 +232,25 @@ const doc = new Document({
                 // PAGE 14: TECHNICAL SPECIFICATIONS
                 createHeading("8. Technical Specifications and Administration"),
                 createSubHeading("8.1 The Tech Stack"),
-                createParagraph("HealthNuero is built on a modern, high-performance stack designed for reliability and speed."),
+                createParagraph("SanjeevniBharat is built on a modern, high-performance stack designed for reliability and speed."),
                 createListItem("Frontend: Next.js 14 with React 18, providing a fast, SEO-friendly, and responsive user interface."),
                 createListItem("Backend: Next.js API Routes (Serverless ready), ensuring scalable logic and secure data processing."),
                 createListItem("Database: Prisma ORM with SQLite (for development) and PostgreSQL compatibility (for production deployment)."),
                 createListItem("Authentication: NextAuth.js with JWT and Bcrypt password hashing."),
                 createSubHeading("8.2 Security and Privacy"),
-                createParagraph("Given the sensitivity of medical data, HealthNuero adheres to strict security standards. All API routes are protected by session tokens, and cross-origin requests are strictly controlled. Database migrations are managed via Prisma, ensuring a consistent and versioned schema."),
+                createParagraph("Given the sensitivity of medical data, SanjeevniBharat adheres to strict security standards. All API routes are protected by session tokens, and cross-origin requests are strictly controlled. Database migrations are managed via Prisma, ensuring a consistent and versioned schema."),
                 new Paragraph({ children: [new PageBreak()] }),
 
                 // PAGE 15: TROUBLESHOOTING AND SUPPORT
                 createHeading("9. Troubleshooting and Support"),
-                createParagraph("While HealthNuero is designed for 99.9% uptime, we provide comprehensive troubleshooting resources for clinic administrators."),
+                createParagraph("While SanjeevniBharat is designed for 99.9% uptime, we provide comprehensive troubleshooting resources for clinic administrators."),
                 createSubHeading("Common Issues and Solutions"),
                 createListItem("Notifications not sending: Verify that the Twilio Sandbox has been 'Joined' by the patient and the phone number includes the '+' country code."),
                 createListItem("Login failures: Ensure the NEXTAUTH_SECRET environment variable is correctly set in the production environment."),
                 createListItem("Database errors: Ensure migrations are up to date using the 'npx prisma migrate' command suite."),
                 createParagraph("For advanced support, the system includes a 'Health Check' API that verifies connectivity with Twilio and the database status in real-time. This allows for rapid identification and resolution of any infrastructure issues."),
                 createHeading("10. Future Roadmap and Conclusion"),
-                createParagraph("HealthNuero is constantly evolving. Our roadmap includes AI-powered adherence predictions, a dedicated patient portal for viewing historical lab results, and integration with pharmacy delivery services. In conclusion, HealthNuero is more than a software product; it is a commitment to better health through better communication. We are proud to support healthcare heroes in their mission to provide excellent care."),
+                createParagraph("SanjeevniBharat is constantly evolving. Our roadmap includes AI-powered adherence predictions, a dedicated patient portal for viewing historical lab results, and integration with pharmacy delivery services. In conclusion, SanjeevniBharat is more than a software product; it is a commitment to better health through better communication. We are proud to support healthcare heroes in their mission to provide excellent care."),
                 new Paragraph({
                     children: [
                         new TextRun({
@@ -267,8 +267,8 @@ const doc = new Document({
 });
 
 Packer.toBuffer(doc).then((buffer) => {
-    fs.writeFileSync("HealthNuero_Documentation.docx", buffer);
-    console.log("Document created successfully: HealthNuero_Documentation.docx");
+    fs.writeFileSync("SanjeevniBharat_Documentation.docx", buffer);
+    console.log("Document created successfully: SanjeevniBharat_Documentation.docx");
 }).catch(err => {
     console.error("Error creating document:", err);
     process.exit(1);

@@ -498,7 +498,7 @@ export default function Dashboard() {
                 </svg>
               </div>
               <div>
-                <h1 className="text-lg font-bold text-medical-600">HealthNuero</h1>
+                <h1 className="text-lg font-bold text-medical-600">SanjeevniBharat</h1>
                 <p className="text-xs text-gray-400 -mt-0.5 hidden sm:block">Doctor&apos;s Dashboard</p>
               </div>
             </div>

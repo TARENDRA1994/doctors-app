@@ -96,7 +96,7 @@ export default function FeedbackPage() {
                         </svg>
                     </div>
                     <h2 className="text-2xl font-bold">Treatment Complete</h2>
-                    <p className="text-medical-100 mt-1">HealthNuero Feedback</p>
+                    <p className="text-medical-100 mt-1">SanjeevniBharat Feedback</p>
                 </div>
 
                 {/* Content */}
