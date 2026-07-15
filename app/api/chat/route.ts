@@ -1,4 +1,4 @@
-import { createOpenAI } from '@ai-sdk/openai';
+import { createGoogleGenerativeAI } from '@ai-sdk/google';
 import { streamText, tool } from 'ai';
 import { z } from 'zod';
 import { getServerSession } from 'next-auth/next';
@@ -6,8 +6,7 @@ import { authOptions } from '../../lib/auth';
 import { prisma } from '../../lib/prisma';
 import { NextResponse } from 'next/server';
 
-const gemini = createOpenAI({
-  baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/',
+const google = createGoogleGenerativeAI({
   apiKey: process.env.GEMINI_API_KEY || '',
 });
 
@@ -26,7 +25,7 @@ export async function POST(req: Request) {
 
     const result = await streamText({
       // @ts-expect-error - Type mismatch between ai SDK and provider versions
-      model: gemini('gemini-1.5-flash'),
+      model: google('gemini-1.5-flash'),
       maxSteps: 5,
       messages,
       system: `You are a helpful, professional AI medical assistant for a doctor. You help them analyze their patients, schedules, clinical data, and clinic performance. You have tools to fetch real data from their database. IMPORTANT: Only use tools if the user asks a specific question that requires fetching data. If the user just greets you (e.g. "hi", "hello"), simply greet them back warmly without calling any tools. Be concise and accurate.`,
