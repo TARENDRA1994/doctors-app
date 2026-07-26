@@ -51,6 +51,7 @@ interface PatientHistory {
     gender: string | null
     medicines: Medicine[]
     labReports: LabReport[]
+    vitals: Vital[]
 }
 
 const MedicineAutocompleteInput = ({ value, onChange, placeholder, className, required }: any) => {
