@@ -236,3 +236,15 @@ model QueueToken {
   @@index([doctorId])
   @@index([date])
 }
+
+model MedicineMaster {
+  id               Int      @id @default(autoincrement())
+  name             String   @unique
+  type             String?  // e.g. Tablet, Syrup, Injection
+  activeIngredient String?
+  manufacturer     String?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  
+  @@index([name])
+}

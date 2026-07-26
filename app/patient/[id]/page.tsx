@@ -51,7 +51,66 @@ interface PatientHistory {
     gender: string | null
     medicines: Medicine[]
     labReports: LabReport[]
-    vitals: Vital[]
+}
+
+const MedicineAutocompleteInput = ({ value, onChange, placeholder, className, required }: any) => {
+    const [suggestions, setSuggestions] = useState<string[]>([])
+    const [showDropdown, setShowDropdown] = useState(false)
+
+    useEffect(() => {
+        const fetchSuggestions = async () => {
+            if (!value || value.length < 2) {
+                setSuggestions([])
+                return
+            }
+            try {
+                const res = await fetch(`/api/medicines/autocomplete?q=${encodeURIComponent(value)}`)
+                const data = await res.json()
+                setSuggestions(data.medicines || [])
+            } catch (err) {
+                console.error(err)
+            }
+        }
+        
+        const timeoutId = setTimeout(fetchSuggestions, 300)
+        return () => clearTimeout(timeoutId)
+    }, [value])
+
+    return (
+        <div className="relative">
+            <input
+                type="text"
+                value={value}
+                onChange={(e) => {
+                    onChange(e.target.value)
+                    setShowDropdown(true)
+                }}
+                onFocus={() => setShowDropdown(true)}
+                onBlur={() => setTimeout(() => setShowDropdown(false), 200)}
+                placeholder={placeholder}
+                className={className}
+                required={required}
+                autoComplete="off"
+            />
+            {showDropdown && suggestions.length > 0 && (
+                <ul className="absolute z-50 w-full bg-white border border-gray-200 rounded-lg mt-1 max-h-60 overflow-y-auto shadow-lg">
+                    {suggestions.map((med, idx) => (
+                        <li
+                            key={idx}
+                            className="px-4 py-2 hover:bg-medical-50 cursor-pointer text-sm text-gray-700 border-b border-gray-50 last:border-0"
+                            onMouseDown={(e) => {
+                                e.preventDefault(); // Prevent blur
+                                onChange(med);
+                                setShowDropdown(false);
+                            }}
+                        >
+                            {med}
+                        </li>
+                    ))}
+                </ul>
+            )}
+        </div>
+    )
 }
 
 export default function PatientHistoryPage({ params }: { params: { id: string } }) {
@@ -1341,13 +1400,12 @@ export default function PatientHistoryPage({ params }: { params: { id: string } 
                                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                                 <div className="space-y-1.5">
                                                     <label className="text-xs font-bold text-medical-600 uppercase tracking-wider">Medicine Name</label>
-                                                    <input
-                                                        type="text"
+                                                    <MedicineAutocompleteInput
                                                         value={med.name}
-                                                        onChange={(e) => updateNewMedicine(idx, 'name', e.target.value)}
+                                                        onChange={(val: string) => updateNewMedicine(idx, 'name', val)}
                                                         placeholder="e.g. Paracetamol"
                                                         className="w-full p-2.5 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-medical-500 transition-all outline-none"
-                                                        required
+                                                        required={true}
                                                     />
                                                 </div>
                                                 <div className="grid grid-cols-2 gap-4">
@@ -1493,12 +1551,11 @@ export default function PatientHistoryPage({ params }: { params: { id: string } 
                             <form onSubmit={handleUpdateMedicine} className="p-6 space-y-4">
                                 <div>
                                     <label className="block text-sm font-semibold text-gray-700 mb-1">Medicine Name</label>
-                                    <input
-                                        type="text"
+                                    <MedicineAutocompleteInput
                                         value={editingMedicine.name}
-                                        onChange={(e) => setEditingMedicine({ ...editingMedicine, name: e.target.value })}
+                                        onChange={(val: string) => setEditingMedicine({ ...editingMedicine, name: val })}
                                         className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-medical-500 transition-all"
-                                        required
+                                        required={true}
                                     />
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
