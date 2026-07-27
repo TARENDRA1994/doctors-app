@@ -18,6 +18,7 @@ export async function GET(request: Request) {
           mode: 'insensitive', // PostgreSQL specific: case-insensitive search
         },
       },
+      distinct: ['name'],
       select: {
         name: true,
       },

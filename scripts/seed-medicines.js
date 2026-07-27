@@ -1,87 +1,88 @@
 const { PrismaClient } = require('@prisma/client');
 const fs = require('fs');
-const readline = require('readline');
-const path = require('path');
-
+const csv = require('csv-parser');
 const prisma = new PrismaClient();
 
-// Sample dataset in case CSV is not provided
-const sampleMedicines = [
-  { name: 'Paracetamol 500mg', type: 'Tablet', activeIngredient: 'Paracetamol' },
-  { name: 'Amoxicillin 250mg', type: 'Capsule', activeIngredient: 'Amoxicillin' },
-  { name: 'Ibuprofen 400mg', type: 'Tablet', activeIngredient: 'Ibuprofen' },
-  { name: 'Cetirizine 10mg', type: 'Tablet', activeIngredient: 'Cetirizine' },
-  { name: 'Azithromycin 500mg', type: 'Tablet', activeIngredient: 'Azithromycin' },
-  { name: 'Pantoprazole 40mg', type: 'Tablet', activeIngredient: 'Pantoprazole' },
-  { name: 'Metformin 500mg', type: 'Tablet', activeIngredient: 'Metformin' },
-  { name: 'Aspirin 75mg', type: 'Tablet', activeIngredient: 'Aspirin' },
-  { name: 'Vitamin C 500mg', type: 'Tablet', activeIngredient: 'Ascorbic Acid' },
-  { name: 'Cough Syrup (Dextromethorphan)', type: 'Syrup', activeIngredient: 'Dextromethorphan' },
-];
-
-async function seedDatabase() {
+async function main() {
   console.log('Starting MedicineMaster seed process...');
+
+  const csvFilePath = 'medicine_data.csv';
+
+  if (!fs.existsSync(csvFilePath)) {
+    console.log(`ERROR: Could not find ${csvFilePath} in the project root.`);
+    console.log('Please download the Kaggle dataset, extract the CSV file, name it medicine_data.csv, and place it in the same folder as package.json.');
+    return;
+  }
+
+  console.log(`Found ${csvFilePath}. Starting bulk insert...`);
   
-  const csvFilePath = path.join(__dirname, '..', 'medicines.csv');
-  let medicinesToInsert = [];
+  let chunk = [];
+  const chunkSize = 5000;
+  let totalInserted = 0;
+  let rowCount = 0;
 
-  if (fs.existsSync(csvFilePath)) {
-    console.log(`Found medicines.csv at ${csvFilePath}. Parsing...`);
-    // Basic CSV parser (expects header: name,type,activeIngredient,manufacturer)
-    const fileStream = fs.createReadStream(csvFilePath);
-    const rl = readline.createInterface({
-      input: fileStream,
-      crlfDelay: Infinity
-    });
+  return new Promise((resolve, reject) => {
+    fs.createReadStream(csvFilePath)
+      .pipe(csv())
+      .on('data', async (row) => {
+        // Kaggle columns: product_name, sub_category, salt_composition, product_manufactured
+        const name = row.product_name?.trim();
+        if (!name) return; // Skip empty rows
 
-    let isFirstLine = true;
-    let headers = [];
-    
-    for await (const line of rl) {
-      if (isFirstLine) {
-        headers = line.split(',').map(h => h.trim());
-        isFirstLine = false;
-        continue;
-      }
-      
-      const values = line.split(',').map(v => v.trim());
-      if (values.length > 0 && values[0]) {
-        medicinesToInsert.push({
-          name: values[0],
-          type: values[1] || null,
-          activeIngredient: values[2] || null,
-          manufacturer: values[3] || null
+        rowCount++;
+
+        chunk.push({
+          name: name,
+          type: row.sub_category?.trim() || null,
+          activeIngredient: row.salt_composition?.trim() || null,
+          manufacturer: row.product_manufactured?.trim() || null,
         });
-      }
-    }
-    console.log(`Parsed ${medicinesToInsert.length} medicines from CSV.`);
-  } else {
-    console.log('No medicines.csv found. Using sample dataset.');
-    medicinesToInsert = sampleMedicines;
-  }
 
-  console.log('Inserting into database...');
-  let successCount = 0;
-  let skipCount = 0;
-
-  for (const med of medicinesToInsert) {
-    try {
-      await prisma.medicineMaster.upsert({
-        where: { name: med.name },
-        update: {},
-        create: med
+        if (chunk.length >= chunkSize) {
+          const currentChunk = [...chunk];
+          chunk = []; // Reset for the next batch
+          
+          try {
+            await prisma.medicineMaster.createMany({
+              data: currentChunk,
+              skipDuplicates: true, // Requires unique constraint, but since we don't have one on just name, it relies on exact duplicate rows if using skipDuplicates on unique indexes. 
+              // Wait, name has an index but NOT a @unique constraint in our schema. 
+              // Let's just push them all! It's okay if there are duplicates since the Autocomplete API just does a fuzzy search anyway, but ideally we'd avoid them.
+            });
+            totalInserted += currentChunk.length;
+            console.log(`Inserted ${totalInserted} rows so far...`);
+          } catch (e) {
+            console.error('Error inserting chunk:', e.message);
+          }
+        }
+      })
+      .on('end', async () => {
+        // Insert any remaining rows
+        if (chunk.length > 0) {
+          try {
+            await prisma.medicineMaster.createMany({
+              data: chunk,
+              skipDuplicates: true,
+            });
+            totalInserted += chunk.length;
+          } catch (e) {
+            console.error('Error inserting final chunk:', e.message);
+          }
+        }
+        
+        console.log(`\n✅ Done! Successfully processed ${rowCount} valid rows.`);
+        console.log(`Inserted ${totalInserted} medicines into the live database.`);
+        await prisma.$disconnect();
+        resolve();
+      })
+      .on('error', (error) => {
+        console.error('Error reading CSV:', error);
+        reject(error);
       });
-      successCount++;
-    } catch (e) {
-      skipCount++;
-      // Ignore errors for duplicates
-    }
-  }
-
-  console.log(`Done! Successfully inserted/verified ${successCount} medicines. Skipped ${skipCount} (likely duplicates).`);
+  });
 }
 
-seedDatabase()
+main()
   .catch((e) => {
     console.error(e);
     process.exit(1);
