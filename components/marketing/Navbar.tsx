@@ -36,7 +36,7 @@ const Navbar = () => {
               <Shield className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600">
-              SanjeevniBharat
+              SanjeevaniBharat
             </span>
           </Link>
 

@@ -48,7 +48,7 @@ const Hero = () => {
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link 
-                href="https://wa.me/918878914647?text=Hi! I saw SanjeevniBharat and I want a live demo for my clinic."
+                href="https://wa.me/918878914647?text=Hi! I saw SanjeevaniBharat and I want a live demo for my clinic."
                 target="_blank"
                 className="w-full sm:w-auto bg-white border-2 border-slate-100 hover:border-teal-100 text-slate-700 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-teal-50 transition-all flex items-center justify-center space-x-2"
               >
@@ -82,7 +82,7 @@ const Hero = () => {
                 <div className="bg-slate-50 w-full rounded-[2rem] relative overflow-hidden shadow-inner border border-slate-200">
                   <img 
                     src="/clinical-report.png" 
-                    alt="SanjeevniBharat Clinical Report"
+                    alt="SanjeevaniBharat Clinical Report"
                     className="w-full h-auto object-cover opacity-95"
                   />
                   {/* Glass overlay effect */}

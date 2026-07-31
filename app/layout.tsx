@@ -3,8 +3,8 @@ import './globals.css'
 import { Providers } from './providers'
 
 export const metadata: Metadata = {
-  title: 'SanjeevniBharat — Smart Medicine Reminders for Doctors & Patients',
-  description: 'SanjeevniBharat helps doctors schedule and send WhatsApp medicine reminders to patients. Track dosages, manage prescriptions, and ensure patients never miss a dose.',
+  title: 'SanjeevaniBharat — Smart Medicine Reminders for Doctors & Patients',
+  description: 'SanjeevaniBharat helps doctors schedule and send WhatsApp medicine reminders to patients. Track dosages, manage prescriptions, and ensure patients never miss a dose.',
   keywords: 'medicine reminder, doctor, patient, WhatsApp, prescription, dosage tracker',
 }
 

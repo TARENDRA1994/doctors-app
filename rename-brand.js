@@ -5,9 +5,9 @@ function replaceInFile(filePath) {
     try {
         let content = fs.readFileSync(filePath, 'utf8');
         let newContent = content
-            .replace(/SanjeevniBharat/g, 'SanjeevniBharat')
-            .replace(/sanjeevnibharat/g, 'sanjeevnibharat')
-            .replace(/Sanjeevnibharat/g, 'Sanjeevnibharat');
+            .replace(/SanjeevaniBharat/g, 'SanjeevaniBharat')
+            .replace(/SanjeevaniBharat/g, 'SanjeevaniBharat')
+            .replace(/SanjeevaniBharat/g, 'SanjeevaniBharat');
         
         if (content !== newContent) {
             fs.writeFileSync(filePath, newContent, 'utf8');
