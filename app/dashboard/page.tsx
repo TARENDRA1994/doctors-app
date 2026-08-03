@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 import RestrictionOverlay from './components/RestrictionOverlay'
 import StatCards from './components/StatCards'
 import Link from 'next/link'
+import Image from 'next/image'
 import ReportsView from './components/ReportsView'
 import RevenueDashboard from './components/RevenueDashboard'
 import CalendarView from './components/CalendarView'
@@ -492,15 +493,7 @@ export default function Dashboard() {
               className="flex items-center gap-3 cursor-pointer group"
               onClick={() => setActiveView('overview')}
             >
-              <div className="w-10 h-10 bg-gradient-to-br from-medical-500 to-accent-600 rounded-xl flex items-center justify-center shadow-medical group-hover:scale-105 transition-transform">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                </svg>
-              </div>
-              <div>
-                <h1 className="text-lg font-bold text-medical-600">SanjeevaniBharat</h1>
-                <p className="text-xs text-gray-400 -mt-0.5 hidden sm:block">Doctor&apos;s Dashboard</p>
-              </div>
+              <Image src="/logo.png" alt="SanjeevaniBharat" width={180} height={50} className="object-contain group-hover:scale-[1.02] transition-transform" />
             </div>
 
             {/* Right side */}
