@@ -493,7 +493,7 @@ export default function Dashboard() {
               className="flex items-center gap-3 cursor-pointer group"
               onClick={() => setActiveView('overview')}
             >
-              <Image src="/logo.png" alt="SanjeevaniBharat" width={180} height={50} className="object-contain group-hover:scale-[1.02] transition-transform" />
+              <Image src="/logo.png" alt="SanjeevaniBharat" width={180} height={50} className="object-contain group-hover:scale-[1.02] transition-transform" unoptimized />
             </div>
 
             {/* Right side */}

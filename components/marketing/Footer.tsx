@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-1">
             <Link href="/" className="flex items-center space-x-2 mb-6 group">
-              <Image src="/logo.png" alt="SanjeevaniBharat" width={160} height={40} className="object-contain group-hover:scale-[1.02] transition-transform" />
+              <Image src="/logo.png" alt="SanjeevaniBharat" width={160} height={40} className="object-contain group-hover:scale-[1.02] transition-transform" unoptimized />
             </Link>
             <p className="text-slate-500 mb-6 max-w-xs">
               Modernizing clinic-patient communication through intelligent automation and AI.
