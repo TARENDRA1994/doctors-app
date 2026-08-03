@@ -32,8 +32,8 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 group">
-            <Image src="/logo.png" alt="SanjeevaniBharat" width={180} height={50} className="object-contain group-hover:scale-[1.02] transition-transform" unoptimized />
+          <Link href="/" className="flex items-center space-x-2 group shrink-0">
+            <Image src="/logo.png" alt="SanjeevaniBharat" width={150} height={40} className="w-auto h-10 object-contain group-hover:scale-[1.02] transition-transform" unoptimized />
           </Link>
 
           {/* Desktop Nav */}

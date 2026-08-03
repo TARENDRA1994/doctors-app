@@ -490,10 +490,10 @@ export default function Dashboard() {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div 
-              className="flex items-center gap-3 cursor-pointer group"
+              className="flex items-center gap-3 cursor-pointer group shrink-0"
               onClick={() => setActiveView('overview')}
             >
-              <Image src="/logo.png" alt="SanjeevaniBharat" width={180} height={50} className="object-contain group-hover:scale-[1.02] transition-transform" unoptimized />
+              <Image src="/logo.png" alt="SanjeevaniBharat" width={150} height={40} className="w-auto h-10 object-contain group-hover:scale-[1.02] transition-transform" unoptimized />
             </div>
 
             {/* Right side */}
