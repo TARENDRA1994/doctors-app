@@ -4,7 +4,7 @@
 echo "Updating system packages..."
 sudo apt-get update && sudo apt-get upgrade -y
 
-# Install curl if it's not installed
+# Install curl if it's not installed ok
 echo "Installing curl..."
 sudo apt-get install -y curl
 
