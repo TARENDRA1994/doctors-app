@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Shield, Menu, X, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -32,12 +33,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2 group">
-            <div className="w-10 h-10 bg-teal-600 rounded-xl flex items-center justify-center shadow-lg group-hover:rotate-12 transition-transform duration-300">
-              <Shield className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600">
-              SanjeevaniBharat
-            </span>
+            <Image src="/logo.png" alt="SanjeevaniBharat" width={180} height={50} className="object-contain group-hover:scale-[1.02] transition-transform" />
           </Link>
 
           {/* Desktop Nav */}
