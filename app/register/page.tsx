@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -103,22 +104,12 @@ export default function Register() {
 
         {/* Content */}
         <div className="relative z-10 flex flex-col items-center justify-center w-full px-12 text-white">
-          {/* Doctor Icon */}
+          {/* Doctor Icon / Logo */}
           <div className="mb-8 animate-float">
-            <svg className="w-32 h-32 text-white/90" viewBox="0 0 120 120" fill="none">
-              {/* Stethoscope */}
-              <circle cx="60" cy="35" r="20" fill="currentColor" opacity="0.3" />
-              <path d="M60 15 C60 15 40 15 40 35 C40 55 60 55 60 55 C60 55 80 55 80 35 C80 15 60 15 60 15Z" fill="currentColor" opacity="0.2" />
-              {/* Capsule */}
-              <rect x="25" y="70" width="30" height="15" rx="7.5" fill="currentColor" opacity="0.5" transform="rotate(-20 40 77.5)" />
-              <rect x="65" y="75" width="25" height="12" rx="6" fill="currentColor" opacity="0.4" transform="rotate(15 77 81)" />
-              {/* Plus sign */}
-              <rect x="52" y="25" width="16" height="4" rx="2" fill="white" opacity="0.8" />
-              <rect x="58" y="19" width="4" height="16" rx="2" fill="white" opacity="0.8" />
-            </svg>
+            <Image src="/logo.png" alt="SanjeevaniBharat" width={240} height={80} className="object-contain" unoptimized />
           </div>
 
-          <h1 className="text-4xl font-bold mb-4 text-center">Join SanjeevaniBharat</h1>
+          <h1 className="text-4xl font-bold mb-4 text-center hidden">Join SanjeevaniBharat</h1>
           <p className="text-xl text-white/80 mb-8 text-center">Start managing your patients&apos; health today</p>
 
           {/* Benefits */}
@@ -150,12 +141,10 @@ export default function Register() {
         <div className="w-full max-w-md animate-fade-in">
           {/* Mobile Logo */}
           <div className="lg:hidden text-center mb-6">
-            <div className="inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br from-medical-500 to-accent-600 rounded-2xl mb-3 shadow-medical">
-              <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M10 2a8 8 0 100 16 8 8 0 000-16zm1 11H9v-2h2v2zm0-4H9V5h2v4z" />
-              </svg>
+            <div className="flex justify-center mb-3">
+              <Image src="/logo.png" alt="SanjeevaniBharat" width={180} height={60} className="object-contain" unoptimized />
             </div>
-            <h1 className="text-2xl font-bold text-gradient-medical">SanjeevaniBharat</h1>
+            <h1 className="text-2xl font-bold text-gradient-medical hidden">SanjeevaniBharat</h1>
           </div>
 
           {/* Welcome Text */}

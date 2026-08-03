@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { signIn } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -37,14 +38,8 @@ export default function Login() {
         <div className="relative z-10 w-full max-w-lg px-12 text-center text-white">
           {/* Logo & Header */}
           <div className="mb-10 flex flex-col items-center">
-            <div className="w-24 h-24 mb-6 relative">
-               <svg viewBox="0 0 100 100" className="w-full h-full text-white/90 drop-shadow-xl">
-                 <path d="M50 90C50 90 20 65 20 45C20 35 28 28 38 28C44 28 48 31 50 35C52 31 56 28 62 28C72 28 80 35 80 45C80 65 50 90 50 90Z" fill="currentColor" opacity="0.4" />
-                 <path d="M50 85C50 85 25 62 25 45C25 36 32 30 40 30C45 30 48 32 50 35C52 32 55 30 60 30C68 30 75 36 75 45C75 62 50 85 50 85Z" fill="currentColor" />
-                 <path d="M15 50 L35 50 L40 35 L50 65 L60 40 L65 50 L85 50" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-               </svg>
-            </div>
-            <h1 className="text-4xl font-bold mb-4 tracking-tight">SanjeevaniBharat</h1>
+            <Image src="/logo.png" alt="SanjeevaniBharat" width={240} height={80} className="mb-6 object-contain" unoptimized />
+            <h1 className="text-4xl font-bold mb-4 tracking-tight hidden">SanjeevaniBharat</h1>
             <p className="text-xl text-white/80 font-medium leading-relaxed">
               Smart Medicine Reminders for Healthcare
             </p>
