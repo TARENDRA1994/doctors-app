@@ -5,6 +5,11 @@ import { authOptions } from '../../lib/auth'
 
 export const dynamic = 'force-dynamic'
 
+function stripTime(date: Date | string) {
+  const d = new Date(date);
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+}
+
 export async function GET() {
     try {
         const session = await getServerSession(authOptions)
@@ -19,7 +24,7 @@ export async function GET() {
         }
 
         // Fetch everything in parallel using Promise.all
-        const [patients, feedbacks, appointments] = await Promise.all([
+        const [patients, feedbacks, appointments, queueTokens] = await Promise.all([
             // 1. Fetch Patients with their medicines and schedules
             prisma.patient.findMany({
                 where: { doctorId, isActive: true },
@@ -51,6 +56,15 @@ export async function GET() {
                     patient: { select: { name: true, mobileNumber: true } }
                 },
                 orderBy: { createdAt: 'desc' }
+            }),
+            // 4. Fetch QueueTokens
+            prisma.queueToken.findMany({
+                where: { 
+                    doctorId,
+                    date: { gte: stripTime(new Date()) },
+                    status: { in: ['PENDING', 'CONFIRMED'] }
+                },
+                orderBy: { createdAt: 'desc' }
             })
         ])
 
@@ -58,6 +72,7 @@ export async function GET() {
             patients,
             feedbacks,
             appointments,
+            queueTokens,
             stats: {
                 totalPatients: patients.length,
                 totalMedicines: patients.reduce((acc, p) => acc + p.medicines.length, 0),

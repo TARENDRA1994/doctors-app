@@ -107,6 +107,7 @@ export default function Dashboard() {
   const [showAddMedicine, setShowAddMedicine] = useState(false)
   const [feedbacks, setFeedbacks] = useState<Feedback[]>([])
   const [appointments, setAppointments] = useState<Appointment[]>([])
+  const [queueTokens, setQueueTokens] = useState<any[]>([])
   const [showAddAppointment, setShowAddAppointment] = useState(false)
   const [appointmentForm, setAppointmentForm] = useState({ patientId: 0, proposedDate: '', proposedTime: '' })
   const [loading, setLoading] = useState(false)
@@ -163,6 +164,7 @@ export default function Dashboard() {
         setPatients(data.patients)
         setFeedbacks(data.feedbacks)
         setAppointments(data.appointments)
+        setQueueTokens(data.queueTokens || [])
       }
     } catch (error) {
       console.error('Error fetching dashboard data:', error)
@@ -703,7 +705,7 @@ export default function Dashboard() {
                 </div>
                 
                 <div className="space-y-4">
-                  {feedbacks.filter(f => !f.isRead).length === 0 && appointments.filter(a => ['PENDING', 'CONFIRMED', 'RESCHEDULED'].includes(a.status)).length === 0 ? (
+                  {feedbacks.filter(f => !f.isRead).length === 0 && appointments.filter(a => ['PENDING', 'CONFIRMED', 'RESCHEDULED'].includes(a.status)).length === 0 && queueTokens.filter(q => q.status === 'PENDING').length === 0 ? (
                     <div className="py-12 text-center bg-gray-50 rounded-2xl border border-dashed border-gray-200">
                       <p className="text-gray-400 font-medium">No pending alerts. You're all caught up!</p>
                     </div>
@@ -762,6 +764,20 @@ export default function Dashboard() {
                           </div>
                           <button onClick={() => archiveAppointment(a.id)} className="p-2 hover:bg-red-100 rounded-lg transition-colors text-red-600 border border-transparent hover:border-red-200">
                             <Plus className="rotate-45" size={18} />
+                          </button>
+                        </div>
+                      ))}
+                      {queueTokens.filter(q => q.status === 'PENDING').slice(0, 3).map(q => (
+                        <div key={`qt-${q.id}`} className="flex items-center justify-between p-4 bg-indigo-50 rounded-xl border border-indigo-100 group">
+                          <div className="flex items-center gap-3">
+                            <span className="text-xl">🔔</span>
+                            <div className="text-sm">
+                              <p className="font-bold text-gray-800 group-hover:text-indigo-600 transition-colors uppercase tracking-tight">{q.patientName}</p>
+                              <p className="text-xs text-indigo-500 font-bold">Online Booking - Token #{q.tokenNumber}</p>
+                            </div>
+                          </div>
+                          <button onClick={() => setActiveView('queue')} className="px-3 py-1.5 hover:bg-indigo-100 rounded-lg transition-colors text-indigo-600 border border-transparent hover:border-indigo-200">
+                            <span className="text-xs font-bold">View Queue</span>
                           </button>
                         </div>
                       ))}
@@ -884,7 +900,19 @@ export default function Dashboard() {
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
               Back to Dashboard
             </button>
-            <CalendarView appointments={appointments} />
+            {(() => {
+              const combinedCalendarData = [
+                ...appointments,
+                ...queueTokens.map(qt => ({
+                  id: 'qt-' + qt.id,
+                  appointmentDate: qt.date,
+                  proposedTime: 'Token #' + qt.tokenNumber,
+                  status: qt.status,
+                  patient: { name: qt.patientName, mobileNumber: qt.patientPhone }
+                }))
+              ];
+              return <CalendarView appointments={combinedCalendarData} />;
+            })()}
           </div>
         )}
 
